@@ -11,7 +11,7 @@
 @if (backpack_theme_config('styles') && count(backpack_theme_config('styles')))
     @foreach (backpack_theme_config('styles') as $path)
         @if(is_array($path))
-            @basset(...$path)
+            @basset($path)
         @else
             @basset($path)
         @endif

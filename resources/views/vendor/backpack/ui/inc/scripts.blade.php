@@ -6,7 +6,7 @@
 @if (backpack_theme_config('scripts') && count(backpack_theme_config('scripts')))
     @foreach (backpack_theme_config('scripts') as $path)
         @if(is_array($path))
-            @basset(...$path)
+            @basset($path)
         @else
             @basset($path)
         @endif
