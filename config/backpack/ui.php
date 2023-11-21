@@ -88,7 +88,8 @@ return [
     // ---------
 
     // Show "Getting Started with Backpack" info block?
-    'show_getting_started' => env('APP_ENV') == 'local',
+    // 'show_getting_started' => env('APP_ENV') == 'local',
+    'show_getting_started' => env('APP_ENV') == 'false',
 
     // -------------
     // GLOBAL STYLES
