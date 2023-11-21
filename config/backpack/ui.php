@@ -67,14 +67,14 @@ return [
     'project_logo'   => "<img src='/images/logo/logo.png' width=50 height=50 class='rounded-circle bg-white'></img>",
 
     // Show / hide breadcrumbs on admin panel pages.
-    'breadcrumbs' => true,
+    'breadcrumbs' => false,
 
     // ------
     // FOOTER
     // ------
 
     // Developer or company name. Shown in footer.
-    'developer_name' => 'Cristian Tabacitu',
+    'developer_name' => 'Rokhai',
 
     // Developer website. Link in footer. Type false if you want to hide it.
     // 'developer_link' => 'http://tabacitu.ro',
