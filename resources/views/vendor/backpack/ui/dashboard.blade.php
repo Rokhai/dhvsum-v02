@@ -44,33 +44,47 @@
         </div>
     </section> --}}
 
-    <div class="container w-100 h-100 my-auto">
+    <div class="container-sm w-100 h-100 my-auto mt-5">
         <div class="row align-items-center">
             <div class="col-6 text-wrap ">
                 <h1 class="display-1 fw-bolder">DHVSUM</h1>
                 <h2 class="display-2">Don Honorio Ventura State University Marketplace</h2>
-                <h4 class="lead fs-2 lh-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                <h4 class="lead fs-2 lh-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                    incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                     ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                     fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est laborum.</h4>
-                    
-                <a  href="{{backpack_url('my-store')}}" class="btn btn-primary btn-large mt-3 p-3">
-                    <span class="fs-3"><i class="las la-shopping-cart fs-1"></i> Shop Now </span>
-                </a>    
+
+                <a href="{{ backpack_url('my-store') }}" class="btn btn-primary btn-large mt-3 p-3 fs-2">
+                    {{-- <span class="fs-3"><i class="las la-shopping-cart fs-1"></i> Shop Now </span> --}}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="48"
+                        height="48" viewBox="0 0 20 20" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17h-11v-14h-2" />
+                        <path d="M6 5l14 1l-1 7h-13" />
+                    </svg>
+                    Shop Now
+                </a>
                 {{-- <button type="button" class="btn btn-primary btn-large mt-3 p-3"><span class="fs-3"><i class="las la-shopping-cart fs-1"></i> Shop Now </span></button> --}}
             </div>
             <div class="col-6 ">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="#" class="swiper-slide"><img src='/images/logo/logo.png'  class='rounded-circle bg-white w-auto h-auto' /></a>
+                            <a href="#" class="swiper-slide"><img src='/images/logo/logo.png'
+                                    class='rounded-circle bg-white w-auto h-auto' /></a>
                         </div>
                         <div class="carousel-item">
-                            <a href="#" class="swiper-slide"><img src='/images/logo/logo.png'  class='rounded-circle bg-white w-auto h-auto' /></a>
+                            <a href="#" class="swiper-slide"><img src='/images/logo/logo.png'
+                                    class='rounded-circle bg-white w-auto h-auto' /></a>
                         </div>
                         <div class="carousel-item">
-                            <a href="#" class="swiper-slide"><img src='/images/logo/logo.png'  class='rounded-circle bg-white w-auto h-auto' /></a>
+                            <a href="#" class="swiper-slide"><img src='/images/logo/logo.png'
+                                    class='rounded-circle bg-white w-auto h-auto' /></a>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
