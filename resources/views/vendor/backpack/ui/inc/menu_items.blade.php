@@ -32,3 +32,6 @@
     <x-backpack::menu-dropdown-item title="Roles" icon="la la-group" :link="backpack_url('role')" />
     <x-backpack::menu-dropdown-item title="Permissions" icon="la la-key" :link="backpack_url('permission')" />
 </x-backpack::menu-dropdown> --}}
+
+<x-backpack::menu-item title="Chat" icon="la la-question" :link="backpack_url('chat')" />
+<x-backpack::menu-item title="Activity" icon="la la-question" :link="backpack_url('activity')" />

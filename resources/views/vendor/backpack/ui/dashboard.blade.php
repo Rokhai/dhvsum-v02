@@ -44,7 +44,10 @@
         </div>
     </section> --}}
 
-    <div class="container-sm w-100 h-100 my-auto mt-5">
+    <div class="wv-100 hv-100 bg-ligt z-1">
+
+    </div>
+    <div class="container-sm w-100 h-100 my-auto mt-5 z-2">
         <div class="row align-items-center">
             <div class="col-6 text-wrap ">
                 <h1 class="display-1 fw-bolder">DHVSUM</h1>
@@ -103,4 +106,37 @@
         </div>
 
     </div>
+
+    <div class="page-body">
+        <div class="container-xl">
+          <div class="card">
+            <div class="card-body">
+              <div class="btn-list">
+                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-simple">
+                  Simple modal
+                </a>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="modal modal-blur fade" id="modal-simple" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi beatae delectus deleniti dolorem eveniet facere fuga iste nemo nesciunt nihil odio perspiciatis, quia quis reprehenderit sit tempora totam unde.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 @endsection

@@ -13,7 +13,7 @@
                 @if (config('backpack.base.registration_open'))
                     <div class="text-center text-muted mt-3">
                         <a tabindex="6"
-                            href="{{ route('backpack.auth.register') }}">{{ trans('backpack::base.register') }}</a>
+                            href="{{ route('backpack.auth.register') }}">Doesn't have account? {{ trans('backpack::base.register') }}</a>
                     </div>
                 @endif
             </div>

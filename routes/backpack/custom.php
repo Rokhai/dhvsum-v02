@@ -17,4 +17,6 @@ Route::group([
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     Route::crud('my-store', 'MyStoreCrudController');
+    Route::get('chat', 'ChatController@index')->name('page.chat.index');
+    Route::get('activity', 'ActivityController@index')->name('page.activity.index');
 }); // this should be the absolute last line of this file
