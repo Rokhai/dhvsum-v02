@@ -5,7 +5,8 @@
         <div class="col-12 col-lg-6 col-xl-4 border-top-wide border-primary d-flex flex-column justify-content-center">
             <div class="container container-tight my-5 px-lg-5">
                 <div class="text-center mb-4 display-6 auth-logo-container">
-                    {!! backpack_theme_config('project_logo') !!}
+                    {{-- {!! backpack_theme_config('project_logo') !!} --}}
+                    <img src='/images/logo/logo.png' width=120 height=120 />
                 </div>
                 @include(backpack_view('auth.register.inc.form'))
                 @if (config('backpack.base.registration_open'))

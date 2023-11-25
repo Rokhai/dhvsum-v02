@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
+// return view('welcome');
+// return redirect()->guest(backpack_view(backpack_url('dashboard')));
+// backpack_url('welcome');
+// Route::get('/', function () {
 
 
-    // return redirect()->guest(backpack_view(backpack_url('dashboard')));
-    // backpack_url('welcome');
-    return redirect(backpack_url('login'));
-});
+//     return redirect(backpack_url('login'));
+// });
 
 

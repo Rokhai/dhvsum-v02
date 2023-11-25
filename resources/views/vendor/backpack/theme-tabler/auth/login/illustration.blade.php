@@ -8,7 +8,7 @@
                     <div class="container-tight">
                         <div class="text-center mb-4 display-6 auth-logo-container">
                             {{-- {!! backpack_theme_config('project_logo') !!} --}}
-                            <img src='/images/logo/logo.png' width=90 height=90 class='rounded-circle bg-white' />
+                            <img src='/images/logo/logo.png' width="100" height="100" class='rounded-circle bg-white' />
 
                         </div>
                         <div class="card card-md">

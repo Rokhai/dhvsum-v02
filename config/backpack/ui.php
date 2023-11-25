@@ -64,7 +64,7 @@ return [
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
     // 'project_logo'   => '<b>Back</b>pack',
-    'project_logo'   => "<img src='/images/logo/logo.png' width=50 height=50 class='rounded-circle bg-white'></img>",
+    'project_logo'   => "<img src='/images/logo/logo.png' width=100 height=100 class=''></img>",
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => false,
@@ -122,9 +122,9 @@ return [
 
     // JS files that are loaded in all pages, using Laravel's asset() helper
     'scripts' => [
-        'js/app.js',
-        'bootstrap.js',
-        'tabler.js',
+        // 'app.js',
+        // 'bootstrap.js',
+        // 'tabler.js',
         // 'js/example.js',
         // 'https://unpkg.com/vue@2.4.4/dist/vue.min.js',
         // 'https://unpkg.com/react@16/umd/react.production.min.js',

@@ -5,22 +5,22 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Routing\Controller;
 
 /**
- * Class ChatController
+ * Class MessageController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ChatController extends Controller
+class MessageController extends Controller
 {
     public function index()
     {
-        return view('admin.chat', [
-            'title' => 'Chat',
+        return view('admin.message', [
+            'title' => 'Message',
             'breadcrumbs' => [
                 trans('backpack::crud.admin') => backpack_url('dashboard'),
-                'Chat' => false,
+                'Message' => false,
             ],
-            'page' => 'resources/views/admin/chat.blade.php',
-            'controller' => 'app/Http/Controllers/Admin/ChatController.php',
+            'page' => 'resources/views/admin/message.blade.php',
+            'controller' => 'app/Http/Controllers/Admin/MessageController.php',
         ]);
     }
 }

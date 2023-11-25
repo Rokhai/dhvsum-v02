@@ -9,7 +9,7 @@
                         @includeWhen(backpack_theme_config('options.showColorModeSwitcher'), backpack_view('layouts.partials.switch_theme'))
                     </li>
                     @include(backpack_view('inc.topbar_right_content'))
-                    @include(backpack_view('inc.menu_user_dropdown'))
+                    {{-- @include(backpack_view('inc.menu_user_dropdown')) --}}
                 </div>
             </ul>
             <h1 class="navbar-brand d-none d-lg-block align-self-center mb-3">
@@ -20,8 +20,8 @@
             @includeWhen($shortcuts ?? true, backpack_view('layouts.partials.sidebar_shortcuts'))
             <div class="collapse navbar-collapse" id="mobile-menu">
                 <ul class="navbar-nav pt-lg-3">
-                    @include(backpack_view('layouts._vertical.sidebar_content_top'))
                     @include(backpack_view('inc.sidebar_content'))
+                    @include(backpack_view('layouts._vertical.sidebar_content_top'))
                 </ul>
             </div>
         </div>

@@ -6,7 +6,7 @@
             <div class="container container-tight my-5 px-lg-5">
                 <div class="text-center mb-4 display-6 auth-logo-container">
                     {{-- {!! backpack_theme_config('project_logo') !!} --}}
-                    <img src='/images/logo/logo.png' width=90 height=90 class='rounded-circle bg-white' />
+                    <img src='/images/logo/logo.png' width=120 height=120 />
 
                 </div>
                 @include(backpack_view('auth.login.inc.form'))

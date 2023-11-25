@@ -39,8 +39,10 @@ return [
      *   - boom!
      */
     'styles' => [
-        base_path('vendor/backpack/theme-tabler/resources/assets/css/color-adjustments.css'),
-        base_path('vendor/backpack/theme-tabler/resources/assets/css/colors.css'),
+        // base_path('vendor/backpack/theme-tabler/resources/assets/css/color-adjustments.css'),
+        // base_path('vendor/backpack/theme-tabler/resources/assets/css/colors.css'),
+        base_path('resources/css/color-adjustments.css'),
+        base_path('resources/css/colors.css'),
     ],
 
     /**
@@ -105,6 +107,7 @@ return [
          * Use this to pass classes to the <body> HTML element, on all pages.
          */
         'body' => null,
+        // 'body' => 'antialiased layout-fixed sidebar-mini',
 
         /**
          * For background colors use:
@@ -125,6 +128,7 @@ return [
          * bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan
          */
         'sidebar' => null,
+        // 'sidebar' => "bg-dark navbar-dark",
 
         /**
          * Used in the top container menu when the layout is of horizontal type.
