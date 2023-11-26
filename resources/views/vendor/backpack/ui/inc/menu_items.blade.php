@@ -4,15 +4,19 @@
 
 {{-- <x-backpack::menu-item title="Home" icon="la la-home" :link="backpack_url('home')" /> --}}
 <x-backpack::menu-item title="Dashboard" icon="la la-home nav-icon" :link="backpack_url('dashboard')" />
+<x-backpack::menu-item title="Market" icon="la la-store-alt" :link="backpack_url('dashboard')" />
+<x-backpack::menu-item title="Activity" icon="la la-history" :link="backpack_url('activity')" />
 {{-- Normal User --}}
 @if (!backpack_user()->hasRole('Admin'))
-    <x-backpack::menu-dropdown title="My Store" icon="la la-users">
-        <x-backpack::menu-dropdown-item title="My products" icon="la la-question" :link="backpack_url('my-product')" />
+<x-backpack::menu-item title="Message" icon="la la-sms" :link="backpack_url('message')" />
+<x-backpack::menu-item title="My Cart" icon="la la-shopping-cart" :link="backpack_url('activity')" />
+<x-backpack::menu-item title="My Order" icon="la la-shopping-bag" :link="backpack_url('activity')" />
+    <x-backpack::menu-dropdown title="My Store" icon="la la-store">
+        <x-backpack::menu-dropdown-item title="Products" icon="la la-tag" :link="backpack_url('my-product')" />
+        <x-backpack::menu-dropdown-item title="Customer Orders" icon="la la-shopping-bag" :link="backpack_url('my-product')" />
         {{-- <x-backpack::menu-item title="Product" icon="la la-question" :link="backpack_url('my-store')" /> --}}
     </x-backpack::menu-dropdown>
 
-    <x-backpack::menu-item title="Activity" icon="la la-history" :link="backpack_url('activity')" />
-    <x-backpack::menu-item title="Message" icon="la la-sms" :link="backpack_url('message')" />
 
     {{-- 
         Home
