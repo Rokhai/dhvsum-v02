@@ -11,8 +11,8 @@
         {{-- <x-backpack::menu-item title="Product" icon="la la-question" :link="backpack_url('my-store')" /> --}}
     </x-backpack::menu-dropdown>
 
-    <x-backpack::menu-item title="Activity" icon="la la-question" :link="backpack_url('activity')" />
-    <x-backpack::menu-item title="Message" icon="la la-question" :link="backpack_url('message')" />
+    <x-backpack::menu-item title="Activity" icon="la la-history" :link="backpack_url('activity')" />
+    <x-backpack::menu-item title="Message" icon="la la-sms" :link="backpack_url('message')" />
 
     {{-- 
         Home
