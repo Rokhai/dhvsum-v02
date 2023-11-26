@@ -6,9 +6,13 @@
             <div class="">
                 <h1 class="display-1 fw-bolder">DHVSUM</h1>
                 <h2 class="display-2">Don Honorio Ventura State University Marketplace</h2>
-                <p class="lead fs-2 lh-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                    incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                <p class="lead fs-2 lh-5">
+                    This web system marketplace is only available within the premise of Don Honorio Ventura State
+                    University, where the Users are able to post their items or products such as their used P.E. Uniforms,
+                    College Uniforms, University Logo Patches, and this will not only limited products, but also services
+                    are included. This will be a localize platform for student to build communal economy if its for funds of
+                    student organizations among colleges. This will be potentially beneficial in College of Business Studies
+                    to market their products if its for thesis or projects.
                 </p>
 
                 <a href="{{ backpack_url('my-store') }}" class="btn btn-primary btn-large mt-3 p-3 fs-2">
@@ -41,13 +45,12 @@
         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">About US</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi beatae delectus deleniti
-                    dolorem eveniet facere fuga iste nemo nesciunt nihil odio perspiciatis, quia quis reprehenderit sit
-                    tempora totam unde.
+                    This is Web Marketplace to cater a platform for students to sell their products and services within the
+                    premise of Don Honorio Ventura State University.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>

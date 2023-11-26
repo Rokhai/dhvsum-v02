@@ -107,7 +107,7 @@ return [
          * Use this to pass classes to the <body> HTML element, on all pages.
          */
         'body' => null,
-        // 'body' => 'antialiased layout-fixed sidebar-mini',
+        // 'body' => "background-image: url('/images/bg.jpg');",
 
         /**
          * For background colors use:

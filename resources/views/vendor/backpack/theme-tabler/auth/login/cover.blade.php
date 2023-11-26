@@ -20,7 +20,8 @@
         </div>
         <div class="col-12 col-lg-6 col-xl-8 d-none d-lg-block">
             <div class="bg-cover h-100 min-vh-100"
-                style="background-image: url(https://preview.tabler.io/static/photos/finances-us-dollars-and-bitcoins-currency-money-2.jpg)">
+                {{-- style="background-image: url(https://preview.tabler.io/static/photos/finances-us-dollars-and-bitcoins-currency-money-2.jpg)"> --}}
+                style="background-image: url(/images/bg.jpg)">
             </div>
         </div>
     </div>

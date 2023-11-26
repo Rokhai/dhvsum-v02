@@ -16,9 +16,15 @@
     --tblr-gray-700: #333152;
     --tblr-gray-800: #211d3b;
     --tblr-gray-900: #1a0f2a;
-    --tblr-primary: #7c69ef;
+
+    
+    --tblr-primary: #7c69ef; 
+    /* Custom */
+    /* --tblr-primary: #e8590c; */
     /* --tblr-primary: #f3b713; */
     --tblr-secondary: #66626c;
+    /* Custom */
+    /* --tblr-secondary: hsl(21, 54%, 61%); */
     --tblr-success: #42ba96;
     --tblr-info: #467fd0;
     --tblr-warning: #ffc107;
@@ -27,6 +33,9 @@
     --tblr-dark: #241f2d;
     --tblr-muted: #66626c;
     --tblr-tabler: #7c69ef;
+    /* Custom */
+    /* --tblr-tabler: #d18b66; */
+    /* RGB */
     --tblr-primary-rgb: 124, 105, 239;
     --tblr-secondary-rgb: 102, 98, 108;
     --tblr-success-rgb: 66, 186, 150;
@@ -37,6 +46,7 @@
     --tblr-dark-rgb: 36, 31, 45;
     --tblr-muted-rgb: 102, 98, 108;
     --tblr-tabler-rgb: 124, 105, 239;
+    /* Text */
     --tblr-primary-text-emphasis: #322a60;
     --tblr-secondary-text-emphasis: #42444b;
     --tblr-success-text-emphasis: #1a4a3c;
@@ -103,8 +113,11 @@
     --tblr-body-bg-rgb: 24, 24, 24;
     --tblr-emphasis-color: #fff;
     --tblr-emphasis-color-rgb: 255, 255, 255;
+    
     --tblr-secondary-color: rgba(160, 155, 190, .75);
     --tblr-secondary-color-rgb: 160, 155, 190;
+    /* Custom */
+    /* --tblr-secondary-color-rgb: 209, 139, 102; */
     --tblr-secondary-bg: #211d3b;
     --tblr-secondary-bg-rgb: 33, 29, 59;
     --tblr-tertiary-color: rgba(160, 155, 190, .5);
@@ -137,6 +150,7 @@
     --tblr-dark-border-subtle: #211d3b;
     --tblr-link-color: #b0a5f5;
     --tblr-link-hover-color: #c0b7f7;
+    /* --tblr-link-hover-color: #d18b66; */
     --tblr-link-color-rgb: 176, 165, 245;
     --tblr-link-hover-color-rgb: 192, 183, 247;
     --tblr-code-color: #b0a5f5;
