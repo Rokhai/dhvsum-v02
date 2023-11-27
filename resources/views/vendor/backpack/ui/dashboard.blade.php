@@ -72,7 +72,7 @@
         {{-- carousel-dark makes the button dark --}}
         <div id="carousel-newest-product" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner w-75 mx-auto">
-                <div class="carousel-item active " data-bs-interval="5000">
+                <div class="carousel-item active " data-bs-interval="10000">
                     <div class="container">
                         <div class="row row-cols-auto justify-content-center">
                             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -242,7 +242,7 @@
         <h2 class="container my-5 fw-bold">Hot Choice</h2>
         <div id="carousel-hot-choice" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner w-75 mx-auto">
-                <div class="carousel-item active " data-bs-interval="5000">
+                <div class="carousel-item active " data-bs-interval="10000">
                     <div class="container">
                         <div class="row row-cols-auto justify-content-center">
                             <div class="col-lg-3 col-md-6 col-sm-12">
