@@ -23,4 +23,5 @@ Route::group([
     Route::get('message', 'MessageController@index')->name('page.message.index');
     // Route::crud('myproduct', 'MyproductCrudController');
     Route::crud('my-product', 'MyProductCrudController');
+    Route::get('myorder', 'MyorderController@index')->name('page.myorder.index');
 }); // this should be the absolute last line of this file
