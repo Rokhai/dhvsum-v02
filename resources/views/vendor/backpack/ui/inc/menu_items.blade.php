@@ -16,7 +16,7 @@
 {{-- <x-backpack::menu-item title="My Order" icon="la la-shopping-bag" :link="backpack_url('my-order')" /> --}}
 <x-backpack::menu-item title="My Order" icon="la la-shopping-bag" :link="backpack_url('myorder')" />
     <x-backpack::menu-dropdown title="My Store" icon="la la-store">
-        <x-backpack::menu-dropdown-item title="Products" icon="la la-tag" :link="backpack_url('my-product')" />
+        <x-backpack::menu-dropdown-item title="Products" icon="la la-tag" :link="backpack_url('product')" />
         <x-backpack::menu-dropdown-item title="Customer Orders" icon="la la-shopping-bag" :link="backpack_url('my-product')" />
         {{-- <x-backpack::menu-item title="Product" icon="la la-question" :link="backpack_url('my-store')" /> --}}
     </x-backpack::menu-dropdown>
@@ -56,3 +56,5 @@
 
 {{-- <x-backpack::menu-item title="Chat" icon="la la-question" :link="backpack_url('chat')" /> --}}
 {{-- <x-backpack::menu-item title="Productsearch" icon="la la-question" :link="backpack_url('productsearch')" /> --}}
+
+{{-- <x-backpack::menu-item title="Products" icon="la la-question" :link="backpack_url('product')" /> --}}

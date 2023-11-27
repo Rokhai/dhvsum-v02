@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\MyProductRequest;
+use App\Http\Requests\ProductRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class MyProductCrudController
+ * Class ProductCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class MyProductCrudController extends CrudController
+class ProductCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class MyProductCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\MyProduct::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/my-product');
-        CRUD::setEntityNameStrings('my product', 'my products');
+        CRUD::setModel(\App\Models\Product::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/product');
+        CRUD::setEntityNameStrings('product', 'products');
     }
 
     /**
@@ -55,7 +55,7 @@ class MyProductCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(MyProductRequest::class);
+        CRUD::setValidation(ProductRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
 
         /**
