@@ -69,6 +69,7 @@
     {{-- Newest Product Carousel --}}
     <div class="my-5 mx-auto pt-5">
         <h2 class="container my-5 fw-bold">Newest</h2>
+        {{-- carousel-dark makes the button dark --}}
         <div id="carousel-newest-product" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner w-75 mx-auto">
                 <div class="carousel-item active " data-bs-interval="5000">
