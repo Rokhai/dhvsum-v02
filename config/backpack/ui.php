@@ -101,6 +101,8 @@ return [
         'color-adjustments.css',
         'colors.css',
         'styles.css',
+        // 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css',
+        // 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css',
         // 'styles/example.css',
         // 'https://some-cdn.com/example.css',
     ],
@@ -122,6 +124,7 @@ return [
 
     // JS files that are loaded in all pages, using Laravel's asset() helper
     'scripts' => [
+        // 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js',
         // 'app.js',
         // 'bootstrap.js',
         // 'tabler.js',

@@ -1,7 +1,7 @@
 @extends(backpack_view('blank'))
 
 @section('content')
-    <div class="page-wrapper">
+    <div class="page-wrapper ">
         <!-- Page header -->
         <div class="page-header d-print-none">
             <div class="container-xl">
@@ -20,27 +20,27 @@
         <!-- Page body -->
         <div class="page-body">
             <div class="container-xl">
-                <div class="row justify-content-center">
+                <div class="row justify-content-start">
                     <div class="col-8">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body w-100">
                                 <div class="divide-y">
                                     @foreach ($datas as $data)
-                                        <div>
-                                            <div class="row ">
-                                                <div class=" col-auto w-100 d-flex  flex-row justify-content-between">
-                                                    <div class="text-truncate fs-2">
-                                                        <strong>{{ $data->activity }}</strong>
+                                        <div >
+                                            <div class=" col w-100 d-flex  flex-row justify-content-between">
+                                                <div class="text-truncate fs-3">
+                                                    <strong>{{ $data->activity }}</strong>
 
-                                                    </div>
-                                                    <div class="fs-3">
-                                                        <p>{{ $data->created_at }}</p>
-                                                    </div>
                                                 </div>
-                                                <div class="text-muted">
-                                                    {{ $data->created_at->diffForHumans() }}
+                                                <div class="fs-5 d-none d-lg-block">
+                                                    <p>{{ $data->created_at }}</p>
                                                 </div>
                                             </div>
+                                            <div class="text-muted">
+                                                {{ $data->created_at->diffForHumans() }}
+                                            </div>
+                                            {{-- <div class="row">
+                                            </div> --}}
                                         </div>
                                     @endforeach
                                 </div>

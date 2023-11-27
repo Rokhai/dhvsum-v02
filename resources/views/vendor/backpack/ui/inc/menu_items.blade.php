@@ -6,6 +6,9 @@
 <x-backpack::menu-item title="Dashboard" icon="la la-home nav-icon" :link="backpack_url('dashboard')" />
 <x-backpack::menu-item title="Market" icon="la la-store-alt" :link="backpack_url('market')" />
 <x-backpack::menu-item title="Activity" icon="la la-history" :link="backpack_url('activity')" />
+
+
+
 {{-- Normal User --}}
 @if (!backpack_user()->hasRole('Admin'))
 <x-backpack::menu-item title="Message" icon="la la-sms" :link="backpack_url('message')" />
