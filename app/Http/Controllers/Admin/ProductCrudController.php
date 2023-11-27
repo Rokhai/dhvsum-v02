@@ -26,6 +26,7 @@ class ProductCrudController extends CrudController
      */
     public function setup()
     {
+        // Only Student can access this
         CRUD::setModel(\App\Models\Product::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/product');
         CRUD::setEntityNameStrings('product', 'products');
@@ -39,7 +40,7 @@ class ProductCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        // CRUD::setFromDb(); // set columns from db columns.
 
         /**
          * Columns can be defined using the fluent syntax:
