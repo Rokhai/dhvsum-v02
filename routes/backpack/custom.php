@@ -25,4 +25,8 @@ Route::group([
     // Route::crud('my-product', 'MyProductCrudController');
     Route::get('myorder', 'MyorderController@index')->name('page.myorder.index');
     Route::crud('product', 'ProductCrudController');
+    Route::get('search_product', 'SearchProductController@index')->name('page.search_product.index');
+    Route::crud('product-approval', 'ProductApprovalCrudController');
+    Route::get('view_product', 'ViewProductController@index')->name('page.view_product.index');
+    Route::get('view_product/{id}', 'ViewProductController@show')->name('page.view_product.show');
 }); // this should be the absolute last line of this file
