@@ -46,6 +46,14 @@ class ProductCrudController extends CrudController
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
          */
+
+        CRUD::column('name')->type('text');
+        CRUD::column('stock')->type('number');
+        CRUD::column('price')->type('number');
+        CRUD::column('description')->type('text');
+        CRUD::column('category_id')->type('number');
+        // CRUD::column('image')->type('image')->upload(true)->disk('public')->prunable()->width(400)->height(400);
+        
     }
 
     /**
@@ -57,12 +65,33 @@ class ProductCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(ProductRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        // CRUD::setFromDb(); // set fields from db columns.
 
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
          */
+
+        // CRUD::column('name')->type('text');
+        // CRUD::column('stock')->type('number');
+        // CRUD::column('price')->type('number');
+        // CRUD::column('description')->type('text');
+        // CRUD::column('category_id')->type('number');
+        // CRUD::column('image')->type('image')->upload(true)->disk('public')->prunable()->width(400)->height(400);
+        // CRUD::columns([
+        //     [
+        //         // select_from_array
+        //         'name'    => 'status',
+        //         'label'   => 'Status',
+        //         'type'    => 'select_from_array',
+        //         'options' => ['draft' => 'Draft (invisible)', 'published' => 'Published (visible)'],
+        //     ],
+        // ]);
+        $fillableFields = \App\Models\Product::getFillable();
+
+        foreach ($fillableFields as $field) {
+            CRUD::field($field)->type('text');
+        }
     }
 
     /**

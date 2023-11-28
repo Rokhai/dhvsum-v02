@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->float('price', 8, 2);
             $table->text('description');
-            // $table->foreignId('category_id')->nullable;
+            $table->foreignId('category_id')->nullable;
             $table->timestamps();
 
 

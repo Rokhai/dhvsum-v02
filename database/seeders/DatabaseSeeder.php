@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
+        
         // \Backpack\PermissionManager\app\Models\Role::factory()->create([
         //     'name' => 'Super Admin',
         //     'guard_name' => 'web',
