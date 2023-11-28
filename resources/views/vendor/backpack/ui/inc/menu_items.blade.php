@@ -58,3 +58,6 @@
 {{-- <x-backpack::menu-item title="Productsearch" icon="la la-question" :link="backpack_url('productsearch')" /> --}}
 
 {{-- <x-backpack::menu-item title="Products" icon="la la-question" :link="backpack_url('product')" /> --}}
+<x-backpack::menu-item title="Search Product" icon="la la-question" :link="backpack_url('search_product')" />
+<x-backpack::menu-item title="Product approvals" icon="la la-question" :link="backpack_url('product-approval')" />
+<x-backpack::menu-item title="View Product" icon="la la-question" :link="backpack_url('view_product')" />

@@ -9,7 +9,8 @@
     
     
     // $products = App\Models\Product::paginate(10);
-    $product = App\Models\Product::first();
+    // $product = App\Models\Product::first();
+    $product = App\Models\Product::orderBy('created_at', 'desc')->first();
 
 
 
@@ -97,7 +98,8 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{$product->name}}</h5>
                                         <p class="card-text">₱{{$product->price}}</p>
-                                        <a href="#" class="btn btn-primary">View</a>
+                                        {{-- <a href="{{ backpack_url('view-product/' . $product->id . '/show') }}" class="btn btn-primary">View</a> --}}
+                                        <a href="{{backpack_url('view_product/'. $product->id) }}" class="btn btn-primary">View</a>
                                     </div>
                                 </div>
                             </div>

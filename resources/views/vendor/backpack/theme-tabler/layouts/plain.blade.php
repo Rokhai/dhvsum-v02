@@ -8,38 +8,47 @@
 
 <body class="{{ backpack_theme_config('classes.body') }}" bp-layout="plain">
 
-@include(backpack_view('layouts.partials.light_dark_mode_logic'))
+    @include(backpack_view('layouts.partials.light_dark_mode_logic'))
 
-<div class="page">
+    <div class="page">
 
-    <div class="page-wrapper">
+        <div class="page-wrapper">
 
-        <div class="page-body">
-            <main class="{{ backpack_theme_config('options.useFluidContainers') ? 'container-fluid' : 'container-xl' }}">
+            <div class="page-body">
+                <main
+                    class="{{ backpack_theme_config('options.useFluidContainers') ? 'container-fluid' : 'container-xl' }}">
 
-                @yield('before_breadcrumbs_widgets')
-                @includeWhen(isset($breadcrumbs), backpack_view('inc.breadcrumbs'))
-                @yield('after_breadcrumbs_widgets')
+                    @yield('before_breadcrumbs_widgets')
+                    @includeWhen(isset($breadcrumbs), backpack_view('inc.breadcrumbs'))
+                    @yield('after_breadcrumbs_widgets')
 
-                <div class="container-fluid animated fadeIn">
-                    @yield('before_content_widgets')
-                    @yield('content')
-                    @yield('after_content_widgets')
-                </div>
-            </main>
+                    @if (session('notyf_error'))
+                        <script>
+                            new Notyf().error({
+                                message: '{{ session('notyf_error') }}'
+                            });
+                        </script>
+                    @endif
+                    <div class="container-fluid animated fadeIn">
+                        @yield('before_content_widgets')
+                        @yield('content')
+                        @yield('after_content_widgets')
+                    </div>
+                </main>
+            </div>
+
+            @include(backpack_view('inc.footer'))
         </div>
-
-        @include(backpack_view('inc.footer'))
     </div>
-</div>
 
-@yield('before_scripts')
-@stack('before_scripts')
+    @yield('before_scripts')
+    @stack('before_scripts')
 
-@include(backpack_view('inc.scripts'))
-@include(backpack_view('inc.theme_scripts'))
+    @include(backpack_view('inc.scripts'))
+    @include(backpack_view('inc.theme_scripts'))
 
-@yield('after_scripts')
-@stack('after_scripts')
+    @yield('after_scripts')
+    @stack('after_scripts')
 </body>
+
 </html>

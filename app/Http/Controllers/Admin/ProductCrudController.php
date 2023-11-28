@@ -70,13 +70,57 @@ class ProductCrudController extends CrudController
             ],
         ])->to('before_content');
         // ->prefix('storage/uploads/products/')
-        CRUD::column('image')->type('image')->width(10)->height(10)->disk('products');
-        CRUD::column('name')->type('text');
-        CRUD::column('stock')->type('number')->prefix('Qty: ');
-        CRUD::column('price')->type('number')->prefix('₱');
-        CRUD::column('description')->type('text');
-        CRUD::column('category_id')->type('select')->entity('category')->attribute('name');
-        CRUD::column('is_active')->type('boolean');
+        CRUD::addColumns([
+            [
+                'name' => 'image',
+                'label' => 'Product Image',
+                'type' => 'image',
+                'prefix' => 'storage/uploads/products/',
+                'height' => '100px',
+                'width' => '100px',
+            ],
+            [
+                'name' => 'name',
+                'label' => 'Product Name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'stock',
+                'label' => 'Stock',
+                'type' => 'number',
+                'prefix' => 'Qty: '
+            ],
+            [
+                'name' => 'price',
+                'label' => 'Price',
+                'type' => 'number',
+                'prefix' => '₱',
+            ],
+            [
+                'name' => 'description',
+                'label' => 'Product Description',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'is_active',
+                'label' => 'is_active',
+                'type' => 'boolean',
+            ],
+            [
+                'name' => 'is_approved',
+                'label' => 'is_approved',
+                'type' => 'boolean',
+            ],
+            [
+                'name' => 'category_id',
+                'label' => 'Category',
+                'type' => 'select',
+                'entity' => 'category',
+                'attribute' => 'name',
+                'model' => "App\Models\Category",
+            ],
+            
+        ]);
         // CRUD::column('image')->type('image')->upload(true)->disk('public')->prunable()->width(400)->height(400);
 
     }

@@ -39,6 +39,10 @@ class Product extends Model
     }
 
     
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 
     // Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
