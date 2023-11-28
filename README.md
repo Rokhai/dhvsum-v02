@@ -23,7 +23,7 @@ php artisan backpack:install
 composer require backpack/permissionmanager
 ```
 
-- inish all installation steps for spatie/laravel-permission, which has been pulled as a dependency. Run its migrations. Publish its config files. Most likely it's:
+- Finish all installation steps for spatie/laravel-permission, which has been pulled as a dependency. Run its migrations. Publish its config files. Most likely it's:
 
 ```
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="permission-migrations"
@@ -34,7 +34,44 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 // then, add the Spatie\Permission\Traits\HasRoles trait to your User model(s)
 ```
 
-# Instructions
+
+## Backpack Laravel MediaLibrary Requirements
+
+- __MediaLibrary__ <br /> https://github.com/laravel-backpack/medialibrary-uploaders <br />
+
+**Install and use `spatie/laravel-medialibrary` v10**. If you haven't already, please make sure you've installed `spatie/laravel-medialibrary` and followed all installation steps in [their docs](https://spatie.be/docs/laravel-medialibrary/v10/installation-setup):
+
+``` bash
+# require the package
+composer require "spatie/laravel-medialibrary:^10.0.0"
+
+# prepare the database
+# NOTE: Spatie migration does not come with a `down()` method by default, add one now if you need it
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations"
+
+# run the migration
+php artisan migrate
+
+# make sure you have your storage symbolic links created for the default laravel `public` disk
+php artisan storage:link
+
+# (optionally) publish the config file
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="config"
+
+```
+
+Then prepare your Models to use `spatie/laravel-medialibrary`, by adding the `InteractsWithMedia` trait to your model and implement the `HasMedia` interface like explained on [Media Library Documentation](https://spatie.be/docs/laravel-medialibrary/v10/basic-usage/preparing-your-model).
+
+## Installation
+
+Just require this package using Composer, that's it:
+
+``` bash
+composer require backpack/medialibrary-uploaders
+```
+
+
+# Instructions For Execution
 - If project is cloned make sure type `composer install` to intall all necessary independency
 
 ```
