@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,7 +35,31 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        
+        \App\Models\User::factory()->create([
+            'name' => 'Test User 2',
+            'email' => 'test2@example.com',
+            'is_admin' => '0',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        Category::create([
+            'name' => 'Electronics',
+            'slug' => 'electronics',
+            'description' => 'Category for electronic products',
+        ]);
+
+        Category::create([
+            'name' => 'Clothing',
+            'slug' => 'clothing',
+            'description' => 'Category for clothing and apparel',
+        ]);
+
+        Category::create([
+            'name' => 'Home & Kitchen',
+            'slug' => 'home-kitchen',
+            'description' => 'Category for home and kitchen products',
+        ]);
+       
         // \Backpack\PermissionManager\app\Models\Role::factory()->create([
         //     'name' => 'Super Admin',
         //     'guard_name' => 'web',

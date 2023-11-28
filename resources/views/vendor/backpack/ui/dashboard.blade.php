@@ -1,6 +1,20 @@
 @extends(backpack_view('blank'))
 
 
+@php
+
+
+    // $products = App\Models\Product::all();
+    
+    
+    
+    // $products = App\Models\Product::paginate(10);
+    $product = App\Models\Product::first();
+
+
+
+@endphp
+
 {{-- @extends(backpack_view('blank')) --}}
 
 @section('content')
@@ -73,22 +87,17 @@
         <div id="carousel-newest-product" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner w-75 mx-auto">
                 <div class="carousel-item active " data-bs-interval="10000">
+                    {{-- src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg" --}}
+                    {{-- src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg" --}}
                     <div class="container">
                         <div class="row row-cols-auto justify-content-center">
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
+                            <div class="col-lg-3 col-md-6 col-sm-12 ">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="{{ asset('/storage/uploads/products/' . $product->image) }}" class="card-img-top" alt="{{$product->name}}">
                                     <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <h5 class="card-title">{{$product->name}}</h5>
+                                        <p class="card-text">₱{{$product->price}}</p>
+                                        <a href="#" class="btn btn-primary">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +114,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +131,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +148,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +173,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +190,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +207,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +224,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +267,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -275,7 +284,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -292,7 +301,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -309,7 +318,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -333,7 +342,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -350,7 +359,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -367,7 +376,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -384,7 +393,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
