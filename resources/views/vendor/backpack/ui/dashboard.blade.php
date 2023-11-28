@@ -88,7 +88,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +198,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +258,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -275,7 +275,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -292,7 +292,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -309,7 +309,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -333,7 +333,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -350,7 +350,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -367,7 +367,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
@@ -384,7 +384,7 @@
                                             </p>
                                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary w-100">View this product</a>
+                                        <a href="#" class="btn btn-primary text-wrap w-100">View this product</a>
                                     </div>
                                 </div>
                             </div>
