@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Rating;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 
@@ -42,6 +43,38 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
+
+        // Ratings
+        // Code for 4 Stars
+        // &#9733; &#9733; &#9733; &#9733; &#9734;
+        Rating::create([
+            'id' => '1',
+            'name' => '1 Star',
+            'rating' => '&#9733; &#9734; &#9734; &#9734; &#9734;',
+        ]);
+        Rating::create([
+            'id' => '2',
+            'name' => '2 Stars',
+            'rating' => '&#9733; &#9733; &#9734; &#9734; &#9734;',
+        ]);
+        Rating::create([
+            'id' => '3',
+            'name' => '3 Stars',
+            'rating' => '&#9733; &#9733; &#9733; &#9734; &#9734;',
+        ]);
+        Rating::create([
+            'id' => '4',
+            'name' => '4 Stars',
+            'rating' => '&#9733; &#9733; &#9733; &#9733; &#9734;',
+        ]);
+        Rating::create([
+            'id' => '5',
+            'name' => '5 Stars',
+            'rating' => '&#9733; &#9733; &#9733; &#9733; &#9733;',
+        ]);
+
+        //  Categories
+
         Category::create([
             'name' => 'Electronics',
             'slug' => 'electronics',
@@ -59,7 +92,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'home-kitchen',
             'description' => 'Category for home and kitchen products',
         ]);
-       
+
         // \Backpack\PermissionManager\app\Models\Role::factory()->create([
         //     'name' => 'Super Admin',
         //     'guard_name' => 'web',
