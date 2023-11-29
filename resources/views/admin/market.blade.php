@@ -23,12 +23,12 @@
                             </svg>
                         </span>
                     </div>
-                    <div class="col">
+                    {{-- <div class="col">
                         <h2 class="page-title">
                             Search results
                         </h2>
                         <div class="text-secondary mt-1">About 2,410 result (0.19 seconds)</div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

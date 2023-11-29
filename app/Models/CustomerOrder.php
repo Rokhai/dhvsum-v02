@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Backpack\CRUD\app\Models\Traits\CrudTrait; // Import the CrudTrait class
 
-class Order extends Model
+class CustomerOrder extends Model
 {
-    use HasFactory, CrudTrait; // Use the CrudTrait
-
+    use CrudTrait;
+    use HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -53,5 +53,4 @@ class Order extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
 }

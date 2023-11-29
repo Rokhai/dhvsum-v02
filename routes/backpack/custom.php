@@ -27,7 +27,17 @@ Route::group([
     Route::crud('product', 'ProductCrudController');
     Route::get('search_product', 'SearchProductController@index')->name('page.search_product.index');
     Route::crud('product-approval', 'ProductApprovalCrudController');
+
     Route::get('view_product', 'ViewProductController@index')->name('page.view_product.index');
+    Route::post('view_product', 'ViewProductController@store')->name('page.view_product.store');
     Route::get('view_product/{id}', 'ViewProductController@show')->name('page.view_product.show');
+    
     Route::get('mycart', 'MycartController@index')->name('page.mycart.index');
+    Route::post('mycart', 'MycartController@store')->name('page.mycart.store');
+    
+    
+    Route::get('market', 'MarketController@index')->name('page.market.index');
+
+    Route::crud('customer-order', 'CustomerOrderCrudController');
+    // Route::get('customer-order', 'CustomerOrderCrudController@index')->name('page.customer-order.index');
 }); // this should be the absolute last line of this file

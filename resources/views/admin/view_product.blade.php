@@ -1,6 +1,39 @@
 @extends(backpack_view('blank'))
 
 @section('content')
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Success</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Product added to cart successfully
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @php
+
+        $sessionInfo = session('info');
+        // dd($sessionInfo);
+        if ($sessionInfo == 'success') {
+            echo "<script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var myModal = new bootstrap.Modal(document.getElementById('successModal'), {});
+                    myModal.show();
+                });
+            </script>";
+        }
+    @endphp
+
+    {{-- Product Details --}}
     <div class="card container-sm">
         <div class="mt-4 mx-4">
             <div class="d-flex flex-row justify-content-between">
@@ -35,37 +68,15 @@
             </div>
 
         </div>
-
-
-        <!-- Add to Cart Modal -->
-        {{-- {{ route('cart.add', $product->id) }} --}}
-        {{-- <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <form action="" method="POST">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addToCartModalLabel">Add to Cart</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure you want to add this product to your cart?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div> --}}
-
+        {{-- Modal For Quantity Confirmation --}}
         <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-center" role="document">
 
                 <div class="modal-content">
-                    <form action="" method="post">
-                        
+                    <form action="{{ backpack_url('mycart') }}" method="post">
+                        @csrf
+                        @method('POST')
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <div class="modal-header">
                             <h5 class="modal-title">Add to cart</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -80,9 +91,12 @@
                             <div class="form-group">
                                 <label for="quantity">Quantity</label>
                                 <div class="input-group">
-                                    <input type="number" id="quantity" name="quantity" class="form-control text-center" value="1" min="1">
-                                    <button type="button" class="btn btn-outline-secondary" onclick="decrement()">-</button>
-                                    <button type="button" class="btn btn-outline-secondary" onclick="increment()">+</button>
+                                    <input type="number" id="quantity" name="quantity" class="form-control text-center"
+                                        value="1" min="1">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        onclick="decrement()">-</button>
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        onclick="increment()">+</button>
                                 </div>
                             </div>
                             <script>
@@ -102,7 +116,7 @@
 
                         <div class="modal-footer ">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            <button type="submit" class="btn btn-primary"> Confirm </button>
                         </div>
                     </form>
 
@@ -136,7 +150,7 @@
                         <div class="text-truncate">
                             <p class="fs-2 fw-bold">Rosgen Hizer</p>
                             <p class=" text-muted">test@example.com</p>
-                            <div class="text-secondary">Active: yesterday <div class="badge bg-primary"></div>
+                            <div class="text-secondary">Active: yesterday 
                             </div>
                         </div>
 

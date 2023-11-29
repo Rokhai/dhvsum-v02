@@ -33,7 +33,7 @@
                     to market their products if its for thesis or projects.
                 </p>
 
-                <a href="{{ backpack_url('my-store') }}" class="btn btn-primary btn-large mt-3 p-3 fs-2">
+                <a href="{{ backpack_url('market') }}" class="btn btn-primary btn-large mt-3 p-3 fs-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="48"
                         height="48" viewBox="0 0 20 20" stroke-width="2" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">

@@ -11,14 +11,14 @@
 
 {{-- Normal User --}}
 @if (!backpack_user()->hasRole('Admin'))
-<x-backpack::menu-item title="Message" icon="la la-sms" :link="backpack_url('message')" />
-<x-backpack::menu-item title="My Cart" icon="la la-shopping-cart" :link="backpack_url('mycart')" />
-{{-- <x-backpack::menu-item title="Mycart" icon="la la-question" :link="backpack_url('mycart')" /> --}}
-{{-- <x-backpack::menu-item title="My Order" icon="la la-shopping-bag" :link="backpack_url('my-order')" /> --}}
-<x-backpack::menu-item title="My Order" icon="la la-shopping-bag" :link="backpack_url('myorder')" />
+    <x-backpack::menu-item title="Message" icon="la la-sms" :link="backpack_url('message')" />
+    <x-backpack::menu-item title="My Cart" icon="la la-shopping-cart" :link="backpack_url('mycart')" />
+    {{-- <x-backpack::menu-item title="Mycart" icon="la la-question" :link="backpack_url('mycart')" /> --}}
+    {{-- <x-backpack::menu-item title="My Order" icon="la la-shopping-bag" :link="backpack_url('my-order')" /> --}}
+    <x-backpack::menu-item title="My Order" icon="la la-shopping-bag" :link="backpack_url('myorder')" />
     <x-backpack::menu-dropdown title="My Store" icon="la la-store">
         <x-backpack::menu-dropdown-item title="Products" icon="la la-tag" :link="backpack_url('product')" />
-        <x-backpack::menu-dropdown-item title="Customer Orders" icon="la la-shopping-bag" :link="backpack_url('my-product')" />
+        <x-backpack::menu-dropdown-item title="Customer Orders" icon="la la-shopping-bag" :link="backpack_url('customer-order')" />
         {{-- <x-backpack::menu-item title="Product" icon="la la-question" :link="backpack_url('my-store')" /> --}}
     </x-backpack::menu-dropdown>
 
@@ -47,6 +47,13 @@
         <x-backpack::menu-dropdown-item title="Roles" icon="la la-group" :link="backpack_url('role')" />
         <x-backpack::menu-dropdown-item title="Permissions" icon="la la-key" :link="backpack_url('permission')" />
     </x-backpack::menu-dropdown>
+    <x-backpack::menu-dropdown title="Products" icon="la la-users">
+        <x-backpack::menu-dropdown-header title="Products" />
+        <x-backpack::menu-dropdown-item title="Product approvals" icon="la la-question" :link="backpack_url('product-approval')" />
+        {{-- <x-backpack::menu-dropdown-item title="Users" icon="la la-user" :link="backpack_url('user')" /> --}}
+        {{-- <x-backpack::menu-dropdown-item title="Roles" icon="la la-group" :link="backpack_url('role')" /> --}}
+        {{-- <x-backpack::menu-dropdown-item title="Permissions" icon="la la-key" :link="backpack_url('permission')" /> --}}
+    </x-backpack::menu-dropdown>
 @endif
 {{-- <x-backpack::menu-dropdown title="Authentication" icon="la la-users">
     <x-backpack::menu-dropdown-header title="Authentication" />
@@ -60,5 +67,7 @@
 
 {{-- <x-backpack::menu-item title="Products" icon="la la-question" :link="backpack_url('product')" /> --}}
 <x-backpack::menu-item title="Search Product" icon="la la-question" :link="backpack_url('search_product')" />
-<x-backpack::menu-item title="Product approvals" icon="la la-question" :link="backpack_url('product-approval')" />
 <x-backpack::menu-item title="View Product" icon="la la-question" :link="backpack_url('view_product')" />
+
+{{-- <x-backpack::menu-item title="Market" icon="la la-question" :link="backpack_url('market')" /> --}}
+{{-- <x-backpack::menu-item title="Customer orders" icon="la la-question" :link="backpack_url('customer-order')" /> --}}

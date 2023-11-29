@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
  */
 class ViewProductController extends Controller
 {
+
+ 
+
     public function index()
     {
         $product = \App\Models\Product::first();
@@ -26,6 +29,7 @@ class ViewProductController extends Controller
             'controller' => 'app/Http/Controllers/Admin/ViewProductController.php',
             'product' => $product,
         ]);
+    }
 
         //  if ($id) {
         //     $product = \App\Models\Product::find($id);
@@ -55,17 +59,32 @@ class ViewProductController extends Controller
         //     'page' => 'resources/views/admin/view_product.blade.php',
         //     'controller' => 'app/Http/Controllers/Admin/ViewProductController.php',
         // ]);
-    }
 
     public function show($id)
-{
-    $product = \App\Models\Product::find($id);
+    {
+        $product = \App\Models\Product::find($id);
 
-    if ($product === null) {
-        return redirect()->back()->with('notyf_error', 'Product not found');
+        if ($product === null) {
+            return redirect()->back()->with('notyf_error', 'Product not found');
+        }
+
+        // return backpack_view('admin.view_product')->with('product', $product);
+        return view('admin.view_product')->with('product', $product);
     }
 
-    // return backpack_view('admin.view_product')->with('product', $product);
-    return view('admin.view_product')->with('product', $product);
-}
+    public function store( Request $request)
+    {
+        dd($request);
+        $data = $request->validate([
+           'user_id' => 'required',
+            'product_id' => 'required',
+            'quantity' => 'required',
+        ]);
+
+        $cart = \App\Models\Cart::create($data);
+
+        // return redirect()->back()->withInput(['info' => 'success']);
+        return redirect()->back();
+        
+    }
 }
