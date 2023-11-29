@@ -16,10 +16,17 @@ class Cart extends Model
         'is_checked_out'
     ];
 
-    public function store($data)
+    public function product()
     {
-        return $this->create($data);
+        return $this->belongsTo(Product::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }
 
     

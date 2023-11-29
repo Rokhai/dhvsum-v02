@@ -1,4 +1,10 @@
 @extends(backpack_view('blank'))
+@php
+    // Define the hint path for the "backpack" view namespace
+    // Illuminate\Support\Facades\View::addNamespace('backpack', base_path('vendor/backpack/base/src/resources/views'));
+@endphp
+
+@include('vendor.backpack.theme-tabler.inc.alerts')
 
 @section('content')
     <!-- Success Modal -->
@@ -73,7 +79,7 @@
             <div class="modal-dialog modal-dialog-center" role="document">
 
                 <div class="modal-content">
-                    <form action="{{ backpack_url('mycart') }}" method="post">
+                    <form action="{{ backpack_url('view_product') }}" method="post">
                         @csrf
                         @method('POST')
                         <input type="hidden" name="product_id" value="{{ $product->id }}">

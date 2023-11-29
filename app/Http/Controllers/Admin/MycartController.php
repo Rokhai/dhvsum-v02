@@ -13,9 +13,12 @@ use App\Models\Cart;
  */
 class MycartController extends Controller
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation { store as traitStore; } 
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation { store as traitStore; } 
     public function index()
     {
+
+
+
         return view('admin.mycart', [
             'title' => 'Mycart',
             'breadcrumbs' => [
@@ -51,10 +54,25 @@ class MycartController extends Controller
         // $cart = \App\Models\Cart::create($data);
 
         // return redirect()->back()->with('notyf_success', 'Product added to cart');
-    //    $this->traitStore( $request);
+        //    $this->traitStore( $request);
 
         // return url()->previous();
-        return redirect()->back()->with('notyf_success', 'Product added to cart');
-            
+        // return redirect()->back()->with('notyf_success', 'Product added to cart');
+        \Prologue\Alerts\Facades\Alert::success('Product added to cart');
+        return redirect()->back();
+
+    }
+
+    public function destroy($id)
+    {
+        $cartItem = Cart::find($id);
+        
+
+        if ($cartItem) {
+            $cartItem->delete();
+            return redirect()->back()->with('info', 'Item removed from cart successfully');
+        }
+
+        return redirect()->back()->with('error', 'Item not found in cart');
     }
 }

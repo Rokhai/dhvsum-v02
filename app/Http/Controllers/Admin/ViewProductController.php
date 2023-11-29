@@ -74,17 +74,27 @@ class ViewProductController extends Controller
 
     public function store( Request $request)
     {
-        dd($request);
-        $data = $request->validate([
-           'user_id' => 'required',
-            'product_id' => 'required',
-            'quantity' => 'required',
+        \App\Models\Cart::create([
+            'user_id' => backpack_user()->id,
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity,
         ]);
+        // $data = $request->validate([
+        //    'user_id' => 'required',
+        //     'product_id' => 'required',
+        //     'quantity' => 'required',
+        // ]);
 
-        $cart = \App\Models\Cart::create($data);
+        // $cart = \App\Models\Cart::create($data);
 
-        // return redirect()->back()->withInput(['info' => 'success']);
+        // return redirect()->back()->with('notyf_success', 'Product added to cart');
+        //    $this->traitStore( $request);
+
+        // return url()->previous();
+        // return redirect()->back()->with('notyf_success', 'Product added to cart');
+        \Prologue\Alerts\Facades\Alert::success('Product added to cart');
         return redirect()->back();
+
         
     }
 }

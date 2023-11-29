@@ -34,6 +34,7 @@ Route::group([
     
     Route::get('mycart', 'MycartController@index')->name('page.mycart.index');
     Route::post('mycart', 'MycartController@store')->name('page.mycart.store');
+    Route::delete('mycart/{id}', 'MycartController@destroy')->name('page.mycart.destroy');
     
     
     Route::get('market', 'MarketController@index')->name('page.market.index');

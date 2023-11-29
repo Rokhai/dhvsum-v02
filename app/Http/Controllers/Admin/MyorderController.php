@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
 
 /**
  * Class MyorderController
@@ -22,5 +23,12 @@ class MyorderController extends Controller
             'page' => 'resources/views/admin/myorder.blade.php',
             'controller' => 'app/Http/Controllers/Admin/MyorderController.php',
         ]);
+    }
+
+
+    public function store(Request $request)
+    {
+        // $this->traitStore();
+        return url()->previous();
     }
 }
