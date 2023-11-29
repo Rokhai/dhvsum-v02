@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ActivityLog;
+use App\Models\Product;
 use App\Models\Rating;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
@@ -88,6 +90,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
+            'name' => 'Shoes',
+            'slug' => 'shoes',
+            'description' => 'Category for shoes',
+        ]);
+
+        Category::create([
             'name' => 'Home & Kitchen',
             'slug' => 'home-kitchen',
             'description' => 'Category for home and kitchen products',
@@ -106,13 +114,42 @@ class DatabaseSeeder extends Seeder
         //     'guard_name' => 'web',
         // ]);
 
-
+        Product::create([
+            'user_id' => 3,
+            'image' => '1751150.jpg',
+            'name' => 'Black Shoes',
+            'stock' => 10,
+            'price' => 1000,
+            'description' => 'This black shoes is good for running',
+            'category_id' => 3,
+            'is_active' => 1,
+            'is_approved' => 1,
+            
+        ]);
 
         \DB::table('model_has_roles')->insert([
             ['role_id' => '1', 'model_type' => 'App\Models\User', 'model_id' => '1'],
             ['role_id' => '2', 'model_type' => 'App\Models\User', 'model_id' => '2'],
             ['role_id' => '3', 'model_type' => 'App\Models\User', 'model_id' => '3'],
         ]);
+
+
+        
+        for ($i = 1; $i <= 10; $i++) {
+            ActivityLog::create([
+                'user_id' => 3,
+                'activity' => 'Logged in',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            ActivityLog::create([
+                'user_id' => 3,
+                'activity' => 'Logged out',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
 
         // $this->call(PermissionManagerTableSeeder::class);
     }

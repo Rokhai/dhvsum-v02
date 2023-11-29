@@ -29,4 +29,5 @@ Route::group([
     Route::crud('product-approval', 'ProductApprovalCrudController');
     Route::get('view_product', 'ViewProductController@index')->name('page.view_product.index');
     Route::get('view_product/{id}', 'ViewProductController@show')->name('page.view_product.show');
+    Route::get('mycart', 'MycartController@index')->name('page.mycart.index');
 }); // this should be the absolute last line of this file

@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable();
+            $table->string('fullname')->nullable();
+            $table->string('address')->nullable();
+            $table->string('contact number')->nullable();
+            $table->string('email')->nullable();
+
             $table->timestamps();
         });
     }
