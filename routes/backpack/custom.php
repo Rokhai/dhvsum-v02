@@ -24,6 +24,8 @@ Route::group([
     // Route::crud('myproduct', 'MyproductCrudController');
     // Route::crud('my-product', 'MyProductCrudController');
     Route::get('myorder', 'MyorderController@index')->name('page.myorder.index');
+    Route::post('myorder', 'MyorderController@store')->name('page.myorder.store');
+
     Route::crud('product', 'ProductCrudController');
     Route::get('search_product', 'SearchProductController@index')->name('page.search_product.index');
     Route::crud('product-approval', 'ProductApprovalCrudController');
@@ -40,5 +42,9 @@ Route::group([
     Route::get('market', 'MarketController@index')->name('page.market.index');
 
     Route::crud('customer-order', 'CustomerOrderCrudController');
+
+    Route::post('address', 'AddressController@store')->name('page.address.store');
+    Route::put('address/{id}', 'AddressController@update')->name('page.address.update');
+    Route::delete('address/{id}', 'AddressController@destroy')->name('page.address.destroy');
     // Route::get('customer-order', 'CustomerOrderCrudController@index')->name('page.customer-order.index');
 }); // this should be the absolute last line of this file

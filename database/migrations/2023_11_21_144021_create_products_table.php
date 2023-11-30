@@ -22,8 +22,8 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable;
             $table->boolean('is_active')->default(true);
             $table->boolean('is_approved')->default(false);
+            // $table->softDeletes();
             $table->timestamps();
-
 
         });
     }

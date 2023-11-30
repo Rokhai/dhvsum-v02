@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
@@ -22,6 +23,13 @@ class Product extends Model
         'is_approved', // this is the product approval status
         'category_id',
     ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'is_approved' => 'boolean',
+    ];
+
+   
 
     public function category()
     {

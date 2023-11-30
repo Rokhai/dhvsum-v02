@@ -134,7 +134,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        // Address
+        \App\Models\Address::create([
+            'user_id' => 3,
+            'fullname' => 'Rosgen D. Hizer',
+            'address' => 'Brgy. 1, Poblacion, San Enrique, Iloilo',
+            'contact_number' => '1234567890',
+            'email' => \DB::table('users')->where('id', 3)->value('email'),
+        ]);
         
+        // Activity Logs
         for ($i = 1; $i <= 10; $i++) {
             ActivityLog::create([
                 'user_id' => 3,
@@ -150,6 +159,8 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
+
 
         // $this->call(PermissionManagerTableSeeder::class);
     }

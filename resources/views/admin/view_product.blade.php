@@ -7,38 +7,11 @@
 @include('vendor.backpack.theme-tabler.inc.alerts')
 
 @section('content')
-    <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Success</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Product added to cart successfully
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
+    <div class="d-none">
+        @if (Alert::has('success'))
+            {{ Alert::first('success') }}
+        @endif
     </div>
-
-    @php
-
-        $sessionInfo = session('info');
-        // dd($sessionInfo);
-        if ($sessionInfo == 'success') {
-            echo "<script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var myModal = new bootstrap.Modal(document.getElementById('successModal'), {});
-                    myModal.show();
-                });
-            </script>";
-        }
-    @endphp
-
     {{-- Product Details --}}
     <div class="card container-sm">
         <div class="mt-4 mx-4">
@@ -60,14 +33,6 @@
             <p class="card-text">Price: ${{ $product->price }}</p>
             <div class="d-flex flex-row justify-content-between">
                 <p class="fs-3">{{ $product->stock }} sold </p>
-                {{-- <a href="{{ route('admin.products.index') }}" class="btn btn-primary">Back</a>
-                <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-warning ms-2">Edit</a>
-                <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger ms-2">Delete</button>
-                </form> --}}
-
                 <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal"
                     data-bs-target="#addToCartModal"><span class="fs-3"><i class="la la-cart-arrow-down"> </i> Add to
                         cart</span></button>
@@ -131,12 +96,12 @@
         </div>
     </div>
 
+    {{-- Product Desription --}}
     <div class="container-sm card my-2">
         <div class="card-header">
             <h3>Product Details</h3>
         </div>
         <div class="card-body">
-
             <p class="card-text">{{ $product->description }}</p>
         </div>
 
@@ -156,7 +121,7 @@
                         <div class="text-truncate">
                             <p class="fs-2 fw-bold">Rosgen Hizer</p>
                             <p class=" text-muted">test@example.com</p>
-                            <div class="text-secondary">Active: yesterday 
+                            <div class="text-secondary">Active: yesterday
                             </div>
                         </div>
 
@@ -205,7 +170,7 @@
                 </div>
             </div>
             {{-- Comment Box --}}
-            <div class="card-footer">
+            {{-- <div class="card-footer">
                 <div class="input-group input-group-flat">
                     <input type="text" class="form-control" autocomplete="off" placeholder="Type message">
                     <span class="input-group-text">
@@ -235,8 +200,8 @@
                             </svg>
                         </a>
                     </span>
-                </div>
-            </div>
+                </div> --}}
         </div>
+    </div>
     </div>
 @endsection

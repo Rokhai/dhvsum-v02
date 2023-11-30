@@ -58,7 +58,7 @@ class MycartController extends Controller
 
         // return url()->previous();
         // return redirect()->back()->with('notyf_success', 'Product added to cart');
-        \Prologue\Alerts\Facades\Alert::success('Product added to cart');
+        \Prologue\Alerts\Facades\Alert::success('Product added to cart')->flash();
         return redirect()->back();
 
     }
@@ -70,9 +70,12 @@ class MycartController extends Controller
 
         if ($cartItem) {
             $cartItem->delete();
-            return redirect()->back()->with('info', 'Item removed from cart successfully');
+            \Prologue\Alerts\Facades\Alert::success('Item removed from cart')->flash();
+            return redirect()->back();
         }
 
-        return redirect()->back()->with('error', 'Item not found in cart');
+        \Prologue\Alerts\Facades\Alert::error('Item not found in cart')->flash();
+        return redirect()->back();
+        // return redirect()->back()->with('error', 'Item not found in cart');
     }
 }

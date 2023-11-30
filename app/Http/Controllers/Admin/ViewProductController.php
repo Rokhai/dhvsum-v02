@@ -92,7 +92,7 @@ class ViewProductController extends Controller
 
         // return url()->previous();
         // return redirect()->back()->with('notyf_success', 'Product added to cart');
-        \Prologue\Alerts\Facades\Alert::success('Product added to cart');
+        \Prologue\Alerts\Facades\Alert::success('Product added to cart')->flash();
         return redirect()->back();
 
         

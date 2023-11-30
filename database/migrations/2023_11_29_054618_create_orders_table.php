@@ -16,8 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('product_id');
-            $table->decimal('total_price', 8, 2);
-            $table->enum('status', ['pending', 'processing', 'completed'])->default('pending');
+            $table->decimal('total_amount', 8, 2);
+            $table->enum('status', ['To Ship', 'To Receive', 'To Delivered'])->default('To Ship');
+            $table->boolean('is_delivered')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
