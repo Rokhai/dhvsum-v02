@@ -41,6 +41,23 @@ class ProductCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
+
+    protected function setupShowOperation()
+    {
+        // Other setup code...
+
+        $this->crud->addColumn([
+            'name' => 'image',
+            'label' => 'Product Image',
+            'type' => 'image',
+            'prefix' => 'storage/uploads/products/',
+            'height' => '200px',
+            'width' => '200px',
+        ]);
+
+        // Other setup code...
+    }
+
     protected function setupListOperation()
     {
         // CRUD::setFromDb(); // set columns from db columns.
@@ -119,7 +136,7 @@ class ProductCrudController extends CrudController
                 'attribute' => 'name',
                 'model' => "App\Models\Category",
             ],
-            
+
         ]);
         // CRUD::column('image')->type('image')->upload(true)->disk('public')->prunable()->width(400)->height(400);
 
@@ -141,7 +158,7 @@ class ProductCrudController extends CrudController
          * - CRUD::field('price')->type('number');
          */
 
-    
+
         CRUD::field('user_id')->type('hidden')->value(backpack_user()->id);
 
         CRUD::field('is_active')->type('hidden')->value('1');
@@ -156,7 +173,7 @@ class ProductCrudController extends CrudController
         CRUD::field('category_id')->type('hidden')->value('0');
 
         CRUD::field('category_id')
-            ->type('select') 
+            ->type('select')
             ->label('Category')
             ->entity('category')
             ->attribute('name')
@@ -166,7 +183,7 @@ class ProductCrudController extends CrudController
                 return $query->orderBy('name', 'ASC')->get();
             });
 
-            
+
         // CRUD::field([
         //     'name' => 'category_id',
         //     'type' => 'select2',
@@ -179,16 +196,24 @@ class ProductCrudController extends CrudController
         // ]);
         CRUD::field('description')->type('textarea')->label('Product Description')->wrapper(['class' => 'form-group col-md-12']);
 
-       
+
         // 'withFiles' => [
         //     'fileNamer' => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
         //     'disk' => 'public',
         //     'url' => '/uploads/products/',
         // ],
-        
+
+        // $this->crud->addFields([
+        //     [
+        //         'name' => 'image',
+        //         'label' => 'Product Image',
+        //         'type' => 'browse',
+        //     ],
+        // ]);
+
         CRUD::field('image')
             ->type('upload')
-            ->label('Product Image')
+            ->label('Photo:')
             ->wrapper(['class' => 'form-group col-md-12'])
             ->hint('Upload a product image here.')
             // ->width(200)
@@ -208,7 +233,43 @@ class ProductCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
+
+        // $this->crud->addColumns([
+        //     [
+        //         'name' => 'image',
+        //         'label' => 'Product Image',
+        //         'type' => 'image',
+        //         'prefix' => 'storage/uploads/products/',
+        //         'height' => '100px',
+        //         'width' => '100px',
+        //         // 'upload' => true,
+        //         // 'disk' => 'products',
+        //     ]
+        // ]);
+
+        
+        
         $this->setupCreateOperation();
+        // $this->crud->addColumn([
+        //     'name' => 'image',
+        //     'label' => 'Product Image',
+        //     'type' => 'image',
+        //     'prefix' => 'storage/uploads/products/',
+        //     'height' => '50px',
+        //     'width' => '50px',
+        // ]);
+
+        // $this->crud->addFields([
+        //     [
+        //         'name' => 'image',
+        //         'label' => 'Product Image',
+        //         'type' => 'image',
+        //         'withFiles' => true,
+        //         // 'upload' => true,
+        //         // 'disk' => 'products',
+        //     ],
+        // ]);
+    
     }
 
     protected function setupDeleteOperation()

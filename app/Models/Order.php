@@ -21,7 +21,17 @@ class Order extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = [
+        'user_id',
+        'cart_id',
+        'address_id',
+        'product_id',
+        'quantity',
+        'total_amount',
+        'status',
+        'is_delivered',
+        'is_cancelled', 
+    ];
     // protected $hidden = [];
 
     /*
@@ -35,6 +45,21 @@ class Order extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function address() 
+    {
+        return $this->belongsTo(Address::class);
+    }
+
+    public function product() 
+    {
+        return $this->belongsTo(Product::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

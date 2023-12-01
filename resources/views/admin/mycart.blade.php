@@ -196,6 +196,7 @@
                             <input type="hidden" name="item_cart_id" id="item_id" value="">
                             <input type="hidden" name="item_user_id" id="item_user_id" value="">
                             <input type="hidden" name="item_product_id" id="item_product_id" value="">
+                            <input type="hidden" name="item_address_id" id="item_address_id" value="{{optional($address)->id}}">
                             <input type="hidden" name="item_total_amount" id="item_total_amount" value="">
 
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -241,10 +242,11 @@
                 itemTotalAmount) {
 
                 var form = document.getElementById('formCheckOut');
-                form.action = "{{ backpack_url('myorder') }}";
+                form.action = "{{ backpack_url('myorder/store') }}";
                 document.getElementById('item_id').value = itemId;
                 document.getElementById('item_user_id').value = itemUserId;
                 document.getElementById('item_product_id').value = itemProductId;
+                // document.getElementById('item_address_id').value = itemAddressId;
                 document.getElementById('item_total_amount').value = itemTotalAmount;
 
                 document.getElementById('itemImage').src = "{{ asset('/storage/uploads/products') }}" + "/" + itemImage;

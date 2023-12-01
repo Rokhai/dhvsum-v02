@@ -52,27 +52,27 @@ class DatabaseSeeder extends Seeder
         Rating::create([
             'id' => '1',
             'name' => '1 Star',
-            'rating' => '&#9733; &#9734; &#9734; &#9734; &#9734;',
+            'rating' => '★ ☆ ☆ ☆ ☆',
         ]);
         Rating::create([
             'id' => '2',
             'name' => '2 Stars',
-            'rating' => '&#9733; &#9733; &#9734; &#9734; &#9734;',
+            'rating' => '★ ★ ☆ ☆ ☆',
         ]);
         Rating::create([
             'id' => '3',
             'name' => '3 Stars',
-            'rating' => '&#9733; &#9733; &#9733; &#9734; &#9734;',
+            'rating' => '★ ★ ★ ☆ ☆',
         ]);
         Rating::create([
             'id' => '4',
             'name' => '4 Stars',
-            'rating' => '&#9733; &#9733; &#9733; &#9733; &#9734;',
+            'rating' => '★ ★ ★ ★ ☆',
         ]);
         Rating::create([
             'id' => '5',
             'name' => '5 Stars',
-            'rating' => '&#9733; &#9733; &#9733; &#9733; &#9733;',
+            'rating' => '★ ★ ★ ★ ★',
         ]);
 
         //  Categories
@@ -131,6 +131,7 @@ class DatabaseSeeder extends Seeder
             ['role_id' => '1', 'model_type' => 'App\Models\User', 'model_id' => '1'],
             ['role_id' => '2', 'model_type' => 'App\Models\User', 'model_id' => '2'],
             ['role_id' => '3', 'model_type' => 'App\Models\User', 'model_id' => '3'],
+            ['role_id' => '3', 'model_type' => 'App\Models\User', 'model_id' => '4'],
         ]);
 
 

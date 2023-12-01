@@ -80,7 +80,9 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames, $teams) {
             $table->unsignedBigInteger(PermissionRegistrar::$pivotRole);
-
+            // $table->unsignedBigInteger(PermissionRegistrar::$pivotRole)->default(3);
+            
+            // $table->string('model_type')->default('App\Models\User');
             $table->string('model_type');
             $table->unsignedBigInteger($columnNames['model_morph_key']);
             $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_roles_model_id_model_type_index');
