@@ -19,6 +19,8 @@ class ViewProductController extends Controller
     {
         $product = \App\Models\Product::first();
 
+       
+
         return view('admin.view_product', [
             'title' => 'View Product',
             'breadcrumbs' => [

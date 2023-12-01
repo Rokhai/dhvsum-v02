@@ -8,10 +8,11 @@
     
     
     
-    // $products = App\Models\Product::paginate(10);
-    // $product = App\Models\Product::first();
-    $product = App\Models\Product::orderBy('created_at', 'desc')->first();
+    $products = App\Models\Product::paginate(10);
+    $product = App\Models\Product::first();
+    $newest = App\Models\Product::orderBy('created_at', 'desc')->paginate(10)->take(4);
 
+    
 
 
 @endphp

@@ -96,6 +96,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
+            'name' => 'Beauty & Health',
+            'slug' => 'beauty-health',
+            'description' => 'Category for beauty and health products',
+        ]);
+
+        Category::create([
+            'name' => 'Sports & Outdoors',
+            'slug' => 'sports-outdoors',
+            'description' => 'Category for sports and outdoors products',
+        ]);
+
+        Category::create([
             'name' => 'Home & Kitchen',
             'slug' => 'home-kitchen',
             'description' => 'Category for home and kitchen products',
@@ -116,8 +128,8 @@ class DatabaseSeeder extends Seeder
 
         Product::create([
             'user_id' => 3,
-            'image' => '1751150.jpg',
-            'name' => 'Black Shoes',
+            'image' => 'shoes1.jpg',
+            'name' => 'Shoes 1',
             'stock' => 10,
             'price' => 1000,
             'description' => 'This black shoes is good for running',
@@ -126,6 +138,62 @@ class DatabaseSeeder extends Seeder
             'is_approved' => 1,
             
         ]);
+        Product::create([
+            'user_id' => 3,
+            'image' => 'shoes2.jpg',
+            'name' => 'Shoes 2',
+            'stock' => 10,
+            'price' => 100,
+            'description' => 'This shoes is good for running',
+            'category_id' => 3,
+            'is_active' => 1,
+            'is_approved' => 1,
+            
+        ]);
+        Product::create([
+            'user_id' => 4,
+            'image' => 'shoes3.jpg',
+            'name' => 'Shoes 3',
+            'stock' => 10,
+            'price' => 100,
+            'description' => 'This shoes is good for running',
+            'category_id' => 3,
+            'is_active' => 1,
+            'is_approved' => 1,
+            
+        ]);
+
+        Product::create([
+            'user_id' => 3,
+            'image' => 'shoes4.jpg',
+            'name' => 'Shoes 4',
+            'stock' => 10,
+            'price' => 100,
+            'description' => 'This shoes is good for running',
+            'category_id' => 3,
+            'is_active' => 1,
+            'is_approved' => 1,
+            
+        ]);
+
+
+
+        Product::create([
+            'user_id' => 4,
+            'image' => 'clothe1.jpg',
+            'name' => 'Clothe 1',
+            'stock' => 10,
+            'price' => 100,
+            'description' => 'This clothe is good for sleeping',
+            'category_id' => 2,
+            'is_active' => 1,
+            'is_approved' => 1,
+            
+        ]);
+
+
+        
+
 
         \DB::table('model_has_roles')->insert([
             ['role_id' => '1', 'model_type' => 'App\Models\User', 'model_id' => '1'],

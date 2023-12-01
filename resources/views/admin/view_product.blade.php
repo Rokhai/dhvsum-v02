@@ -108,69 +108,95 @@
     </div>
 
 
+    {{-- Product Owner --}}
+    @php
+        $user = \DB::table('users')
+            ->join('products', 'users.id', '=', 'products.user_id')
+            ->select('users.*')
+            ->where('products.id', '=', $product->id)
+            ->first();
+    @endphp
     <div class=" col-12">
         <div class="card container-sm" style="height: 28rem">
             {{-- Student Profile --}}
             <div class="card-header justify-content-center">
                 <div class="row">
                     <div class="col-auto">
-                        <span class="avatar avatar-xl mb-3 rounded"
-                            style="background-image: url('http://www.venmond.com/demo/vendroid/img/avatar/big.jpg')"></span>
+                        <span class="avatar avatar-xl mb-3 rounded" {{-- style="background-image: url('http://www.venmond.com/demo/vendroid/img/avatar/big.jpg')"></span> --}}
+                            src="{{ backpack_avatar_url($user) }}"
+                            alt="{{ backpack_auth()->user()->name }}" onerror="this.style.display='none'"
+                            style="z-index: 1;">
                     </div>
                     <div class="col-auto">
                         <div class="text-truncate">
-                            <p class="fs-2 fw-bold">Rosgen Hizer</p>
-                            <p class=" text-muted">test@example.com</p>
-                            <div class="text-secondary">Active: yesterday
-                            </div>
+                            <p class="fs-2 fw-bold">{{ optional($user)->name }}</p>
+                            <p class=" text-muted">{{ optional($user)->email }}</p>
+                            {{-- <div class="text-secondary">Active: yesterday</div> --}}
                         </div>
 
                         {{-- <div class="badge bg-primary"></div> --}}
                     </div>
-                    <a href="#" class="btn btn-primary fs-4">Chat</a>
+                    <div class="row">
+
+                        <a href="#" class="btn btn-primary fs-4">Chat</a>
+                    </div>
 
                 </div>
             </div>
+
+
             {{-- Product Feedback --}}
+            @php
+                $feedbacks = \DB::table('feedback')
+                    ->join('users', 'feedback.user_id', '=', 'users.id')
+                    ->select('feedback.*', 'users.name as user_name')
+                    // ->select('feedback.*')
+                    ->where('feedback.product_id', '=', $product->id)
+                    ->get();
+            @endphp
+
             <div class="card-body card-body-scrollable card-body-scrollable-shadow">
+                <h3 class="mt-3 mb-4">Feedbacks/Ratings</h3>
                 <div class="divide-y">
-                    <div>
-                        <div class="row">
-                            <div class="col-auto">
-                                <span class="avatar">JL</span>
-                            </div>
-                            <div class="col">
-                                <div class="text-truncate">
-                                    <strong>Jeffie Lewzey</strong> commented on your <strong>"I'm not a witch."</strong>
-                                    post.
+                    @foreach ($feedbacks as $feedback)
+                        <div>
+                            <div class="row">
+                                <div class="col-auto">
+                                    {{-- <span class="avatar">JL</span> --}}
+
+                                    <span class="avatar avatar-sm rounded-circle">
+                                        <img class="avatar avatar-sm rounded-circle bg-transparent"
+                                            src="{{ backpack_avatar_url(backpack_auth()->user()) }}"
+                                            alt="{{ backpack_auth()->user()->name }}" onerror="this.style.display='none'"
+                                            style="margin: 0;position: absolute;left: 0;z-index: 1;">
+                                        <span
+                                            class="avatar avatar-sm rounded-circle backpack-avatar-menu-container text-center">
+                                            {{ backpack_user()->getAttribute('name') ? mb_substr(backpack_user()->name, 0, 1, 'UTF-8') : 'A' }}
+                                        </span>
+                                    </span>
                                 </div>
-                                <div class="text-secondary">yesterday</div>
-                            </div>
-                            <div class="col-auto align-self-center">
-                                <div class="badge bg-primary"></div>
+                                <div class="col">
+                                    <div class="text-truncate">
+                                        <strong>{{ $feedback->user_name }}</strong> commented <strong>
+                                            {{ $feedback->comment }} </strong>
+
+                                    </div>
+                                    <div class="text-secondary">
+                                        {{ \Carbon\Carbon::parse($feedback->created_at)->diffForHumans() }}</div>
+                                </div>
+                                <div class="col-auto align-self-center">
+                                    <div> {{ $feedback->rating }} </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="row">
-                            <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/002m.jpg)"></span>
-                            </div>
-                            <div class="col">
-                                <div class="text-truncate">
-                                    It's <strong>Mallory Hulme</strong>'s birthday. Wish him well!
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                            </div>
-                            <div class="col-auto align-self-center">
-                                <div class="badge bg-primary"></div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-            {{-- Comment Box --}}
-            {{-- <div class="card-footer">
+        </div>
+    </div>
+@endsection
+{{-- Comment Box --}}
+{{-- <div class="card-footer">
                 <div class="input-group input-group-flat">
                     <input type="text" class="form-control" autocomplete="off" placeholder="Type message">
                     <span class="input-group-text">
@@ -201,7 +227,3 @@
                         </a>
                     </span>
                 </div> --}}
-        </div>
-    </div>
-    </div>
-@endsection
