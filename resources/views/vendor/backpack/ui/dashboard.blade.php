@@ -2,18 +2,28 @@
 
 
 @php
+    $newest1_1 = \App\Models\Product::first();
+    $productsSmNewest = \App\Models\Product::orderBy('created_at', 'desc')
+        ->paginate(10)
+        ->skip(1);
+
+    // $newest1 = \App\Models\Product::orderBy('created_at', 'desc')
+    //     ->paginate(10)
+    //     ->take(4);
 
 
-    // $products = App\Models\Product::all();
-    
-    
-    
-    $products = App\Models\Product::paginate(10);
-    $product = App\Models\Product::first();
-    $newest = App\Models\Product::orderBy('created_at', 'desc')->paginate(10)->take(4);
+    $newest1 = \App\Models\Product::orderBy('created_at', 'desc')
+        ->paginate(10)
+        ->take(4);
+    $newest2 = \App\Models\Product::orderBy('created_at', 'desc')
+        ->paginate(10)
+        ->skip(1)
+        ->take(4);
 
-    
-
+    // $newest2 = \App\Models\Product::orderBy('created_at', 'desc')
+    //     ->paginate(10)
+    //     ->skip(4)
+    //     ->take(4);
 
 @endphp
 
@@ -78,159 +88,131 @@
         </div>
     </div>
 
-    {{-- https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg --}}
-    {{-- https://holsel.com/wp-content/uploads/products/LYX18F002/LYX18F002-Tan-1.jpg --}}
-    {{-- https://ae01.alicdn.com/kf/HTB1X5VkiInI8KJjSsziq6z8QpXaS/ZJNNK-Hot-Sale-Men-Summer-Shoes-Breathable-Male-Casual-Shoes-Fashion-Chaussure-Homme-Soft-Zapatos-Hombre.jpg --}}
-    {{-- sample image --}}
+    {{-- carousel-dark makes the button dark --}}
     {{-- Newest Product Carousel --}}
-    <div class="my-5 mx-auto pt-5">
+    {{-- SM DISPLAY --}}
+    <div class="my-5 mx-auto pt-5 d-lg-none d-sm-block">
         <h2 class="container my-5 fw-bold">Newest</h2>
-        {{-- carousel-dark makes the button dark --}}
-        <div id="carousel-newest-product" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div id="carousel-sm-newest-product" class="carousel carousel-dark slide  d-lg-none d-sm-block"
+            data-bs-ride="carousel">
             <div class="carousel-inner w-75 mx-auto">
-                <div class="carousel-item active " data-bs-interval="10000">
-                    {{-- src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg" --}}
-                    {{-- src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg" --}}
+                <div class="carousel-item  active" data-bs-interval="5000">
                     <div class="container">
                         <div class="row row-cols-auto justify-content-center">
-                            <div class="col-lg-3 col-md-6 col-sm-12 ">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="{{ asset('/storage/uploads/products/' . $product->image) }}" class="card-img-top" alt="{{$product->name}}">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="card" style="width: 17rem;">
+                                    <img src="{{ asset('/storage/uploads/products/' . $newest1_1->image) }}"
+                                        class="card-img-top" alt="{{ $newest1_1->name }}" width="220" height="220">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{$product->name}}</h5>
-                                        <p class="card-text">₱{{$product->price}}</p>
-                                        {{-- <a href="{{ backpack_url('view-product/' . $product->id . '/show') }}" class="btn btn-primary">View</a> --}}
-                                        <a href="{{backpack_url('view_product/'. $product->id) }}" class="btn btn-primary">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
+                                        <h5 class="card-title">{{ $newest1_1->name }}</h5>
                                         <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                            <p class="card-text">₱{{ $newest1_1->price }}</p>
+
+                                            <small class="text-secodary">{{ $newest1_1->stock }} left</small>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
+                                        <a href="{{ backpack_url('view_product/' . $newest1_1->id) }}"
+                                            class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                @foreach ($productsSmNewest as $product)
+                    <div class="carousel-item  " data-bs-interval="5000">
+                        <div class="container">
+                            <div class="row row-cols-auto justify-content-center">
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="card" style="width: 17rem;">
+                                        <img src="{{ asset('/storage/uploads/products/' . $product->image) }}"
+                                            class="card-img-top" alt="{{ $product->name }}" width="220" height="220">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $product->name }}</h5>
+                                            <div class="d-flex flex-row justify-content-between">
+                                                <p class="card-text">₱{{ $product->price }}</p>
+
+                                                <small class="text-secodary">{{ $product->stock }} left</small>
+                                            </div>
+                                            <a href="{{ backpack_url('view_product/' . $product->id) }}"
+                                                class="btn btn-primary text-wrap w-100">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            {{-- Carousel Controller --}}
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-sm-newest-product"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel-sm-newest-product"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    {{-- LG DISPLAY --}}
+    <div class="my-5 mx-auto pt-5 d-none d-lg-block">
+        <h2 class="container my-5 fw-bold">Newest</h2>
+
+
+        <div id="carousel-newest-product" class="carousel carousel-dark slide " data-bs-ride="carousel">
+            <div class="carousel-inner w-75 mx-auto">
+                <div class="carousel-item active " data-bs-interval="5000">
+                    <div class="container">
+                        <div class="row row-cols-4 justify-content-center">
+                            @foreach ($newest1 as $product)
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="card" style="width: 17rem;">
+                                        <img src="{{ asset('/storage/uploads/products/' . $product->image) }}"
+                                            class="card-img-top" alt="{{ $product->name }}" width="220"
+                                            height="220">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $product->name }}</h5>
+                                            <div class="d-flex flex-row justify-content-between">
+                                                <p class="card-text">₱{{ $product->price }}</p>
+
+                                                <small class="text-secodary">{{ $product->stock }} left</small>
+                                            </div>
+                                            <a href="{{ backpack_url('view_product/' . $product->id) }}"
+                                                class="btn btn-primary text-wrap w-100">View this product</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
 
                 {{-- Second --}}
-                <div class="carousel-item " data-bs-interval="5000">
+                <div class="carousel-item" data-bs-interval="5000">
                     <div class="container">
-                        <div class="row row-cols-auto justify-content-center">
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        <div class="row row-cols-4 justify-content-center">
+                            @foreach ($newest2 as $product)
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="card" style="width: 17rem;">
+                                        <img src="{{ asset('/storage/uploads/products/' . $product->image) }}"
+                                            class="card-img-top" alt="{{ $product->name }}" width="220"
+                                            height="220">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $product->name }}</h5>
+                                            <div class="d-flex flex-row justify-content-between">
+                                                <p class="card-text">₱{{ $product->price }}</p>
+
+                                                <small class="text-secodary">{{ $product->stock }} left</small>
+                                            </div>
+                                            <a href="{{ backpack_url('view_product/' . $product->id) }}"
+                                                class="btn btn-primary text-wrap w-100">View this product</a>
                                         </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -242,175 +224,6 @@
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carousel-newest-product"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="false"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-
-
-    <div class="my-5 mx-auto pt-5">
-        <h2 class="container my-5 fw-bold">Hot Choice</h2>
-        <div id="carousel-hot-choice" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-inner w-75 mx-auto">
-                <div class="carousel-item active " data-bs-interval="10000">
-                    <div class="container">
-                        <div class="row row-cols-auto justify-content-center">
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- Second --}}
-                <div class="carousel-item " data-bs-interval="5000">
-                    <div class="container">
-                        <div class="row row-cols-auto justify-content-center">
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 d-none d-lg-block">
-                                <div class="card">
-                                    <img class="card-img-top"
-                                        src="https://www.webstaurantstore.com/images/products/extra_large/472039/1751150.jpg"
-                                        alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product Title</h5>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">
-                                                $100
-                                            </p>
-                                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                        </div>
-                                        <a href="#" class="btn btn-primary text-wrap w-100">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- Carousel Controller --}}
-            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-hot-choice"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carousel-hot-choice"
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="false"></span>
                 <span class="visually-hidden">Next</span>

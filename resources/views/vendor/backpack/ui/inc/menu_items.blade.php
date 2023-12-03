@@ -7,36 +7,30 @@
 <x-backpack::menu-item title="Market" icon="la la-store-alt" :link="backpack_url('market')" />
 <x-backpack::menu-item title="Activity" icon="la la-history" :link="backpack_url('activity')" />
 
+@php
 
+    $count = 0;
+    // $message_count = \App\Models\Message::where('receiver_id', backpack_user()->id)->where('is_read', 0)->count();
+    $mycart_count = \App\Models\Cart::where('user_id', backpack_user()->id)
+        ->where('is_checked_out', '0')->count();
+
+    $myorder_count = \App\Models\Order::where('user_id', backpack_user()->id)
+        ->where('is_delivered', '0')
+        ->where('is_cancelled', '0')->count();
+@endphp
 
 {{-- Normal User --}}
 @if (!backpack_user()->hasRole('Admin'))
-    <x-backpack::menu-item title="Message" icon="la la-sms" :link="backpack_url('message')" />
-    <x-backpack::menu-item title="My Cart" icon="la la-shopping-cart" :link="backpack_url('mycart')" />
-    <x-backpack::menu-item title="My Order" icon="la la-shopping-bag" :link="backpack_url('myorder')" />
+    <x-backpack::menu-item title="Message" icon="la la-sms"  :link="backpack_url('message')" />
+    <x-backpack::menu-item title="My Cart" icon="la la-shopping-cart" :link="backpack_url('mycart')" badge="{{$count}}" />
+    <x-backpack::menu-item title="My Order" icon="la la-shopping-bag"  :link="backpack_url('myorder')" />
+
+    
     <x-backpack::menu-dropdown title="My Store" icon="la la-store">
-        <x-backpack::menu-dropdown-item title="Products" icon="la la-tag" :link="backpack_url('product')" />
+        <x-backpack::menu-dropdown-item title="Products" icon="la la-tag" badge="3" :link="backpack_url('product')" />
         <x-backpack::menu-dropdown-item title="Customer Orders" icon="la la-shopping-bag" :link="backpack_url('customer-order')" />
     </x-backpack::menu-dropdown>
 @endif
-{{-- <x-backpack::menu-item title="Product" icon="la la-question" :link="backpack_url('my-store')" /> --}}
-{{-- <x-backpack::menu-item title="Mycart" icon="la la-question" :link="backpack_url('mycart')" /> --}}
-{{-- <x-backpack::menu-item title="My Order" icon="la la-shopping-bag" :link="backpack_url('my-order')" /> --}}
-{{-- 
-        Home
-        Market
-        
-        MyStore::
-        Product
-        Order
-        
-        
-        
-        Admin::Dashboard
-        MyStore
-        MyCart
-        Message/Chat
-        --}}
 
 @if (backpack_user()->hasRole('Admin'))
     <x-backpack::menu-dropdown title="Authentication" icon="la la-users">

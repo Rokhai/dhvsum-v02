@@ -45,10 +45,24 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
+        \App\Models\User::factory()->create([
+            'name' => 'Leonalyn Bernal',
+            'email' => '2019987847@dhvsu.edu.ph',
+            'is_admin' => '0',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Rosgen Hizer',
+            'email' => '2021301515@dhvsu.edu.ph',
+            'is_admin' => '1',
+            'password' => bcrypt('12345678'),
+        ]);
+
+
+
 
         // Ratings
-        // Code for 4 Stars
-        // &#9733; &#9733; &#9733; &#9733; &#9734;
         Rating::create([
             'id' => '1',
             'name' => '1 Star',
@@ -76,7 +90,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //  Categories
-
         Category::create([
             'name' => 'Electronics',
             'slug' => 'electronics',
@@ -129,10 +142,10 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'user_id' => 3,
             'image' => 'shoes1.jpg',
-            'name' => 'Shoes 1',
+            'name' => 'White Snickers',
             'stock' => 10,
             'price' => 1000,
-            'description' => 'This black shoes is good for running',
+            'description' => 'This white snickers is good for fashonista',
             'category_id' => 3,
             'is_active' => 1,
             'is_approved' => 1,
@@ -141,10 +154,10 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'user_id' => 3,
             'image' => 'shoes2.jpg',
-            'name' => 'Shoes 2',
+            'name' => 'Black Shoes',
             'stock' => 10,
-            'price' => 100,
-            'description' => 'This shoes is good for running',
+            'price' => 350,
+            'description' => 'This shoes is good for school use',
             'category_id' => 3,
             'is_active' => 1,
             'is_approved' => 1,
@@ -153,10 +166,10 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'user_id' => 4,
             'image' => 'shoes3.jpg',
-            'name' => 'Shoes 3',
-            'stock' => 10,
-            'price' => 100,
-            'description' => 'This shoes is good for running',
+            'name' => 'Orangaed Lace Shoes',
+            'stock' => 2,
+            'price' => 3000,
+            'description' => 'This orange shoes is good for running',
             'category_id' => 3,
             'is_active' => 1,
             'is_approved' => 1,
@@ -166,10 +179,10 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'user_id' => 3,
             'image' => 'shoes4.jpg',
-            'name' => 'Shoes 4',
-            'stock' => 10,
-            'price' => 100,
-            'description' => 'This shoes is good for running',
+            'name' => 'Brown Shoes',
+            'stock' => 20,
+            'price' => 500,
+            'description' => 'This brown shoes is good for running',
             'category_id' => 3,
             'is_active' => 1,
             'is_approved' => 1,
@@ -181,14 +194,52 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'user_id' => 4,
             'image' => 'clothe1.jpg',
-            'name' => 'Clothe 1',
+            'name' => 'Pink Sleepwear for Children',
             'stock' => 10,
             'price' => 100,
-            'description' => 'This clothe is good for sleeping',
+            'description' => 'This pink sleepwear is good for sleeping',
             'category_id' => 2,
             'is_active' => 1,
             'is_approved' => 1,
             
+        ]);
+
+
+        Product::create([
+            'user_id' => 4,
+            'image' => 'clothe2.png',
+            'name' => 'White Hoodie',
+            'stock' => 10,
+            'price' => 300,
+            'description' => 'This white hoodie is good for sleeping',
+            'category_id' => 2,
+            'is_active' => 1,
+            'is_approved' => 1,
+        ]);
+
+        Product::create([
+            'user_id' => 5,
+            'image' => 'electronic1.jpg',
+            'name' => 'Digital Kam Siver Plated',
+            'stock' => 4,
+            'price' => 250,
+            'description' => 'This digital kam is good for taking pictures',
+            'category_id' => 1,
+            'is_active' => 1,
+            'is_approved' => 1,
+
+        ]);
+
+        Product::create([
+            'user_id' => 5,
+            'image' => 'electronic2.jpg',
+            'name' => 'Headset Bluetooth',
+            'stock' => 2,
+            'price' => 600,
+            'description' => 'This headset is good for listening music',
+            'category_id' => 1,
+            'is_active' => 1,
+            'is_approved' => 1, 
         ]);
 
 
@@ -199,7 +250,8 @@ class DatabaseSeeder extends Seeder
             ['role_id' => '1', 'model_type' => 'App\Models\User', 'model_id' => '1'],
             ['role_id' => '2', 'model_type' => 'App\Models\User', 'model_id' => '2'],
             ['role_id' => '3', 'model_type' => 'App\Models\User', 'model_id' => '3'],
-            ['role_id' => '3', 'model_type' => 'App\Models\User', 'model_id' => '4'],
+            ['role_id' => '3', 'model_type' => 'App\Models\User', 'model_id' => '5'],
+            ['role_id' => '2', 'model_type' => 'App\Models\User', 'model_id' => '6'],
         ]);
 
 
@@ -212,6 +264,34 @@ class DatabaseSeeder extends Seeder
             'email' => \DB::table('users')->where('id', 3)->value('email'),
         ]);
         
+
+        \App\Models\Cart::create([
+            'user_id' => 3,
+            'product_id' => 3,
+            'quantity' => 1,
+            'is_checked_out' => 1,
+        ]);
+
+
+        \App\Models\Order::create([
+            'user_id' => 3,
+            'product_id' => 3,
+            'cart_id' => 1,
+            'address_id' => 1,
+            'total_amount' => 100,
+            'status' => 'Delivered',
+            'is_delivered' => 1,
+        ]);
+
+        \App\Models\Feedback::create([
+            'user_id' => 3,
+            'product_id' => 3,
+            'rating_id' => 3,
+            'rating' => '★ ★ ★ ☆ ☆',
+            'comment' => 'This is a good product',
+        ]);
+
+
         // Activity Logs
         for ($i = 1; $i <= 10; $i++) {
             ActivityLog::create([

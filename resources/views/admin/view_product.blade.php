@@ -17,7 +17,7 @@
         <div class="mt-4 mx-4">
             <div class="d-flex flex-row justify-content-between">
                 {{-- <a href="{{url()->previous() }}" class="  link-primary  mr-5 fs-2"><i class="la la-long-arrow-alt-left"> Back </i></a> --}}
-                <h2 class="mx-4">Product Details</h2>
+                <h2 class="mx-4 fw-bolder">Product Details</h2>
                 {{-- border border-primary rounded-cirle --}}
                 <a href="{{ url()->previous() }}" class="btn-close " aria-label="Close"></a>
             </div>
@@ -29,13 +29,13 @@
                 height="100">
         </div>
         <div class="card-body">
-            <h2 class="card-title">{{ $product->name }}</h2>
+            <h2 class="card-title fw-bold display-1 text-break">{{ $product->name }}</h2>
             <p class="card-text">Price: ${{ $product->price }}</p>
             <div class="d-flex flex-row justify-content-between">
-                <p class="fs-3">{{ $product->stock }} sold </p>
+                <p class="fs-3">Stock: {{ $product->stock }} left </p>
                 <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal"
-                    data-bs-target="#addToCartModal"><span class="fs-3"><i class="la la-cart-arrow-down"> </i> Add to
-                        cart</span></button>
+                    data-bs-target="#addToCartModal"><span class="fs-3">
+                        <i class="la la-cart-arrow-down"> </i> Add to cart</span></button>
             </div>
 
         </div>
@@ -123,9 +123,8 @@
                 <div class="row">
                     <div class="col-auto">
                         <span class="avatar avatar-xl mb-3 rounded" {{-- style="background-image: url('http://www.venmond.com/demo/vendroid/img/avatar/big.jpg')"></span> --}}
-                            src="{{ backpack_avatar_url($user) }}"
-                            alt="{{ backpack_auth()->user()->name }}" onerror="this.style.display='none'"
-                            style="z-index: 1;">
+                            src="{{ backpack_avatar_url($user) }}" alt="{{ backpack_auth()->user()->name }}"
+                            onerror="this.style.display='none'" style="z-index: 1;">
                     </div>
                     <div class="col-auto">
                         <div class="text-truncate">
@@ -164,7 +163,7 @@
                                 <div class="col-auto">
                                     {{-- <span class="avatar">JL</span> --}}
 
-                                    <span class="avatar avatar-sm rounded-circle">
+                                    {{-- <span class="avatar avatar-sm rounded-circle">
                                         <img class="avatar avatar-sm rounded-circle bg-transparent"
                                             src="{{ backpack_avatar_url(backpack_auth()->user()) }}"
                                             alt="{{ backpack_auth()->user()->name }}" onerror="this.style.display='none'"
@@ -173,16 +172,18 @@
                                             class="avatar avatar-sm rounded-circle backpack-avatar-menu-container text-center">
                                             {{ backpack_user()->getAttribute('name') ? mb_substr(backpack_user()->name, 0, 1, 'UTF-8') : 'A' }}
                                         </span>
-                                    </span>
+                                    </span> --}}
                                 </div>
                                 <div class="col">
                                     <div class="text-truncate">
-                                        <strong>{{ $feedback->user_name }}</strong> commented <strong>
-                                            {{ $feedback->comment }} </strong>
+                                        <strong class="fs-3">{{ $feedback->user_name }}</strong> commented  <span class="text-muted"> {{ \Carbon\Carbon::parse($feedback->created_at)->diffForHumans() }} </span>
+                                        <div class="w-75 text-wrap">
+                                            {{ $feedback->comment }}
+                                            {{-- <strong> </strong> --}}
+                                        </div>
 
                                     </div>
-                                    <div class="text-secondary">
-                                        {{ \Carbon\Carbon::parse($feedback->created_at)->diffForHumans() }}</div>
+                                   
                                 </div>
                                 <div class="col-auto align-self-center">
                                     <div> {{ $feedback->rating }} </div>

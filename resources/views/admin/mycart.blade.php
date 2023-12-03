@@ -37,7 +37,7 @@
                 <div id="add-address">
                     <div class= "d-flex flex-column flex-md-row justify-content-between">
 
-                        <h3>Contact/Address not yet setup</h3>
+                        <h3>Address Information</h3>
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                             data-bs-target="#addAddressModal">Add Address</button>
                     </div>
@@ -127,7 +127,8 @@
                                     <div class="d-flex justify-content-end mt-3 mr-4">
                                         <button type="button" class="btn btn-outline-danger mx-3"
                                             onclick="confirmDelete({{ $item->id }})">
-                                            <span><i class="la la-trash"> </i>{{ $item->id }} Remove</span>
+                                            {{-- <span><i class="la la-trash"> </i>Remove</span> --}}
+                                            <span>Remove</span>
                                         </button>
                                         {{-- <a href="#" class="btn btn-outline-danger mx-3"> <i class="la la-trash"></i> Remove</a> --}}
                                         {{-- <a href="#" class="btn btn-primary mx-3">Place Order</a> --}}
@@ -142,7 +143,7 @@
                                                 {{ $item->quantity }},
                                                 {{ $item->price * $item->quantity }}
                                                 )">
-                                            <span>{{ $item->id }}Place Order</span>
+                                            <span>Place Order</span>
                                         </button>
 
                                     </div>
@@ -271,31 +272,6 @@
         </script>
     @endif
 
-
-
-    {{-- <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="checkOut">Oreder Information</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-status "></div>
-    <div class="modal-body text-center py-4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-success icon-lg" width="24"
-            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M5 12l5 5l10 -10" />
-        </svg>
-        <h3>Order Placed!</h3>
-        <div class="text-secondary text-wrap">
-            Your order has been placed. You will receive a confirmation email shortly.
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    </div>
-</div> --}}
-
     {{-- Delet Item in Cart Modal  --}}
 
     <div class="modal" id="deleteItemModal" tabindex="-1">
@@ -397,7 +373,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Contact Number</label>
-                                    <input type="text" class="form-control" placeholder="(+63) 987654321"
+                                    <input type="tel" class="form-control" placeholder="09876543211"
                                         maxlength="11" name="contact_number">
                                 </div>
                             </div>
