@@ -8,6 +8,9 @@ use App\Models\Product;
 use App\Models\Rating;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -60,7 +63,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        Factory::factory(\App\Models\User::class, 10)->create([
+            'password' => bcrypt('12345678'),
+        ])->each(function ($user){
+            $user->assignRole('Student');
 
+        });
 
         // Ratings
         Rating::create([
