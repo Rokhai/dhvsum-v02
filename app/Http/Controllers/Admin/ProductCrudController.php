@@ -219,7 +219,8 @@ class ProductCrudController extends CrudController
             // ->width(200)
             // ->height(200)
             ->withFiles([
-                'fileNamer' => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
+                'file_name_generator' => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
+                // 'fileNamer' => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
                 'disk' => 'products',
                 'url' => '/storage/uploads/products/',
             ])->preview(true);

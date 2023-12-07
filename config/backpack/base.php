@@ -144,11 +144,13 @@ return [
     // Other options:
     // - null (generic image with their first letter)
     // - example_method_name (specify the method on the User model that returns the URL)
+    // 'avatar_type' => 'gravatar',
     'avatar_type' => 'gravatar',
 
     // Gravatar fallback options are 'identicon', 'monsterid', 'wavatar', 'retro', 'robohash', 'blank'
     // 'blank' will keep the generic image with the user first letter
-    'gravatar_fallback' => 'blank',
+    // 'gravatar_fallback' => 'blank',
+    'gravatar_fallback' => 'indenticon',
 
     /*
     |--------------------------------------------------------------------------
