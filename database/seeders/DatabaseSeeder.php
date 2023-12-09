@@ -63,12 +63,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        Factory::factory(\App\Models\User::class, 10)->create([
-            'password' => bcrypt('12345678'),
-        ])->each(function ($user){
-            $user->assignRole('Student');
+        // Factory::factory(\App\Models\User::class, 10)->create([
+        //     'password' => bcrypt('12345678'),
+        // ])->each(function ($user){
+        //     $user->assignRole('Student');
 
-        });
+        // });
 
         // Ratings
         Rating::create([
