@@ -207,20 +207,22 @@
                                             </div>
                                             <div id="gcash-info" style="display: block;" class="form-group">
                                                 <label for="gcash-number">GCash Number:</label>
-                                                <input type="text" id="gcash-number" name="gcash_number" class="form-control" maxlength="11">
+                                                <input type="text" id="gcash-number" name="gcash_number" class="form-control" maxlength="11" value="" required>
                                             </div>
                                             <script>
 
                                                 document.addEventListener('DOMContentLoaded', function () {
                                                     const paymentMethodInputs = document.querySelectorAll('input[name="payment_method"]');
                                                     const gcashInfo = document.getElementById('gcash-info');
-                                                
+                                                    const gcashNumber = document.getElementById('gcash-number');
                                                     paymentMethodInputs.forEach(input => {
                                                         input.addEventListener('change', function () {
                                                             if (this.value === 'gcash') {
                                                                 gcashInfo.style.display = 'block';
+                                                                gcashNumber.addAttribute('required');
                                                             } else {
                                                                 gcashInfo.style.display = 'none';
+                                                                gcashNumber.removeAttribute('required');
                                                             }
                                                         });
                                                     });

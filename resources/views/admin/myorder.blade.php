@@ -178,7 +178,7 @@
                                                                 Leave Feedback
                                                             </button> --}}
                                                             <button type="button" class="btn btn-primary"
-                                                                onclick="feedbackModal({{ optional($order)->product_id }}, {{optional($order)->id}})">
+                                                                onclick="feedbackModal({{ optional($order)->product_id }}, {{ optional($order)->id }})">
                                                                 Order Received
                                                             </button>
                                                             {{-- <a href="#" class="btn btn-primary ">Order Received</a> --}}
@@ -187,6 +187,54 @@
                                                 </div>
                                             @endif
                                         @endforeach
+
+                                        @php
+                                            $orderDelivered = DB::table('orders')
+                                                ->join('products', 'orders.product_id', '=', 'products.id')
+                                                ->join('carts', 'orders.cart_id', '=', 'carts.id')
+                                                ->where('orders.user_id', backpack_user()->id)
+                                                ->where('orders.is_delivered', true)
+                                                ->where('orders.is_cancelled', false)
+                                                ->select('orders.*', 'products.name', 'products.image', 'carts.quantity')
+                                                ->get();
+                                        @endphp
+                                        @foreach ($orderDelivered as $order)
+                                            
+                                        @endforeach
+                                        @if ($order->is_delivered == true)
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <img src="{{ asset('storage/uploads/products/' . optional($order)->image) }}"
+                                                            alt="product image" width="90" height="90">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="text-truncate">
+                                                            <strong>{{ optional($order)->name }}</strong> 
+                                                            {{-- <span class="badge bg-primary">Delivered</span> --}}
+                                                        </div>
+                                                        <div class="text-secondary">
+                                                            {{ optional(\Carbon\Carbon::parse(optional($order)->created_at))->diffForHumans() }}
+                                                        </div>
+                                                        <div class=" d-flex justify-content-between mt-4 fs-3 fw-bold">
+
+                                                            <div>Total Amount: &#8369;
+                                                                {{ optional($order)->total_amount }}</div>
+                                                            <div>Qty: {{ optional($order)->quantity }}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex flex-row   justify-content-end  mt-3 ">
+
+                                                        <button type="button" class="btn btn-primary" disabled
+                                                            onclick="feedbackModal({{ optional($order)->product_id }}, {{ optional($order)->id }})">
+                                                            Order Already Received
+                                                        </button>
+                                                        {{-- <a href="#" class="btn btn-primary ">Order Received</a> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -237,7 +285,8 @@
                         <input type="hidden" id="product_id" name="product_id" value="">
                         <input type="hidden" id="order_id" name="order_id" value="">
                         {{-- <a href="" class="btn btn-secondary" id="dntsbmt">Don't Submit Feedback</a> --}}
-                        <button type="submit" class="btn btn-secondary"  onclick="received()">Don't Submit a Feedback</button>
+                        <button type="submit" class="btn btn-secondary" onclick="received()">Don't Submit a
+                            Feedback</button>
                         {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Don't Submit a Feedback</button> --}}
                         <button type="submit" class="btn btn-primary">Submit Feedback</button>
                     </div>
@@ -247,7 +296,6 @@
     </div>
 
     <script>
-
         function received() {
             var orderIdInput = document.getElementById('order_id');
             var form = document.getElementById('formFeedback');
@@ -263,7 +311,7 @@
 
             var orderIdInput = document.getElementById('order_id');
             orderIdInput.value = orderId;
-            
+
             // var dontsubmit = document.getElementById('dntsbmt');
             // dontsubmit.href = "{{ backpack_url('myorder') }}" + "/" + productId + "/received";
 
