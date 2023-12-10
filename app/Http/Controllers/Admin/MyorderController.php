@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Ixudra\Curl\Facades\Curl;
+
 
 /**
  * Class MyorderController
@@ -47,30 +49,125 @@ class MyorderController extends Controller
 
         $cartItem = \App\Models\Cart::find($request->item_cart_id);
 
+        // $user = \App\Models\User::find(backpack_user()->id);
+        $address = \App\Models\Address::find(backpack_user());
+
+        $payment_method = $request->payment_method;
+
+
+        $order = null;
         if ($product) {
             if ($product->stock >= $cartItem->quantity) {
-                $product->update([
-                    'stock' => $product->stock - $cartItem->quantity,
-                ]);
 
-                $order = \App\Models\Order::create([
-                    'user_id' => backpack_user()->id,
-                    'cart_id' => $request->item_cart_id, // 'cart_id' => 'required
-                    'product_id' => $request->item_product_id,
-                    'address_id' => $request->item_address_id,
-                    'total_amount' => $request->item_total_amount,
-                    'status' => 'To Ship',
-                ]);
+                $payment = null;
 
-                if ($order) {
-                    $cart = \App\Models\Cart::where('user_id', backpack_user()->id)
-                        ->where('id', $request->item_cart_id)
-                        ->update([
-                            'is_checked_out' => '1',
-                        ]);
+                // If payment method is cash
+                // Create order and payment transaction
+                if ($payment_method == 'cash') {
+                    $order = \App\Models\Order::create([
+                        'user_id' => backpack_user()->id,
+                        'cart_id' => $request->item_cart_id, // 'cart_id' => 'required
+                        'product_id' => $request->item_product_id,
+                        'address_id' => $request->item_address_id,
+                        'total_amount' => $request->item_total_amount,
+                        'status' => 'To Ship',
+                    ]);
+
+                    $payment = \App\Models\Payment::create([
+                        'user_id' => backpack_user()->id,
+                        'product_id' => $request->item_product_id,
+                        'order_id' => $order->id,
+                        'amount' => $request->item_total_amount,
+                        'payment_method' => $request->payment_method,
+                        'payment_status' => 'pending',
+                    ]);
+
                 }
-                \Prologue\Alerts\Facades\Alert::success('Order placed successfully')->flash();
-                return redirect()->back();
+
+                // GCash Integration
+                if ($payment_method == 'gcash') {
+
+                    $data = [
+                        'data' => [
+                            'attributes' => [
+                                'line_items' => [
+                                    [
+                                        'currency' => 'PHP',
+                                        'amount' => intval($request->item_total_amount) * 100,
+                                        'description' => $product->description,
+                                        'name' => $product->name,
+                                        'quantity' => $cartItem->quantity,
+                                    ]
+                                ],
+                                'payment_method_types' => [
+                                    $request->payment_method,
+                                ],
+                            ],
+                            'success_url' => 'http://localhost:8000/mycart',
+                            // 'cancel_url' => 'http://localhost:8000/mycart',
+                            'description' => $product->description,
+                        ]
+                    ];
+
+                    // GCash Request
+                    $response = Curl::to('https://api.paymongo.com/v1/checkout_sessions')
+                        ->withHeader('Content-Type: application/json')
+                        ->withHeader('accept: application/json')
+                        ->withHeader('Authorization: Basic ' . base64_encode(env('PAYMONGO_SECRET_KEY')))
+                        ->withData($data)
+                        ->asJson()
+                        ->post();
+                    
+                    // Check Response If True record the transaction ID
+                    if ($response) {
+                        \Prologue\Alerts\Facades\Alert::success('GCash Payment Success')->flash();
+
+                        $order = \App\Models\Order::create([
+                            'user_id' => backpack_user()->id,
+                            'cart_id' => $request->item_cart_id, // 'cart_id' => 'required
+                            'product_id' => $request->item_product_id,
+                            'address_id' => $request->item_address_id,
+                            'total_amount' => $request->item_total_amount,
+                            'status' => 'To Ship',
+                        ]);
+
+                        $payment = \App\Models\Payment::create([
+                            'user_id' => backpack_user()->id,
+                            'product_id' => $request->item_product_id,
+                            'order_id' => $order->id,
+                            'amount' => $request->item_total_amount,
+                            'payment_method' => $request->payment_method,
+                            'payment_status' => 'paid',
+                            'gcash_number' => $request->gcash_number,
+                            'gcash_transaction_id' => $response->data->id,
+                        ]);
+                    }
+                   
+                }
+
+                // If payment done update the stock
+                // If payment done update the checkout status
+                if ($payment) {
+
+                    if ($order) {
+                        $cart = \App\Models\Cart::where('user_id', backpack_user()->id)
+                            ->where('id', $request->item_cart_id)
+                            ->update([
+                                'is_checked_out' => '1',
+                            ]);
+                        $product->update([
+                            'stock' => $product->stock - $cartItem->quantity,
+                        ]);
+
+                    }
+
+                    \Prologue\Alerts\Facades\Alert::success('Order placed successfully')->flash();
+                    return redirect()->back();
+                } else {
+                    \Prologue\Alerts\Facades\Alert::error('Payment cannot be processed')->flash();
+                    return redirect()->back();
+                }
+
             } else {
                 \Prologue\Alerts\Facades\Alert::error('Insufficient stock')->flash();
                 return redirect()->back();
@@ -87,21 +184,35 @@ class MyorderController extends Controller
 
         $rating = \DB::table('ratings')->where('id', $request->rating_id)->first();
 
-        $is_delivered =  \DB::table('orders')->where('id', $request->order_id)->update([
+        $is_delivered = \DB::table('orders')->where('id', $request->order_id)->update([
             'is_delivered' => true,
         ]);
 
 
         if ($is_delivered) {
- 
+
             $feedback = \App\Models\Feedback::create([
-                 'user_id' => backpack_user()->id,
-                 'product_id' => $request->product_id,
-                 'rating_id' => $request->rating_id,
-                 'comment' => $request->comment,
-                 'rating' => optional($rating)->rating,
+                'user_id' => backpack_user()->id,
+                'product_id' => $request->product_id,
+                'rating_id' => $request->rating_id,
+                'comment' => $request->comment,
+                'rating' => optional($rating)->rating,
             ]);
-            
+
+            $payment = \App\Models\Payment::where('order_id', $request->order_id)
+                ->where('user_id', backpack_user()->id)
+                ->first();
+
+            if ($payment->payment_status == 'cash') {
+
+                $payment->update([
+                    'payment_status' => 'paid',
+                ]);
+                \Prologue\Alerts\Facades\Alert::success('Order paid successfully')->flash();
+            }
+
+            \Prologue\Alerts\Facades\Alert::success('Order received successfully')->flash();
+
             \Prologue\Alerts\Facades\Alert::success('Feedback submitted successfully')->flash();
             return redirect()->back();
         }
@@ -110,21 +221,41 @@ class MyorderController extends Controller
 
         return redirect()->back();
     }
-    
 
-   
 
-    public function received($id) {
+
+
+    public function received($id)
+    {
         $order = \App\Models\Order::find($id);
 
+        // dd($order);
+
         if ($order) {
+
             $order->update([
                 'status' => 'Delivered',
                 'is_delivered' => true,
             ]);
 
-            \Prologue\Alerts\Facades\Alert::success('Order received successfully')->flash();
-            return redirect()->back();
+            if ($order->is_delivered) {
+                $payment = \App\Models\Payment::where('order_id', $id)
+                    ->where('user_id', backpack_user()->id)
+                    ->first();
+                if ($payment->payment_status == 'pending') {
+
+                    $payment->update([
+                        'payment_status' => 'paid',
+                    ]);
+                    \Prologue\Alerts\Facades\Alert::success('Order paid successfully')->flash();
+                }
+
+                \Prologue\Alerts\Facades\Alert::success('Order received successfully')->flash();
+                return redirect()->back();
+            }
+
+
+
         }
 
         \Prologue\Alerts\Facades\Alert::error('Order cannot be received')->flash();

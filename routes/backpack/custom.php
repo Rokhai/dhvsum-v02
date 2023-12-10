@@ -52,4 +52,5 @@ Route::group([
     Route::put('address/{id}', 'AddressController@update')->name('page.address.update');
     Route::delete('address/{id}', 'AddressController@destroy')->name('page.address.destroy');
     // Route::get('customer-order', 'CustomerOrderCrudController@index')->name('page.customer-order.index');
+    Route::crud('payment-history', 'PaymentHistoryCrudController');
 }); // this should be the absolute last line of this file

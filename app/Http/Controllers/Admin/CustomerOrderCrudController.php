@@ -49,7 +49,11 @@ class CustomerOrderCrudController extends CrudController
         // CRUD::setFromDb(); // set columns from db columns.
 
 
-        $totalOrders = \DB::table('orders')->count();
+        $totalOrders = \DB::table('orders')
+        ->join('products', 'orders.product_id', '=', 'products.id')
+       ->where('products.user_id', '=', backpack_user()->id)
+        ->count()
+        ;
 
         \Backpack\CRUD\app\Library\Widget::add([
             'type' => 'div',

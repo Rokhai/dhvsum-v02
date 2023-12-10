@@ -63,3 +63,5 @@
 
 {{-- <x-backpack::menu-item title="Market" icon="la la-question" :link="backpack_url('market')" /> --}}
 {{-- <x-backpack::menu-item title="Customer orders" icon="la la-question" :link="backpack_url('customer-order')" /> --}}
+
+<x-backpack::menu-item title="Payment histories" icon="la la-question" :link="backpack_url('payment-history')" />

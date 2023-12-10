@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('avatar')->default('https://www.gravatar.com/avatar/?d=mp');
             $table->string('name');
             $table->string('email')->unique();
             // $table->foreignId('role_id')
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
         });
 
         // \DB::table('users')->insert([

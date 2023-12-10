@@ -249,9 +249,9 @@
     <script>
 
         function received() {
-            var productIdInput = document.getElementById('product_id');
+            var orderIdInput = document.getElementById('order_id');
             var form = document.getElementById('formFeedback');
-            form.action = "{{ backpack_url('myorder') }}" + "/" + productIdInput.value + "/received";
+            form.action = "{{ backpack_url('myorder') }}" + "/" + orderIdInput.value + "/received";
             // form.method = "PUT";
         }
 

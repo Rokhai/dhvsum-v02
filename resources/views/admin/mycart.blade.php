@@ -168,73 +168,115 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-status "></div>
-                    <div class="modal-body text-center py-4">
-                        <div>
-                            <div class="row">
-                                <div class="col-auto">
-                                    {{-- "{{ asset('/storage/uploads/products/' . $item->image) }}" --}}
-                                    <img src="" id="itemImage" alt="product image" width="90" height="90">
-                                </div>
-                                <div class="col">
-                                    <div class="text-truncate">
-                                        <strong id="itemName"></strong>
+                    <form action="" method="POST" id="formCheckOut">
+                        @csrf
+                        @method('POST')
+                        <div class="modal-body text-start py-4">
+                            <div>
+                                <div class="row ">
+                                    <div class="col-auto">
+                                        {{-- "{{ asset('/storage/uploads/products/' . $item->image) }}" --}}
+                                        <img src="" id="itemImage" alt="product image" width="90"
+                                            height="90">
                                     </div>
-                                    <div class=" d-flex justify-content-between mt-4 fs-3 fw-bold">
+                                    <div class="col">
+                                        <div class="text-truncate">
+                                            <strong id="itemName"></strong>
+                                        </div>
+                                        <div class=" d-flex justify-content-between mt-4 ">
 
-                                        <div id="itemPrice">&#8369; 1</div>
-                                        <div id=itemQuantity>Qty: 1</div>
+                                            <div id="itemPrice">&#8369; 1</div>
+                                            <div id=itemQuantity>Qty: 1</div>
+                                        </div>
+                                        <div id="itemTotalAmount" class="my-3 fs-3 fw-bold">
+                                            Total Amount: &#8369; 1000
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-label">Payment Method</div>
+                                            <div>
+                                                <label class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="payment_method"
+                                                        checked="" value="gcash">
+                                                    <span class="form-check-label">GCash</span>
+                                                </label>
+                                                <label class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="payment_method" value="cash">
+                                                    <span class="form-check-label">Cash-in-Hand</span>
+                                                </label>
+
+                                            </div>
+                                            <div id="gcash-info" style="display: block;" class="form-group">
+                                                <label for="gcash-number">GCash Number:</label>
+                                                <input type="text" id="gcash-number" name="gcash_number" class="form-control" maxlength="11">
+                                            </div>
+                                            <script>
+
+                                                document.addEventListener('DOMContentLoaded', function () {
+                                                    const paymentMethodInputs = document.querySelectorAll('input[name="payment_method"]');
+                                                    const gcashInfo = document.getElementById('gcash-info');
+                                                
+                                                    paymentMethodInputs.forEach(input => {
+                                                        input.addEventListener('change', function () {
+                                                            if (this.value === 'gcash') {
+                                                                gcashInfo.style.display = 'block';
+                                                            } else {
+                                                                gcashInfo.style.display = 'none';
+                                                            }
+                                                        });
+                                                    });
+                                                });
+                                            </script>
+                                        </div>
+
+                                        <div class="col">
+                                        </div>
                                     </div>
-                                    <div id="itemTotalAmount">Total Amount: &#8369; 1000</div>
-                                </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <form action="" method="POST" id="formCheckOut">
-                            @csrf
-                            @method('POST')
+                        <div class="modal-footer">
                             <input type="hidden" name="item_cart_id" id="item_id" value="">
                             <input type="hidden" name="item_user_id" id="item_user_id" value="">
                             <input type="hidden" name="item_product_id" id="item_product_id" value="">
-                            <input type="hidden" name="item_address_id" id="item_address_id" value="{{optional($address)->id}}">
+                            <input type="hidden" name="item_address_id" id="item_address_id"
+                                value="{{ optional($address)->id }}">
                             <input type="hidden" name="item_total_amount" id="item_total_amount" value="">
 
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Check Out</button>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
-        @else
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="checkOut">Information</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-status bg-warning"></div>
-                    <div class="modal-body text-center py-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-warning icon-lg" width="24"
-                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 9v2m0 4v.01" />
-                            <path
-                                d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
-                        </svg>
-                        <h3>Notice!</h3>
-                        <div class="text-secondary text-wrap">
-                            Your address is not yet setup, please add your address/contact first before you can place an
-                            order.
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+    </div>
+@else
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="checkOut">Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-status bg-warning"></div>
+            <div class="modal-body text-center py-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-warning icon-lg" width="24"
+                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 9v2m0 4v.01" />
+                    <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+                </svg>
+                <h3>Notice!</h3>
+                <div class="text-secondary text-wrap">
+                    Your address is not yet setup, please add your address/contact first before you can place an
+                    order.
                 </div>
             </div>
-        @endif
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+    @endif
     </div>
 
     @if ($address)
@@ -264,7 +306,7 @@
         </script>
     @else
         <script>
-           function checkOut(itemId, itemUserId, itemProductId, itemImage, itemName, itemPrice, itemQuantity,
+            function checkOut(itemId, itemUserId, itemProductId, itemImage, itemName, itemPrice, itemQuantity,
                 itemTotalAmount) {
                 var myModal = new bootstrap.Modal(document.getElementById('checkOut'), {});
                 myModal.show();
@@ -373,8 +415,8 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Contact Number</label>
-                                    <input type="tel" class="form-control" placeholder="09876543211"
-                                        maxlength="11" name="contact_number">
+                                    <input type="tel" class="form-control" placeholder="09876543211" maxlength="11"
+                                        name="contact_number">
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">
