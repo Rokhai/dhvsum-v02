@@ -17,10 +17,11 @@ Route::group([
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     // Route::crud('my-store', 'MyStoreCrudController');
-    // Route::get('chat', 'ChatController@index')->name('page.chat.index');
     Route::get('activity', 'ActivityController@index')->name('page.activity.index');
     // Route::get('productsearch', 'ProductsearchController@index')->name('page.productsearch.index');
     Route::get('message', 'MessageController@index')->name('page.message.index');
+    // Route::get('chat', 'ChatController@index')->name('page.chat.index');
+    Route::get('chat/{id}', 'ChatController@index')->name('page.chat.index');
     // Route::crud('myproduct', 'MyproductCrudController');
     // Route::crud('my-product', 'MyProductCrudController');
     Route::get('myorder', 'MyorderController@index')->name('page.myorder.index');

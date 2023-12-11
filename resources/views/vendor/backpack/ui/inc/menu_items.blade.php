@@ -22,6 +22,7 @@
 {{-- Normal User --}}
 @if (!backpack_user()->hasRole('Admin'))
     <x-backpack::menu-item title="Message" icon="la la-sms"  :link="backpack_url('message')" />
+    <x-backpack::menu-item title="Chat" icon="la la-sms"  :link="backpack_url('chat')" />
     <x-backpack::menu-item title="My Cart" icon="la la-shopping-cart" :link="backpack_url('mycart')" badge="{{$count}}" />
     <x-backpack::menu-item title="My Order" icon="la la-shopping-bag"  :link="backpack_url('myorder')" />
 
