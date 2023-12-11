@@ -122,9 +122,10 @@
             <div class="card-header justify-content-center">
                 <div class="row">
                     <div class="col-auto">
-                        <span class="avatar avatar-xl mb-3 rounded" {{-- style="background-image: url('http://www.venmond.com/demo/vendroid/img/avatar/big.jpg')"></span> --}}
-                            src="{{ backpack_avatar_url($user) }}" alt="{{ backpack_auth()->user()->name }}"
-                            onerror="this.style.display='none'" style="z-index: 1;">
+                        <img src="{{$user->avatar}}" class="avatar avatar-xl mb-3 rounded" alt="">
+                        {{-- <span class="avatar avatar-xl mb-3 rounded" style="background-image: url('{{$user->avatar}}')"></span>
+                            alt="{{ $user->name }}"
+                          >  onerror="this.style.display='none'" style="z-index: 1;" --}}
                     </div>
                     <div class="col-auto">
                         <div class="text-truncate">
@@ -137,7 +138,7 @@
                     </div>
                     <div class="row">
 
-                        <a href="#" class="btn btn-primary fs-4">Chat</a>
+                        <a href="{{backpack_url('chat/'. $user->id)}}" class="btn btn-primary fs-4">Chat</a>
                     </div>
 
                 </div>

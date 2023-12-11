@@ -57,7 +57,7 @@
                                 </div> --}}
                                 </div>
                                 <div class="d-flex">
-                                    <a href="#"
+                                    <a href="{{backpack_url('chat/'.$user->id)}}}}"
                                         class="card-btn"><!-- Download SVG icon from http://tabler-icons.io/i/mail -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-muted" width="24"
                                             height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"

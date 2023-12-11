@@ -22,6 +22,7 @@ Route::group([
     Route::get('message', 'MessageController@index')->name('page.message.index');
     // Route::get('chat', 'ChatController@index')->name('page.chat.index');
     Route::get('chat/{id}', 'ChatController@index')->name('page.chat.index');
+    Route::post('chat/reply', 'ChatController@reply')->name('page.chat.reply');
     // Route::crud('myproduct', 'MyproductCrudController');
     // Route::crud('my-product', 'MyProductCrudController');
     Route::get('myorder', 'MyorderController@index')->name('page.myorder.index');
