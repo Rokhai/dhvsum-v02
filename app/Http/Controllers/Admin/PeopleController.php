@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+
 /**
- * Class MessageController
+ * Class PeopleController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class MessageController extends Controller
+class PeopleController extends Controller
 {
     public function index()
     {
-        return view('admin.message', [
-            'title' => 'Message',
+        return view('admin.people', [
+            'title' => 'People',
             'breadcrumbs' => [
                 trans('backpack::crud.admin') => backpack_url('dashboard'),
-                'Message' => false,
+                'People' => false,
             ],
-            'page' => 'resources/views/admin/message.blade.php',
-            'controller' => 'app/Http/Controllers/Admin/MessageController.php',
+            'page' => 'resources/views/admin/people.blade.php',
+            'controller' => 'app/Http/Controllers/Admin/PeopleController.php',
         ]);
     }
 

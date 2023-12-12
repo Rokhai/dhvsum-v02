@@ -17,20 +17,24 @@ class ViewProductController extends Controller
 
     public function index()
     {
-        $product = \App\Models\Product::first();
+
+        return redirect()->back();
+        //  backpack_url('market');
+
+        // $product = \App\Models\Product::first();
 
        
 
-        return view('admin.view_product', [
-            'title' => 'View Product',
-            'breadcrumbs' => [
-                trans('backpack::crud.admin') => backpack_url('dashboard'),
-                'ViewProduct' => false,
-            ],
-            'page' => 'resources/views/admin/view_product.blade.php',
-            'controller' => 'app/Http/Controllers/Admin/ViewProductController.php',
-            'product' => $product,
-        ]);
+        // return view('admin.view_product', [
+        //     'title' => 'View Product',
+        //     'breadcrumbs' => [
+        //         trans('backpack::crud.admin') => backpack_url('dashboard'),
+        //         'ViewProduct' => false,
+        //     ],
+        //     'page' => 'resources/views/admin/view_product.blade.php',
+        //     'controller' => 'app/Http/Controllers/Admin/ViewProductController.php',
+        //     'product' => $product,
+        // ]);
     }
 
         //  if ($id) {

@@ -172,7 +172,7 @@
                                     <div class="card" style="width: 17rem;">
                                         <img src="{{ asset('/storage/uploads/products/' . $product->image) }}"
                                             class="card-img-top" alt="{{ $product->name }}" width="220"
-                                            height="220">
+                                            height="200">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
                                             <div class="d-flex flex-row justify-content-between">

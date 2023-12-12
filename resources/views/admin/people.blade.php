@@ -3,8 +3,8 @@
 
 @php
     $users = DB::table('users')
-    ->where('id', '!=', backpack_user()->id)
-    ->get();
+        ->where('id', '!=', backpack_user()->id)
+        ->get();
 @endphp
 
 
@@ -23,7 +23,8 @@
                     <!-- Page title actions -->
                     <div class="col-auto ms-auto d-print-none">
                         <div class="d-flex">
-                            <input type="search" name="search" class="form-control d-inline-block w-9 me-3" placeholder="Search user…">
+                            <input type="search" name="search" class="form-control d-inline-block w-9 me-3"
+                                placeholder="Search user…">
                             <a href="#" class="btn btn-primary">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -48,8 +49,8 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="card">
                                 <div class="card-body p-4 text-center">
-                                    <span class="avatar avatar-xl mb-3 rounded"><img src="{{ asset(optional($user)->avatar ) }}"
-                                            alt=""></span>
+                                    <span class="avatar avatar-xl mb-3 rounded"><img
+                                            src="{{ asset(optional($user)->avatar) }}" alt=""></span>
                                     <h3 class="m-0 mb-1"><a href="#">{{ $user->name }}</a></h3>
                                     {{-- <div class="text-secondary">Chemical Engineer</div> --}}
                                     {{-- <div class="mt-3">
@@ -57,7 +58,7 @@
                                 </div> --}}
                                 </div>
                                 <div class="d-flex">
-                                    <a href="{{backpack_url('chat/'.$user->id)}}}}"
+                                    <a href="{{ backpack_url('chat/' . $user->id) }}}}"
                                         class="card-btn"><!-- Download SVG icon from http://tabler-icons.io/i/mail -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-muted" width="24"
                                             height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -151,7 +152,7 @@
                             </div>
                         </div>
                     </div> --}}
-                    
+
 
 
                     <div class="d-flex mt-4">
@@ -188,6 +189,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
-    @endsection
+    </div>
+@endsection

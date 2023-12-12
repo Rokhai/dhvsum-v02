@@ -17,29 +17,32 @@
 
             <!-- Page body -->
             <div class="page-body">
-                <div class="container-lg">
-                    <div class="d-flex flex-md-row flex-column align-items-center">
-                        <div class="display-3">
-                            DHVSU
+                <div class="container-lg ">
+                    <div class="d-flex flex-md-row flex-column align-items-center justify-content-between">
+                        <div class="d-flex flex-md-row flex-column align-items-center w-auto">
+                            <div class="display-3">
+                                DHVSU
+                            </div>
+                            <div class="display-5 mx-2">
+                                Marketplace
+                            </div>
                         </div>
-                        <div class="display-5 mx-2">
-                            Marketplace
-                        </div>
-                    </div>
-                    <div class="row g-2 align-items-center">
-                        <div class="input-icon">
-                            <input type="text" value="" class="form-control form-control-rounded"
-                                placeholder="Search…">
-                            <span class="input-icon-addon">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/search -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                                    <path d="M21 21l-6 -6"></path>
-                                </svg>
-                            </span>
+
+                        <div class="row g-2 align-items-center w-50">
+                            <div class="input-icon">
+                                <input type="text" value="" class="form-control form-control-rounded"
+                                    placeholder="Search…">
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                                        <path d="M21 21l-6 -6"></path>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
                         {{-- <div class="col">
                             <h2 class="page-title">
@@ -49,49 +52,44 @@
                         </div> --}}
                     </div>
 
-                    <form action="{{backpack_url('market_search')}}" method="get" autocomplete="off" novalidate="" class="my-4">
-                        <div class="row row-cols-auto row-cols-sm-1 row-cols-md-4 ">
+                    <form action="{{ backpack_url('market_search') }}" method="get" autocomplete="off" novalidate=""
+                        class="my-4">
+                        <div class="row d-flex flex-column flex-md-row align-items-center">
 
-                            <div class="col col-md-4 col-sm-12">
+                            <div class="col col-md-3 col-sm-12 mb-3 mb-md-0">
                                 <label for="select-category" class="form-label">Product Category</label>
-                                <select name="select-category" id="select-category">
-                                    @foreach ($categories as $categrory)
-                                        <option value="{{ $categrory->id }}">{{ $categrory->name }}</option>
+                                <select name="select-category" id="select-category" class="form-select">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            <div class="col col-sm-2">
+                            <div class="col col-md-3 col-sm-12 mb-3 mb-md-0">
                                 <label for="select-rating" class="form-label">Rating</label>
-                                <select name="select-rating" id="select-rating">
+                                <select name="select-rating" id="select-rating" class="form-select">
                                     @foreach ($ratings as $rating)
-                                        <option value="{{ $rating->id }}">{{ $rating->name }} {{$rating->rating}}</option>
+                                        <option value="{{ $rating->id }}">{{ $rating->name }} {{ $rating->rating }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col  col-sm-2">
-                                <label for="select-price" class="form-label">Product Price</label>
-                                <select name="select-price" id="select-price">
-                                    <option value="1">Lowest to Highest</option>
-                                    <option value="2">Highest to Lowest</option>
-                                </select>
+
+                            <div class="col col-md-3 col-sm-12 mb-3 mb-md-0">
+                                <label for="select-price" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="select-price" name="select-price"
+                                    placeholder="Enter price">
                             </div>
-                            <div class="col-auto mt-5">
-                                <button class="btn btn-primary w-100" type="submit">
-                                    Confirm changes
-                                </button>
-                                <button class="btn btn-outline-primary w-100" type="reset">
-                                    Reset to defaults
-                                </button>
-                                {{-- <a href="#" class="btn btn-outline-primary w-100 mt-3" type="">
-                                    Reset to defaults
-                                </a> --}}
+
+                            <div class="col col-md-3 col-sm-12  mt-3 text-start text-md-end">
+                                <button type="submit" class="btn btn-outline-primary mt-4">Filter Search</button>
                             </div>
 
                         </div>
                     </form>
 
-                    <div class="row g-0 gx-md-3 gy-md-4">
+                    {{-- Products List Grid --}}
+                    <div class="row g-1 gy-4 align-item-center">
                         @foreach ($products as $product)
                             <div class="col-lg-3 col-md-6 col-sm-12">
                                 <div class="card" style="width: 17rem;">

@@ -11,7 +11,7 @@
                             Activity Log
                         </h2>
                         <p class="text-muted">
-                            Your recent activity on this website
+                            Your recent activity on this website i.e Login, and Logout activity.
                         </p>
                     </div>
                 </div>

@@ -17,14 +17,19 @@ Route::group([
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     // Route::crud('my-store', 'MyStoreCrudController');
+
     Route::get('activity', 'ActivityController@index')->name('page.activity.index');
+
     // Route::get('productsearch', 'ProductsearchController@index')->name('page.productsearch.index');
-    Route::get('message', 'MessageController@index')->name('page.message.index');
-    // Route::get('chat', 'ChatController@index')->name('page.chat.index');
+
+    Route::get('people', 'PeopleController@index')->name('page.people.index');
+    
     Route::get('chat/{id}', 'ChatController@index')->name('page.chat.index');
     Route::post('chat/reply', 'ChatController@reply')->name('page.chat.reply');
+    
     // Route::crud('myproduct', 'MyproductCrudController');
     // Route::crud('my-product', 'MyProductCrudController');
+
     Route::get('myorder', 'MyorderController@index')->name('page.myorder.index');
     Route::post('myorder/store', 'MyorderController@store')->name('page.myorder.store');
     Route::post('myorder/update', 'MyorderController@update')->name('page.myorder.update');
@@ -33,9 +38,11 @@ Route::group([
     Route::post('myorder/{id}/received', 'MyorderController@received')->name('page.myorder.received');
 
     Route::crud('customer-order', 'CustomerOrderCrudController');
+
     Route::crud('product', 'ProductCrudController');
     
-    Route::get('search_product', 'SearchProductController@index')->name('page.search_product.index');
+    // Route::get('search_product', 'SearchProductController@index')->name('page.search_product.index');
+    
     Route::crud('product-approval', 'ProductApprovalCrudController');
 
     Route::get('view_product', 'ViewProductController@index')->name('page.view_product.index');
@@ -53,7 +60,9 @@ Route::group([
     Route::post('address', 'AddressController@store')->name('page.address.store');
     Route::put('address/{id}', 'AddressController@update')->name('page.address.update');
     Route::delete('address/{id}', 'AddressController@destroy')->name('page.address.destroy');
+
     // Route::get('customer-order', 'CustomerOrderCrudController@index')->name('page.customer-order.index');
+
     Route::crud('payment-history', 'PaymentHistoryCrudController');
 
 
