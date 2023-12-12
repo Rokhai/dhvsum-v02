@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 // This route file is loaded automatically by Backpack\Base.
 // Routes you generate using Backpack\Generators will be placed here.
 
+
+
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => array_merge(
@@ -17,6 +19,7 @@ Route::group([
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     // Route::crud('my-store', 'MyStoreCrudController');
+
 
     Route::get('activity', 'ActivityController@index')->name('page.activity.index');
 

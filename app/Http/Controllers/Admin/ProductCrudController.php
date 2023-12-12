@@ -210,7 +210,14 @@ class ProductCrudController extends CrudController
         //         'type' => 'browse',
         //     ],
         // ]);
+        $this->crud->addField([
+            'name' => 'image',
+            'label' => 'Image',
+            'type' => 'upload_image_preview',
+            'upload' => true,
+        ]);
 
+    
         CRUD::field('image')
             ->type('upload')
             ->label('Photo:')

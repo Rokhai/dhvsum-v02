@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 if ($guard == 'backpack')
-                    return redirect('/dhvsum/dashboard');
+                    return redirect('/dhvsum/home');
                 return redirect(RouteServiceProvider::HOME);
             }
         }
