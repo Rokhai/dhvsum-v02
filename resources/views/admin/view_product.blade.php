@@ -30,7 +30,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title fw-bold display-1 text-break">{{ $product->name }}</h2>
-            <p class="card-text">Price: ${{ $product->price }}</p>
+            <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
             <div class="d-flex flex-row justify-content-between">
                 <p class="fs-3">Stock: {{ $product->stock }} left </p>
                 <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal"

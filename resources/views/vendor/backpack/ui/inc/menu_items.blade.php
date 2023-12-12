@@ -3,7 +3,8 @@
     {{ trans('backpack::base.dashboard') }}</a></li> --}}
 
 {{-- <x-backpack::menu-item title="Home" icon="la la-home" :link="backpack_url('home')" /> --}}
-<x-backpack::menu-item title="Dashboard" icon="la la-home nav-icon" :link="backpack_url('dashboard')" />
+{{-- <x-backpack::menu-item title="Dashboard" icon="la la-home nav-icon" :link="backpack_url('dashboard')" /> --}}
+<x-backpack::menu-item title="Home" icon="la la-home nav-icon" :link="backpack_url('home')" />
 <x-backpack::menu-item title="Market" icon="la la-store-alt" :link="backpack_url('market')" />
 <x-backpack::menu-item title="Activity" icon="la la-history" :link="backpack_url('activity')" />
 <x-backpack::menu-item title="People" icon="la la-users" :link="backpack_url('people')" />
@@ -31,7 +32,7 @@
     <x-backpack::menu-dropdown title="My Store" icon="la la-store">
         <x-backpack::menu-dropdown-item title="Products" icon="la la-tag" badge="3" :link="backpack_url('product')" />
         <x-backpack::menu-dropdown-item title="Customer Orders" icon="la la-shopping-bag" :link="backpack_url('customer-order')" />
-        <x-backpack::menu-dropdown-item title="Payment histories" icon="la la-cash-register" :link="backpack_url('payment-history')" />
+        <x-backpack::menu-dropdown-item title="Payment Histories" icon="la la-cash-register" :link="backpack_url('payment-history')" />
     </x-backpack::menu-dropdown>
 @endif
 

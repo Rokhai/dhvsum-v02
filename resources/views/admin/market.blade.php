@@ -23,6 +23,7 @@
                             <div class="display-3">
                                 DHVSU
                             </div>
+                            <p class="display-2 text-primary">|</p>
                             <div class="display-5 mx-2">
                                 Marketplace
                             </div>
@@ -89,7 +90,7 @@
                     </form>
 
                     {{-- Products List Grid --}}
-                    <div class="row g-1 gy-4 align-item-center">
+                    <div class="row mt-5  g-1 gy-4 justify-content-md-evenly justify-content-center">
                         @foreach ($products as $product)
                             <div class="col-lg-3 col-md-6 col-sm-12">
                                 <div class="card" style="width: 17rem;">
@@ -98,7 +99,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $product->name }}</h5>
                                         <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">₱{{ $product->price }}</p>
+                                            <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
 
                                             <small class="text-secodary">{{ $product->stock }} left</small>
                                         </div>
@@ -108,58 +109,9 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="col-9">
-                            <div class="row row-cards row-md-4">
-
-
-
-                            </div>
-                        </div>
-                        {{-- <div class="col-sm-6 col-lg-4">
-                                    <div class="card card-sm" style="height: 280px;">
-                                        <a href="#" class="d-block"><img
-                                                src="./static/photos/beautiful-blonde-woman-relaxing-with-a-can-of-coke-on-a-tree-stump-by-the-beach.jpg"
-                                                class="card-img-top"></a>
-                                        <div class="card-body">
-                                            <div class="d-flex align-items-center">
-                                                <span class="avatar me-3 rounded"
-                                                    style="background-image: url(./static/avatars/000m.jpg)"></span>
-                                                <div>
-                                                    <div>Paweł Kuna</div>
-                                                    <div class="text-secondary">3 days ago</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                        {{-- 
-                        <div class="container">
-                            <div class="row row-cols-auto justify-content-center">
-                                <div class="col-lg-3 col-md-6 col-sm-12">
-                                    <div class="card" style="width: 17rem;">
-                                        <img src="{{ asset('/storage/uploads/products/' . $product->image) }}"
-                                            class="card-img-top" alt="{{ $product->name }}" width="220" height="220">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $product->name }}</h5>
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <p class="card-text">₱{{ $product->price }}</p>
-
-                                                <small class="text-secodary">{{ $product->stock }} left</small>
-                                            </div>
-                                            <a href="{{ backpack_url('view_product/' . $product->id) }}"
-                                                class="btn btn-primary text-wrap w-100">View</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
-
             </div>
-
         </div>
-    </div>
-
     </div>
 @endsection
