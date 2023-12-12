@@ -13,7 +13,7 @@
                 aria-expanded="true">
                 <span class="avatar avatar-sm rounded-circle me-2">
                     <img class="avatar avatar-sm rounded-circle bg-transparent"
-                        src="{{ backpack_avatar_url(backpack_auth()->user()) }}"
+                        src="{{ asset(optional(backpack_user())->avatar ) }}  "
                         alt="{{ backpack_auth()->user()->name }}" onerror="this.style.display='none'"
                         style="margin: 0;position: absolute;left: 0;z-index: 1;">
                     <span class="avatar avatar-sm rounded-circle backpack-avatar-menu-container text-center">

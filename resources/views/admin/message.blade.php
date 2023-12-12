@@ -23,7 +23,7 @@
                     <!-- Page title actions -->
                     <div class="col-auto ms-auto d-print-none">
                         <div class="d-flex">
-                            <input type="search" class="form-control d-inline-block w-9 me-3" placeholder="Search user…">
+                            <input type="search" name="search" class="form-control d-inline-block w-9 me-3" placeholder="Search user…">
                             <a href="#" class="btn btn-primary">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -48,7 +48,7 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="card">
                                 <div class="card-body p-4 text-center">
-                                    <span class="avatar avatar-xl mb-3 rounded"><img src="{{ $user->avatar }}"
+                                    <span class="avatar avatar-xl mb-3 rounded"><img src="{{ asset(optional($user)->avatar ) }}"
                                             alt=""></span>
                                     <h3 class="m-0 mb-1"><a href="#">{{ $user->name }}</a></h3>
                                     {{-- <div class="text-secondary">Chemical Engineer</div> --}}

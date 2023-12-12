@@ -47,35 +47,62 @@
             </div>
         @endif
 
+        <!-- Modal -->
+        <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="uploadModalLabel">Upload Image</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ backpack_url('avatar') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('POST')
+                        <div class="modal-body">
+                            {{-- Image Preview --}}
+                            <div id="imagePreview"></div>
+                            {{-- Image Input --}}
+                            <input type="file" name="avatar" id="imageUpload">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                document.getElementById('imageUpload').addEventListener('change', function(e) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        document.getElementById('imagePreview').innerHTML = '<img src="' + event.target.result + '" />';
+                    }
+
+                    reader.readAsDataURL(e.target.files[0]);
+                });
+            </script>
+        </div>
+
         {{-- AVATAR FORM --}}
         <div class="col-lg-8 mb-4">
-            
-            {{-- <form class="form" action="{{ route('backpack.account.avatar.store') }}" method="post" --}}
-            <form class="form" action="" method="post"
-                enctype="multipart/form-data">
-
-                {!! csrf_field() !!}
-
-                <div class="card">
-                    <div class="card-header">
-                        Avatar
-                    </div>
-                    <div class="card-body">
-                        @if (optional(Auth::user())->avatar)
-                            <img src="{{ asset('storage/avatars/' . Auth::user()->avatar) }}" alt="User Avatar">
-                        @else
-                            <p>No avatar uploaded.</p>
-                        @endif
-                    </div>
-                    <div class="card-body">
-                        <input type="file" name="avatar">
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Profile Details</h3>
+                </div>
+                <div class="card-body">
+                    @if (optional(backpack_user())->avatar)
+                        <img src="{{ asset(optional(backpack_user())->avatar ) }}" alt="User Avatar">
+                    @else
+                        <p>No avatar uploaded.</p>
+                    @endif
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#uploadModal">Change Profile</button>
                 </div>
 
-            </form>
+            </div>
         </div>
 
         {{-- UPDATE INFO FORM --}}

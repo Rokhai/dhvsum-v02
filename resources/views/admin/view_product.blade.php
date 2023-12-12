@@ -122,7 +122,7 @@
             <div class="card-header justify-content-center">
                 <div class="row">
                     <div class="col-auto">
-                        <img src="{{$user->avatar}}" class="avatar avatar-xl mb-3 rounded" alt="">
+                        <img src="{{asset(optional($user)->avatar )}}" class="avatar avatar-xl mb-3 rounded" alt="">
                         {{-- <span class="avatar avatar-xl mb-3 rounded" style="background-image: url('{{$user->avatar}}')"></span>
                             alt="{{ $user->name }}"
                           >  onerror="this.style.display='none'" style="z-index: 1;" --}}

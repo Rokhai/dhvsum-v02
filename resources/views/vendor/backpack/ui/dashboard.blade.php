@@ -100,7 +100,7 @@
                     <div class="container">
                         <div class="row row-cols-auto justify-content-center">
                             <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card" style="width: 17rem;">
+                                <div class="card" style="width: 17rem;" >
                                     <img src="{{ asset('/storage/uploads/products/' . $newest1_1->image) }}"
                                         class="card-img-top" alt="{{ $newest1_1->name }}" width="220" height="220">
                                     <div class="card-body">
