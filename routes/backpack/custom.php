@@ -58,7 +58,8 @@ Route::group([
     
     
     Route::get('market', 'MarketController@index')->name('page.market.index');
-    Route::get('market_search', 'MarketController@search')->name('page.market.search');
+    Route::get('market/search', 'MarketController@search')->name('page.market.search');
+    Route::get('market/filter', 'MarketController@filter')->name('page.market.filter');
 
     Route::post('address', 'AddressController@store')->name('page.address.store');
     Route::put('address/{id}', 'AddressController@update')->name('page.address.update');

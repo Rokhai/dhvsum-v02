@@ -57,7 +57,7 @@
 
                                 <button type="button" class="btn btn-outline-danger mx-1" data-bs-toggle="modal"
                                     data-bs-target="#deleteAddressModal">Delete</button>
-                                <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-outline-primary mx-1" data-bs-toggle="modal"
                                     data-bs-target="#updateAddressModal">Update</button>
                             </div>
                         @endif
@@ -97,12 +97,14 @@
             @endphp
         </div>
 
+
+
         {{-- Cart Items --}}
         <div class="col-12">
             <div class="card" style="height: 50rem">
                 <div class="card-body card-body-scrollable card-body-scrollable-shadow">
                     <div class="divide-y">
-                        @foreach ($cartItems as $item)
+                        @forelse ($cartItems as $item)
                             <div>
                                 <div class="row">
                                     <div class="col-auto">
@@ -149,7 +151,12 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="text-center text-muted mt-5 ">
+                                <i class="la la-shopping-cart display-1"></i>
+                                <p class="fs-1">Your cart is empty</p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -200,23 +207,24 @@
                                                     <span class="form-check-label">GCash</span>
                                                 </label>
                                                 <label class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="payment_method" value="cash">
+                                                    <input class="form-check-input" type="radio" name="payment_method"
+                                                        value="cash">
                                                     <span class="form-check-label">Cash-in-Hand</span>
                                                 </label>
 
                                             </div>
                                             <div id="gcash-info" style="display: block;" class="form-group">
                                                 <label for="gcash-number">GCash Number:</label>
-                                                <input type="text" id="gcash-number" name="gcash_number" class="form-control" maxlength="11" value="" required>
+                                                <input type="text" id="gcash-number" name="gcash_number"
+                                                    class="form-control" maxlength="11" value="" required>
                                             </div>
                                             <script>
-
-                                                document.addEventListener('DOMContentLoaded', function () {
+                                                document.addEventListener('DOMContentLoaded', function() {
                                                     const paymentMethodInputs = document.querySelectorAll('input[name="payment_method"]');
                                                     const gcashInfo = document.getElementById('gcash-info');
                                                     const gcashNumber = document.getElementById('gcash-number');
                                                     paymentMethodInputs.forEach(input => {
-                                                        input.addEventListener('change', function () {
+                                                        input.addEventListener('change', function() {
                                                             if (this.value === 'gcash') {
                                                                 gcashInfo.style.display = 'block';
                                                                 gcashNumber.addAttribute('required');

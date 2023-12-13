@@ -105,8 +105,16 @@
                                         class="card-img-top" alt="{{ $newest1_1->name }}" width="220" height="220">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $newest1_1->name }}</h5>
+                                        @php
+                                                $maxRating = \DB::table('feedback')
+                                                    ->where('product_id', $newest1_1->id)
+                                                    ->orderBy('rating_id', 'desc')
+                                                    ->first();
+                                            @endphp
+
+                                            <p>{{$maxRating->rating}}</p>
                                         <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">₱{{ $newest1_1->price }}</p>
+                                            <p class="card-text">₱{{ number_format($newest1_1->price, 2, '.', ',') }}</p>
 
                                             <small class="text-secodary">{{ $newest1_1->stock }} left</small>
                                         </div>
@@ -128,8 +136,16 @@
                                             class="card-img-top" alt="{{ $product->name }}" width="220" height="220">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
+                                            @php
+                                                $maxRating = \DB::table('feedback')
+                                                    ->where('product_id', $product->id)
+                                                    ->orderBy('rating_id', 'desc')
+                                                    ->first();
+                                            @endphp
+
+                                            <p>{{$maxRating->rating}}</p>
                                             <div class="d-flex flex-row justify-content-between">
-                                                <p class="card-text">₱{{ $product->price }}</p>
+                                                <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
 
                                                 <small class="text-secodary">{{ $product->stock }} left</small>
                                             </div>
@@ -175,8 +191,16 @@
                                             height="200">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
+                                            @php
+                                                $maxRating = \DB::table('feedback')
+                                                    ->where('product_id', $product->id)
+                                                    ->orderBy('rating_id', 'desc')
+                                                    ->first();
+                                            @endphp
+
+                                            <p>{{$maxRating->rating}}</p>
                                             <div class="d-flex flex-row justify-content-between">
-                                                <p class="card-text">₱{{ $product->price }}</p>
+                                                <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
 
                                                 <small class="text-secodary">{{ $product->stock }} left</small>
                                             </div>
@@ -202,6 +226,14 @@
                                             height="220">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
+                                            @php
+                                                $maxRating = \DB::table('feedback')
+                                                    ->where('product_id', $product->id)
+                                                    ->orderBy('rating_id', 'desc')
+                                                    ->first();
+                                            @endphp
+
+                                            <p>{{$maxRating->rating}}</p>
                                             <div class="d-flex flex-row justify-content-between">
                                                 <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
 

@@ -106,7 +106,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $newest1_1->name }}</h5>
                                         <div class="d-flex flex-row justify-content-between">
-                                            <p class="card-text">₱{{ $newest1_1->price }}</p>
+                                            <p class="card-text">₱{{ number_format($newest1_1->price, 2, '.', ',') }}</p>
 
                                             <small class="text-secodary">{{ $newest1_1->stock }} left</small>
                                         </div>
@@ -129,7 +129,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
                                             <div class="d-flex flex-row justify-content-between">
-                                                <p class="card-text">₱{{ $product->price }}</p>
+                                                <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
 
                                                 <small class="text-secodary">{{ $product->stock }} left</small>
                                             </div>
@@ -176,7 +176,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
                                             <div class="d-flex flex-row justify-content-between">
-                                                <p class="card-text">₱{{ $product->price }}</p>
+                                                <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
 
                                                 <small class="text-secodary">{{ $product->stock }} left</small>
                                             </div>

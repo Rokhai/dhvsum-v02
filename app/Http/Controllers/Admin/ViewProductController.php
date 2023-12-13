@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class ViewProductController extends Controller
 {
 
- 
+
 
     public function index()
     {
@@ -23,7 +23,7 @@ class ViewProductController extends Controller
 
         // $product = \App\Models\Product::first();
 
-       
+
 
         // return view('admin.view_product', [
         //     'title' => 'View Product',
@@ -37,48 +37,70 @@ class ViewProductController extends Controller
         // ]);
     }
 
-        //  if ($id) {
-        //     $product = \App\Models\Product::find($id);
+    //  if ($id) {
+    //     $product = \App\Models\Product::find($id);
 
-        //     if ($product === null) {
-        //         return redirect()->back()->with('notyf_error', 'Product not found');
-        //     }
+    //     if ($product === null) {
+    //         return redirect()->back()->with('notyf_error', 'Product not found');
+    //     }
 
-        //     return view('admin.view_product', [
-        //         'title' => 'View Product',
-        //         'breadcrumbs' => [
-        //             trans('backpack::crud.admin') => backpack_url('dashboard'),
-        //             'ViewProduct' => false,
-        //         ],
-        //         'page' => 'resources/views/admin/view_product.blade.php',
-        //         'controller' => 'app/Http/Controllers/Admin/ViewProductController.php',
-        //         'product' => $product,
-        //     ]);
-        // }
+    //     return view('admin.view_product', [
+    //         'title' => 'View Product',
+    //         'breadcrumbs' => [
+    //             trans('backpack::crud.admin') => backpack_url('dashboard'),
+    //             'ViewProduct' => false,
+    //         ],
+    //         'page' => 'resources/views/admin/view_product.blade.php',
+    //         'controller' => 'app/Http/Controllers/Admin/ViewProductController.php',
+    //         'product' => $product,
+    //     ]);
+    // }
 
-        // return view('admin.view_product', [
-        //     'title' => 'View Product',
-        //     'breadcrumbs' => [
-        //         trans('backpack::crud.admin') => backpack_url('dashboard'),
-        //         'ViewProduct' => false,
-        //     ],
-        //     'page' => 'resources/views/admin/view_product.blade.php',
-        //     'controller' => 'app/Http/Controllers/Admin/ViewProductController.php',
-        // ]);
+    // return view('admin.view_product', [
+    //     'title' => 'View Product',
+    //     'breadcrumbs' => [
+    //         trans('backpack::crud.admin') => backpack_url('dashboard'),
+    //         'ViewProduct' => false,
+    //     ],
+    //     'page' => 'resources/views/admin/view_product.blade.php',
+    //     'controller' => 'app/Http/Controllers/Admin/ViewProductController.php',
+    // ]);
 
     public function show($id)
     {
         $product = \App\Models\Product::find($id);
+        $user = \DB::table('users')
+            ->join('products', 'users.id', '=', 'products.user_id')
+            ->select('users.*')
+            ->where('products.id', '=', $product->id)
+            ->first();
+
+        $feedbacks = \DB::table('feedback')
+            ->join('users', 'feedback.user_id', '=', 'users.id')
+            ->select('feedback.*', 'users.name as user_name')
+            // ->select('feedback.*')
+            ->where('feedback.product_id', '=', $product->id)
+            ->where('is_admin', '=', 0)
+            ->get();
+
+        $maxRating = \DB::table('feedback')
+            ->where('product_id', $product->id)
+            ->orderBy('rating_id', 'desc')
+            ->first();
 
         if ($product === null) {
             return redirect()->back()->with('notyf_error', 'Product not found');
         }
 
         // return backpack_view('admin.view_product')->with('product', $product);
-        return view('admin.view_product')->with('product', $product);
+        return view('admin.view_product')
+            ->with('product', $product)
+            ->with('user', $user)
+            ->with('feedbacks', $feedbacks)
+            ->with('maxRating', $maxRating);
     }
 
-    public function store( Request $request)
+    public function store(Request $request)
     {
         \App\Models\Cart::create([
             'user_id' => backpack_user()->id,
@@ -101,6 +123,6 @@ class ViewProductController extends Controller
         \Prologue\Alerts\Facades\Alert::success('Product added to cart')->flash();
         return redirect()->back();
 
-        
+
     }
 }

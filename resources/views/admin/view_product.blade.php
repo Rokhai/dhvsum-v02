@@ -7,11 +7,11 @@
 @include('vendor.backpack.theme-tabler.inc.alerts')
 
 @section('content')
-    <div class="d-none">
+    {{-- <div class="d-none">
         @if (Alert::has('success'))
             {{ Alert::first('success') }}
         @endif
-    </div>
+    </div> --}}
     {{-- Product Details --}}
     <div class="card container-sm">
         <div class="mt-4 mx-4">
@@ -30,9 +30,12 @@
         </div>
         <div class="card-body">
             <h2 class="card-title fw-bold display-1 text-break">{{ $product->name }}</h2>
-            <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
+            <div class="d-flex flex-row justify-content-between fs-3">
+                <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
+                <p>{{$maxRating->rating}}</p>
+            </div>
             <div class="d-flex flex-row justify-content-between">
-                <p class="fs-3">Stock: {{ $product->stock }} left </p>
+                <p class="fs-3">Stock: {{ $product->stock }} </p>
                 <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal"
                     data-bs-target="#addToCartModal"><span class="fs-3">
                         <i class="la la-cart-arrow-down"> </i> Add to cart</span></button>
@@ -109,13 +112,6 @@
 
 
     {{-- Product Owner --}}
-    @php
-        $user = \DB::table('users')
-            ->join('products', 'users.id', '=', 'products.user_id')
-            ->select('users.*')
-            ->where('products.id', '=', $product->id)
-            ->first();
-    @endphp
     <div class=" col-12">
         <div class="card container-sm" style="height: 28rem">
             {{-- Student Profile --}}
@@ -147,12 +143,7 @@
 
             {{-- Product Feedback --}}
             @php
-                $feedbacks = \DB::table('feedback')
-                    ->join('users', 'feedback.user_id', '=', 'users.id')
-                    ->select('feedback.*', 'users.name as user_name')
-                    // ->select('feedback.*')
-                    ->where('feedback.product_id', '=', $product->id)
-                    ->get();
+              
             @endphp
 
             <div class="card-body card-body-scrollable card-body-scrollable-shadow">
