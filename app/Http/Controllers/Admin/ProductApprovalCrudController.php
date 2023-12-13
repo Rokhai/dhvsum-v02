@@ -40,7 +40,57 @@ class ProductApprovalCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+
+
+        $totalPendingApproval = \App\Models\Product::where('is_approved', 0)->count();
+        $totalApproved = \App\Models\Product::where('is_approved', 1)->count();
+
+        \Backpack\CRUD\app\Library\Widget::add([
+            'type' => 'div',
+            
+            'class' => 'row mb-5 mt-3',
+            
+            // 'style' => 'height: 17rem;',
+            'content' => [
+                [
+                    'type' => 'card',
+                    // 'style' => 'height: 100%;',
+                    'wrapper' => ['class' => 'col-md-4 mx-auto'],
+                    'content' => [
+
+                        'header' => 'Total Number of Pending Products',
+                        'body' => "
+                        <div class='display-5 text-center'>
+
+                        <i class='la la-spinner me-4'></i> {$totalPendingApproval}
+                        </div>
+                        ",
+                    ]
+
+                ],
+                [
+                    'type' => 'card',
+                    'wrapper' => ['class' => 'col-md-4 mx-auto '],
+                    'content' => [
+                        'header' => 'Total Number of Approved Products',
+                        'body' => "
+                            <div class='display-5 text-center'>
+
+                            <i class='la la-tag me-4'></i> {$totalApproved}
+                            </div>
+                        ",
+                    ]
+
+                ],
+                
+
+
+            ],
+        ])->to('before_content');
+
         // CRUD::setFromDb(); // set columns from db columns.
+
+        
         CRUD::addColumns([
             [
                 'name' => 'user_id',

@@ -22,20 +22,20 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
-            'name' => 'Test Super Admin',
+            'name' => 'Admin Rosgen Hizer',
             'email' => 'superadmin@example.com',
             'is_admin' => '1',
             'password' => bcrypt('12345678'),
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'Test Admin',
+            'name' => 'Admin Rosgen Hizer 2',
             'email' => 'admin@example.com',
             'is_admin' => '1',
             'password' => bcrypt('12345678'),
         ]);
         \App\Models\User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Rosgen Hizer',
             'email' => 'test@example.com',
             'is_admin' => '0',
             'password' => bcrypt('12345678'),
@@ -55,13 +55,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        \App\Models\User::factory()->create([
-            'name' => 'Rosgen Hizer',
-            'email' => '2021301515@dhvsu.edu.ph',
-            'is_admin' => '1',
-            'password' => bcrypt('12345678'),
-        ]);
-
+     
 
         // Factory::factory(\App\Models\User::class, 10)->create([
         //     'password' => bcrypt('12345678'),

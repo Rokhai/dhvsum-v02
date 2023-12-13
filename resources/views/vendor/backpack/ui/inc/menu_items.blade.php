@@ -45,7 +45,7 @@
     </x-backpack::menu-dropdown>
     <x-backpack::menu-dropdown title="Products" icon="la la-users">
         <x-backpack::menu-dropdown-header title="Products" />
-        <x-backpack::menu-dropdown-item title="Product approvals" icon="la la-question" :link="backpack_url('product-approval')" />
+        <x-backpack::menu-dropdown-item title="Product approvals" icon="la la-poll-h" :link="backpack_url('product-approval')" />
         {{-- <x-backpack::menu-dropdown-item title="Users" icon="la la-user" :link="backpack_url('user')" /> --}}
         {{-- <x-backpack::menu-dropdown-item title="Roles" icon="la la-group" :link="backpack_url('role')" /> --}}
         {{-- <x-backpack::menu-dropdown-item title="Permissions" icon="la la-key" :link="backpack_url('permission')" /> --}}
