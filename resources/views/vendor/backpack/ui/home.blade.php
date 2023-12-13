@@ -7,7 +7,6 @@
         ->paginate(10)
         ->skip(1);
 
-
     $newest1 = \App\Models\Product::orderBy('created_at', 'desc')
         ->paginate(10)
         ->take(4);
@@ -16,7 +15,6 @@
         ->skip(1)
         ->take(4);
 
- 
 @endphp
 
 {{-- @extends(backpack_view('blank')) --}}
@@ -92,19 +90,27 @@
                     <div class="container">
                         <div class="row row-cols-auto justify-content-center">
                             <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card" style="width: 17rem;" >
+                                <div class="card" style="width: 17rem;">
                                     <img src="{{ asset('/storage/uploads/products/' . $newest1_1->image) }}"
                                         class="card-img-top" alt="{{ $newest1_1->name }}" width="220" height="220">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $newest1_1->name }}</h5>
                                         @php
-                                                $maxRating = \DB::table('feedback')
-                                                    ->where('product_id', $newest1_1->id)
-                                                    ->orderBy('rating_id', 'desc')
-                                                    ->first();
-                                            @endphp
 
-                                            <p>{{$maxRating->rating}}</p>
+                                            $maxRatingCount = \DB::table('feedback')
+                                                ->select('rating_id', \DB::raw('count(*) as total'))
+                                                ->where('product_id', $newest1_1->id)
+                                                ->groupBy('rating_id')
+                                                ->orderBy('total', 'desc')
+                                                ->first();
+                                            $maxRating = \DB::table('feedback')
+                                                ->where('product_id', $newest1_1->id)
+                                                ->orderBy('rating_id', 'desc')
+                                                ->where('rating_id', '=', $maxRatingCount->rating_id)
+                                                ->first();
+                                        @endphp
+
+                                        <p>{{ $maxRating->rating }}</p>
                                         <div class="d-flex flex-row justify-content-between">
                                             <p class="card-text">₱{{ number_format($newest1_1->price, 2, '.', ',') }}</p>
 
@@ -129,13 +135,20 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
                                             @php
+                                                $maxRatingCount = \DB::table('feedback')
+                                                    ->select('rating_id', \DB::raw('count(*) as total'))
+                                                    ->where('product_id', $product->id)
+                                                    ->groupBy('rating_id')
+                                                    ->orderBy('total', 'desc')
+                                                    ->first();
                                                 $maxRating = \DB::table('feedback')
                                                     ->where('product_id', $product->id)
                                                     ->orderBy('rating_id', 'desc')
+                                                    ->where('rating_id', '=', $maxRatingCount->rating_id)
                                                     ->first();
                                             @endphp
 
-                                            <p>{{$maxRating->rating}}</p>
+                                            <p>{{ $maxRating->rating }}</p>
                                             <div class="d-flex flex-row justify-content-between">
                                                 <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
 
@@ -184,15 +197,23 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
                                             @php
+                                                $maxRatingCount = \DB::table('feedback')
+                                                    ->select('rating_id', \DB::raw('count(*) as total'))
+                                                    ->where('product_id', $product->id)
+                                                    ->groupBy('rating_id')
+                                                    ->orderBy('total', 'desc')
+                                                    ->first();
                                                 $maxRating = \DB::table('feedback')
                                                     ->where('product_id', $product->id)
                                                     ->orderBy('rating_id', 'desc')
+                                                    ->where('rating_id', '=', $maxRatingCount->rating_id)
                                                     ->first();
                                             @endphp
 
-                                            <p>{{$maxRating->rating}}</p>
+                                            <p>{{ $maxRating->rating }}</p>
                                             <div class="d-flex flex-row justify-content-between">
-                                                <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
+                                                <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}
+                                                </p>
 
                                                 <small class="text-secodary">{{ $product->stock }} left</small>
                                             </div>
@@ -219,15 +240,23 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
                                             @php
+                                                $maxRatingCount = \DB::table('feedback')
+                                                    ->select('rating_id', \DB::raw('count(*) as total'))
+                                                    ->where('product_id', $product->id)
+                                                    ->groupBy('rating_id')
+                                                    ->orderBy('total', 'desc')
+                                                    ->first();
                                                 $maxRating = \DB::table('feedback')
                                                     ->where('product_id', $product->id)
                                                     ->orderBy('rating_id', 'desc')
+                                                    ->where('rating_id', '=', $maxRatingCount->rating_id)
                                                     ->first();
                                             @endphp
 
-                                            <p>{{$maxRating->rating}}</p>
+                                            <p>{{ $maxRating->rating }}</p>
                                             <div class="d-flex flex-row justify-content-between">
-                                                <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
+                                                <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}
+                                                </p>
 
                                                 <small class="text-secodary">{{ $product->stock }} left</small>
                                             </div>
@@ -255,51 +284,4 @@
         </div>
     </div>
 
-    <div class="col-sm-6 col-lg-3">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="subheader">Sales</div>
-              <div class="ms-auto lh-1">
-                <div class="dropdown">
-                  <a class="dropdown-toggle text-secondary" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last 7 days</a>
-                  <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item active" href="#">Last 7 days</a>
-                    <a class="dropdown-item" href="#">Last 30 days</a>
-                    <a class="dropdown-item" href="#">Last 3 months</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="h1 mb-3">75%</div>
-            <div class="d-flex mb-2">
-              <div>Conversion rate</div>
-              <div class="ms-auto">
-                <span class="text-green d-inline-flex align-items-center lh-1">
-                  7% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 17l6 -6l4 4l8 -8"></path><path d="M14 7l7 0l0 7"></path></svg>
-                </span>
-              </div>
-            </div>
-            <div class="progress progress-sm">
-              <div class="progress-bar bg-primary" style="width: 75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
-                <span class="visually-hidden">75% Complete</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3">
-        <div class="card">
-          <div class="ribbon ribbon-top bg-yellow"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path></svg>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">Card with top ribbon</h3>
-            <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at consectetur culpa ducimus eum fuga fugiat, ipsa iusto, modi nostrum recusandae reiciendis saepe.</p>
-          </div>
-        </div>
-      </div>
-      
 @endsection

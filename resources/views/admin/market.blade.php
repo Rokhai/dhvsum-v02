@@ -110,13 +110,20 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
                                             @php
+                                                $maxRatingCount = \DB::table('feedback')
+                                                    ->select('rating_id', \DB::raw('count(*) as total'))
+                                                    ->where('product_id', $product->id)
+                                                    ->groupBy('rating_id')
+                                                    ->orderBy('total', 'desc')
+                                                    ->first();
                                                 $maxRating = \DB::table('feedback')
                                                     ->where('product_id', $product->id)
                                                     ->orderBy('rating_id', 'desc')
+                                                    ->where('rating_id', '=', $maxRatingCount->rating_id)
                                                     ->first();
                                             @endphp
 
-                                            <p>{{$maxRating->rating}}</p>
+                                            <p>{{ $maxRating->rating }}</p>
                                             <div class="d-flex flex-row justify-content-between">
                                                 <p class="card-text">₱{{ number_format($product->price, 2, '.', ',') }}</p>
 

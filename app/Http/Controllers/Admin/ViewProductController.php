@@ -82,10 +82,16 @@ class ViewProductController extends Controller
             ->where('feedback.product_id', '=', $product->id)
             ->where('is_admin', '=', 0)
             ->get();
-
+        $maxRatingCount = \DB::table('feedback')
+            ->select('rating_id', \DB::raw('count(*) as total'))
+            ->where('product_id', $product->id)
+            ->groupBy('rating_id')
+            ->orderBy('total', 'desc')
+            ->first();
         $maxRating = \DB::table('feedback')
             ->where('product_id', $product->id)
             ->orderBy('rating_id', 'desc')
+            ->where('rating_id', '=', $maxRatingCount->rating_id)
             ->first();
 
         if ($product === null) {

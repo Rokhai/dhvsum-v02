@@ -50,10 +50,29 @@ class CustomerOrderCrudController extends CrudController
 
 
         $totalOrders = \DB::table('orders')
-        ->join('products', 'orders.product_id', '=', 'products.id')
-       ->where('products.user_id', '=', backpack_user()->id)
-        ->count()
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->where('products.user_id', '=', backpack_user()->id)
+            ->count()
         ;
+
+        $totalOrdersQuantity = \DB::table('orders')
+        ->join('products', 'orders.product_id', '=', 'products.id')
+        ->join('carts', 'orders.cart_id', '=', 'carts.id')
+        ->where('products.user_id', '=', backpack_user()->id)
+        ->sum('carts.quantity');
+
+
+        $totalDeliveredOrders = \DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->where('products.user_id', '=', backpack_user()->id)
+            ->where('orders.is_delivered', '=', 1)
+            ->count();
+
+        $totalPendingOrders = \DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->where('products.user_id', '=', backpack_user()->id)
+            ->where('orders.is_delivered', '=', 0)
+            ->count();
 
         \Backpack\CRUD\app\Library\Widget::add([
             'type' => 'div',
@@ -61,22 +80,35 @@ class CustomerOrderCrudController extends CrudController
             'content' => [
                 [
                     'type' => 'progress_white',
+                    'wrapper' => ['class' => 'col-md-4'],
                     'class' => 'card mb-2',
-                    'value' =>  $totalOrders,
+                    'value' => $totalOrdersQuantity,
                     'description' => 'Total Orders',
-                    'progress' =>  $totalOrders, // integer
+                    'progress' => $totalOrdersQuantity, // integer
                     'progressClass' => 'progress-bar bg-primary',
-                    'hint' => (100*$totalOrders) - $totalOrders  . ' more until next milestone.',
+                    'hint' => (100 * $totalOrdersQuantity) - $totalOrdersQuantity . ' more until next milestone.',
                 ],
                 [
                     'type' => 'progress_white',
+                    'wrapper' => ['class' => 'col-md-4'],
                     'class' => 'card mb-2',
-                    'value' => '<i>11.456</i>',
-                    'description' => 'Registered users.',
-                    'progress' => 57, // integer
-                    'progressClass' => 'progress-bar bg-primary',
-                    'hint' => '8544 more until next milestone.',
-                ]
+                    'value' => $totalDeliveredOrders,
+                    'description' => 'Total Delivered Orders',
+                    'progress' => $totalDeliveredOrders, // integer
+                    'progressClass' => 'progress-bar bg-success',
+                    'hint' => (100 * $totalDeliveredOrders) - $totalDeliveredOrders . ' more until next milestone.',
+                ],
+                [
+                    'type' => 'progress_white',
+                    'wrapper' => ['class' => 'col-md-4'],
+                    'class' => 'card mb-2',
+                    'value' => $totalPendingOrders,
+                    'description' => 'Total Pending Orders',
+                    'progress' => ($totalPendingOrders / $totalOrders) * 100, // integer
+                    'progressClass' => 'progress-bar bg-warning',
+                    'hint' => $totalPendingOrders . ' left.',
+                ],
+               
             ],
         ])->to('before_content');
 
@@ -358,7 +390,7 @@ class CustomerOrderCrudController extends CrudController
             'label' => 'Quantity',
             'type' => 'number',
         ]);
-        
+
         $this->crud->addColumn([
             'name' => 'total_amount',
             'label' => 'Total Amount',

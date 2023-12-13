@@ -60,34 +60,69 @@ class ProductCrudController extends CrudController
 
     protected function setupListOperation()
     {
+
+
+        $total_products = \DB::table('products')->where('user_id', backpack_user()->id)->count();
+
+        $total_approve_products = \DB::table('products')->where('user_id', backpack_user()->id)->where('is_approved', 1)->count();
+        $total_active_products = \DB::table('products')->where('user_id', backpack_user()->id)->where('is_active', 1)->count();
+
         // CRUD::setFromDb(); // set columns from db columns.
         $this->crud->addClause('where', 'user_id', backpack_user()->id);
         Widget::add([
             'type' => 'div',
             'class' => 'row mb-5 mt-3',
+            // 'style' => 'height: 17rem;',
             'content' => [
-                
                 [
-                    'type' => 'progress_white',
-                    'class' => 'card mb-2',
-                    'value' => '11.456',
-                    'description' => 'Registered users.',
-                    'progress' => 57, // integer
-                    'progressClass' => 'progress-bar bg-primary',
-                    'hint' => '8544 more until next milestone.',
+                    'type' => 'card',
+                    // 'style' => 'height: 100%;',
+                    'wrapper' => ['class' => 'col-md-4 '],
+                    'content' => [
+
+                        'header' => 'Total Number of Active Products',
+                        'body' => "
+                        <div class='display-5 text-center'>
+
+                        <i class='la la-tag me-2'>{$total_active_products}</i>
+                        </div>
+                        ",
+                    ]
+
                 ],
                 [
-                    'type' => 'progress_white',
-                    'class' => 'card mb-2',
-                    'value' => '<i>11.456</i>',
-                    'description' => 'Registered users.',
-                    'progress' => 57, // integer
-                    'progressClass' => 'progress-bar bg-primary',
-                    'hint' => '8544 more until next milestone.',
-                ]
+                    'type' => 'card',
+                    'wrapper' => ['class' => 'col-md-4 '],
+                    'content' => [
+                        'header' => 'Total Number of Approved Products',
+                        'body' => "
+                            <div class='display-5 text-center'>
+
+                            <i class='la la-tag me-2'>{$total_approve_products}</i>
+                            </div>
+                        ",
+                    ]
+
+                ],
+                [
+                    'type' => 'card',
+                    'wrapper' => ['class' => 'col-md-4 '],
+                    'content' => [
+                        'header' => 'Total Number of Products',
+                        'body' => "
+                            <div class='display-5 text-center'>
+
+                            <i class='la la-tag me-2'>{$total_products}</i>
+                            </div>
+                        ",
+                    ]
+
+                ],
+
+
             ],
         ])->to('before_content');
-        // ->prefix('storage/uploads/products/')
+
         CRUD::addColumns([
             [
                 'name' => 'image',
@@ -139,7 +174,6 @@ class ProductCrudController extends CrudController
             ],
 
         ]);
-        // CRUD::column('image')->type('image')->upload(true)->disk('public')->prunable()->width(400)->height(400);
 
     }
 
@@ -185,32 +219,11 @@ class ProductCrudController extends CrudController
             });
 
 
-        // CRUD::field([
-        //     'name' => 'category_id',
-        //     'type' => 'select2',
-        //     'label' => 'Category',
-        //     'entity' => 'category',
-        //     'attribute' => 'name',
-        //     'model' => 'App\Models\Category',
-        //     'wrapper' => ['class' => 'form-group col-md-6'],
-        //     'value' => '0',
-        // ]);
+
         CRUD::field('description')->type('textarea')->label('Product Description')->wrapper(['class' => 'form-group col-md-12']);
 
 
-        // 'withFiles' => [
-        //     'fileNamer' => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
-        //     'disk' => 'public',
-        //     'url' => '/uploads/products/',
-        // ],
 
-        // $this->crud->addFields([
-        //     [
-        //         'name' => 'image',
-        //         'label' => 'Product Image',
-        //         'type' => 'browse',
-        //     ],
-        // ]);
         $this->crud->addField([
             'name' => 'image',
             'label' => 'Image',
@@ -218,17 +231,15 @@ class ProductCrudController extends CrudController
             'upload' => true,
         ]);
 
-    
+
         CRUD::field('image')
             ->type('upload')
             ->label('Photo:')
             ->wrapper(['class' => 'form-group col-md-12'])
             ->hint('Upload a product image here.')
-            // ->width(200)
-            // ->height(200)
+
             ->withFiles([
                 'file_name_generator' => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
-                // 'fileNamer' => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
                 'disk' => 'products',
                 'url' => '/storage/uploads/products/',
             ])->preview(true);
@@ -242,55 +253,12 @@ class ProductCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-
-        // $this->crud->addColumns([
-        //     [
-        //         'name' => 'image',
-        //         'label' => 'Product Image',
-        //         'type' => 'image',
-        //         'prefix' => 'storage/uploads/products/',
-        //         'height' => '100px',
-        //         'width' => '100px',
-        //         // 'upload' => true,
-        //         // 'disk' => 'products',
-        //     ]
-        // ]);
-
-        
-        
         $this->setupCreateOperation();
-        // $this->crud->addColumn([
-        //     'name' => 'image',
-        //     'label' => 'Product Image',
-        //     'type' => 'image',
-        //     'prefix' => 'storage/uploads/products/',
-        //     'height' => '50px',
-        //     'width' => '50px',
-        // ]);
-
-        // $this->crud->addFields([
-        //     [
-        //         'name' => 'image',
-        //         'label' => 'Product Image',
-        //         'type' => 'image',
-        //         'withFiles' => true,
-        //         // 'upload' => true,
-        //         // 'disk' => 'products',
-        //     ],
-        // ]);
-    
     }
 
     protected function setupDeleteOperation()
     {
         CRUD::field('image')->type('upload')->withFiles();
-        // CRUD::field([
-        //     'name' => 'image',
-        //     'type' => 'upload',
-        //     'withFiles' => [
-        //         'disk' => 'public',
-        //         'url' => 'storage/uploads/products/',
-        //     ],
-        // ]);
+
     }
 }
