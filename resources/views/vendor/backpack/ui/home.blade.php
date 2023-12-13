@@ -7,10 +7,6 @@
         ->paginate(10)
         ->skip(1);
 
-    // $newest1 = \App\Models\Product::orderBy('created_at', 'desc')
-    //     ->paginate(10)
-    //     ->take(4);
-
 
     $newest1 = \App\Models\Product::orderBy('created_at', 'desc')
         ->paginate(10)
@@ -20,11 +16,7 @@
         ->skip(1)
         ->take(4);
 
-    // $newest2 = \App\Models\Product::orderBy('created_at', 'desc')
-    //     ->paginate(10)
-    //     ->skip(4)
-    //     ->take(4);
-
+ 
 @endphp
 
 {{-- @extends(backpack_view('blank')) --}}
