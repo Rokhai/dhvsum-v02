@@ -26,6 +26,7 @@ Route::group([
     // Route::get('productsearch', 'ProductsearchController@index')->name('page.productsearch.index');
 
     Route::get('people', 'PeopleController@index')->name('page.people.index');
+    Route::get('people/search', 'PeopleController@search')->name('page.people.search');
     
     Route::get('chat/{id}', 'ChatController@index')->name('page.chat.index');
     Route::post('chat/reply', 'ChatController@reply')->name('page.chat.reply');

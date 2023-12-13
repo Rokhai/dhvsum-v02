@@ -126,6 +126,7 @@ return [
     'scripts' => [
         // 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js',
         // 'app.js',
+        'solve_modal.js',
         // 'bootstrap.js',
         // 'tabler.js',
         // 'js/example.js',

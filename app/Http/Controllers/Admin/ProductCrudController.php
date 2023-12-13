@@ -66,6 +66,7 @@ class ProductCrudController extends CrudController
             'type' => 'div',
             'class' => 'row mb-5 mt-3',
             'content' => [
+                
                 [
                     'type' => 'progress_white',
                     'class' => 'card mb-2',

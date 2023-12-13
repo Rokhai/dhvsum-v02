@@ -32,32 +32,8 @@ class ChatController extends Controller
             $conversation = $existingConversation;
         }
 
-
-        // $messageContent = "Hello, dajshdjkahskjdh is a test message!";
-        // $message = Chat::message($messageContent)
-        //     ->from($user)
-        //     ->to($conversation)
-        //     ->send();
-        // $conversations = Chat::conversations(Chat::conversations()->conversation)
-        //     ->setParticipant($participants)
-        //     ->get()
-        //     ->toArray()['data'];
-
-        // $conversations = Arr::pluck($conversations, 'conversation_id');
-
-        // $data = [
-        //     'conversations' => array_map('intval', $conversations),
-        //     'participant' => [
-        //         'id' => auth()->user()->id,
-        //         'type' => get_class(auth()->user())
-        //     ]
-        // ];
-
-
-        // Get the conversation by ID
-        // $conversationId = $conversation->id;
-        
-
+        $conversationId = $conversation->id;
+        $messages = Chat::conversations()->getById($conversationId)->messages;
         return view('admin.chat', [
             'title' => 'Chat',
             'breadcrumbs' => [
@@ -68,6 +44,8 @@ class ChatController extends Controller
             'controller' => 'app/Http/Controllers/Admin/ChatController.php',
             'conversation' => $conversation,
             'user' => $user,
+            'messages' => $messages,
+            'conversationId' => $conversationId,
         ]);
     }
 
