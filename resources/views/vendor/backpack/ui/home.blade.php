@@ -2,15 +2,21 @@
 
 
 @php
-    $newest1_1 = \App\Models\Product::first();
+    $newest1_1 = \App\Models\Product::where('is_active', 1)
+        ->where('is_approved', 1)
+        ->first();
     $productsSmNewest = \App\Models\Product::orderBy('created_at', 'desc')
         ->paginate(10)
         ->skip(1);
 
-    $newest1 = \App\Models\Product::orderBy('created_at', 'desc')
+    $newest1 = \App\Models\Product::where('is_active', 1)
+        ->where('is_approved', 1)
+        ->orderBy('created_at', 'desc')
         ->paginate(10)
         ->take(4);
     $newest2 = \App\Models\Product::orderBy('created_at', 'desc')
+        ->where('is_active', 1)
+        ->where('is_approved', 1)
         ->paginate(10)
         ->skip(1)
         ->take(4);
@@ -283,5 +289,4 @@
             </button>
         </div>
     </div>
-
 @endsection

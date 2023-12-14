@@ -8,7 +8,7 @@
                 <div class="row g-2 align-items-center">
                     <div class="col">
                         <h2 class="page-title">
-                            Users
+                            People
                         </h2>
                         {{-- <div class="text-secondary mt-1">1-18 of 413 people</div> --}}
                     </div>

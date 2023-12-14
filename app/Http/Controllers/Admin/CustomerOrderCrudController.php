@@ -104,7 +104,7 @@ class CustomerOrderCrudController extends CrudController
                     'class' => 'card mb-2',
                     'value' => $totalPendingOrders,
                     'description' => 'Total Pending Orders',
-                    'progress' => ($totalPendingOrders / $totalOrders) * 100, // integer
+                    'progress' => $totalOrders > 0 ? ($totalPendingOrders / $totalOrders) * 100 : 0, // integer
                     'progressClass' => 'progress-bar bg-warning',
                     'hint' => $totalPendingOrders . ' left.',
                 ],

@@ -16,12 +16,14 @@ class MarketController extends Controller
 
     public function index()
     {
-       
 
-        $products = \App\Models\Product::paginate(10);
+
+        $products = \App\Models\Product::where('is_active', 1)
+            ->where('is_approved', 1)
+            ->paginate(10);
         $categories = \App\Models\Category::all();
         $ratings = \App\Models\Rating::all();
-        
+
         return view('admin.market', [
             'title' => 'Market',
             'breadcrumbs' => [
@@ -35,21 +37,24 @@ class MarketController extends Controller
             'categories' => $categories,
             'ratings' => $ratings,
         ]);
-        
-        
-        
-        
-        
+
+
+
+
+
     }
-    
-    
+
+
     public function search(Request $request)
     {
         $search = $request->get('query');
-        $products = \App\Models\Product::where('name', 'like', '%' . $search . '%')->paginate(10);
+        $products = \App\Models\Product::where('name', 'like', '%' . $search . '%')
+            ->where('is_active', 1)
+            ->where('is_approved', 1)
+            ->paginate(10);
         $categories = \App\Models\Category::all();
         $ratings = \App\Models\Rating::all();
-        
+
         return view('admin.market', [
             'title' => 'Market',
             'breadcrumbs' => [
@@ -64,32 +69,33 @@ class MarketController extends Controller
         ]);
     }
 
-    public function filter(Request $request) {
+    public function filter(Request $request)
+    {
 
-      
+
         $category = $request->get('select-category');
         $rating = $request->get('select-rating');
         $price = $request->get('select-price');
-        
+
         $query = \App\Models\Product::query();
-        
-      
-        
+
+
+
         if ($category) {
             $query->where('category_id', $category);
         }
-        
+
         if ($rating) {
             $query->whereHas('feedback', function ($query) use ($rating) {
                 $query->where('rating_id', '>=', $rating);
             });
         }
-        
+
         if ($price) {
             $query->where('price', '<=', $price);
         }
-        
-        $products = $query->paginate(10);
+
+        $products = $query->where('is_active', 1)->where('is_approved', 1)->paginate(10);
         $categories = \App\Models\Category::all();
         $ratings = \App\Models\Rating::all();
         $request->flash();
