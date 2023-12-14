@@ -22,7 +22,7 @@ return new class extends Migration
             // $table->string('meta_keyword');
             // $table->mediumText('meta_description');
 
-            $table->tinyInteger('status')->default('0')->comment('0=Inactive, 1=Active');
+            $table->tinyInteger('status')->default('0');
 
             $table->timestamps();
         });
