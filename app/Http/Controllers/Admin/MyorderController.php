@@ -16,6 +16,17 @@ class MyorderController extends Controller
 {
     public function index()
     {
+        $orders = \DB::table('orders')
+        ->join('products', 'orders.product_id', '=', 'products.id')
+        ->join('carts', 'orders.cart_id', '=', 'carts.id')
+        ->where('orders.user_id', backpack_user()->id)
+        ->where('orders.is_delivered', false)
+        ->where('orders.is_cancelled', false)
+        ->select('orders.*', 
+                 \DB::raw('coalesce(products.name, "") as name'), 
+                 \DB::raw('coalesce(products.image, "") as image'), 
+                 \DB::raw('coalesce(carts.quantity, 0) as quantity'))
+        ->get();
         return view('admin.myorder', [
             'title' => 'Myorder',
             'breadcrumbs' => [
@@ -24,6 +35,7 @@ class MyorderController extends Controller
             ],
             'page' => 'resources/views/admin/myorder.blade.php',
             'controller' => 'app/Http/Controllers/Admin/MyorderController.php',
+            'orders' => $orders,
         ]);
     }
 
