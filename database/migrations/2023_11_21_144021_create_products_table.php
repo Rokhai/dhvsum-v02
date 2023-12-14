@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->default('Product Name');
             $table->integer('stock')->default(0);
             $table->float('price', 8, 2)->default(0.00);
-            $table->text('description')->default('Product Description');
+            $table->text('description');
             $table->foreignId('category_id')->nullable;
             $table->boolean('is_active')->default(true);
             $table->boolean('is_approved')->default(false);
