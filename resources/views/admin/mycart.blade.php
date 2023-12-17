@@ -167,7 +167,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="checkOut">Oreder Information</h5>
+                        <h5 class="modal-title" id="checkOut">Order Information</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-status "></div>
@@ -199,7 +199,7 @@
                                             <div>
                                                 <label class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="payment_method"
-                                                        checked="" value="gcash">
+                                                        checked value="gcash">
                                                     <span class="form-check-label">GCash</span>
                                                 </label>
                                                 <label class="form-check form-check-inline">

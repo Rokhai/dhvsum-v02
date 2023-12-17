@@ -19,7 +19,7 @@
                 {{-- <a href="{{url()->previous() }}" class="  link-primary  mr-5 fs-2"><i class="la la-long-arrow-alt-left"> Back </i></a> --}}
                 <h2 class="mx-4 fw-bolder">Product Details</h2>
                 {{-- border border-primary rounded-cirle --}}
-                <a href="{{ url()->previous() }}" class="btn-close " aria-label="Close"></a>
+                <a href="{{ backpack_url('market') }}" class="btn-close " aria-label="Close"></a>
             </div>
 
         </div>

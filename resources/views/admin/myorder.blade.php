@@ -199,42 +199,42 @@
                                                 ->get();
                                         @endphp
                                         @foreach ($orderDelivered as $order)
-                                            
-                                        @endforeach
                                         @if ($order->is_delivered == true)
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-auto">
-                                                        <img src="{{ asset('storage/uploads/products/' . optional($order)->image) }}"
-                                                            alt="product image" width="90" height="90">
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <img src="{{ asset('storage/uploads/products/' . optional($order)->image) }}"
+                                                        alt="product image" width="90" height="90">
+                                                </div>
+                                                <div class="col">
+                                                    <div class="text-truncate">
+                                                        <strong>{{ optional($order)->name }}</strong> 
+                                                        {{-- <span class="badge bg-primary">Delivered</span> --}}
                                                     </div>
-                                                    <div class="col">
-                                                        <div class="text-truncate">
-                                                            <strong>{{ optional($order)->name }}</strong> 
-                                                            {{-- <span class="badge bg-primary">Delivered</span> --}}
-                                                        </div>
-                                                        <div class="text-secondary">
-                                                            {{ optional(\Carbon\Carbon::parse(optional($order)->created_at))->diffForHumans() }}
-                                                        </div>
-                                                        <div class=" d-flex justify-content-between mt-4 fs-3 fw-bold">
-
-                                                            <div>Total Amount: &#8369;
-                                                                {{ optional($order)->total_amount }}</div>
-                                                            <div>Qty: {{ optional($order)->quantity }}</div>
-                                                        </div>
+                                                    <div class="text-secondary">
+                                                        {{ optional(\Carbon\Carbon::parse(optional($order)->created_at))->diffForHumans() }}
                                                     </div>
+                                                    <div class=" d-flex justify-content-between mt-4 fs-3 fw-bold">
 
-                                                    <div class="d-flex flex-row   justify-content-end  mt-3 ">
-
-                                                        <button type="button" class="btn btn-primary" disabled
-                                                            onclick="feedbackModal({{ optional($order)->product_id }}, {{ optional($order)->id }})">
-                                                            Order Already Received
-                                                        </button>
-                                                        {{-- <a href="#" class="btn btn-primary ">Order Received</a> --}}
+                                                        <div>Total Amount: &#8369;
+                                                            {{ optional($order)->total_amount }}</div>
+                                                        <div>Qty: {{ optional($order)->quantity }}</div>
                                                     </div>
                                                 </div>
+
+                                                <div class="d-flex flex-row   justify-content-end  mt-3 ">
+
+                                                    <button type="button" class="btn btn-primary" disabled
+                                                        onclick="feedbackModal({{ optional($order)->product_id }}, {{ optional($order)->id }})">
+                                                        Order Already Received
+                                                    </button>
+                                                    {{-- <a href="#" class="btn btn-primary ">Order Received</a> --}}
+                                                </div>
                                             </div>
-                                        @endif
+                                        </div>
+                                    @endif
+                                        @endforeach
+                                       
                                     </div>
                                 </div>
                             </div>

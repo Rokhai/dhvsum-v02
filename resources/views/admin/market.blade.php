@@ -34,8 +34,8 @@
                                 @csrf
                                 @method('GET')
                                 <div class="input-icon">
-                                    <input type="search" value="" name="query"
-                                        class="form-control form-control-rounded" placeholder="Search…">
+                                    <input type="search"  name="query"
+                                        class="form-control form-control-rounded" placeholder="Search…" value="{{old('query')}} ">
                                     <span class="input-icon-addon">
                                         <!-- Download SVG icon from http://tabler-icons.io/i/search -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"

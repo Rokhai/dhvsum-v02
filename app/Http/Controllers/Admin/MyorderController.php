@@ -44,7 +44,7 @@ class MyorderController extends Controller
         // dd($data);
 
         // $order = \App\Models\Order::create($data);
-
+        // dd($request);
         $product = \App\Models\Product::find($request->item_product_id);
 
         $cartItem = \App\Models\Cart::find($request->item_cart_id);
@@ -54,7 +54,8 @@ class MyorderController extends Controller
 
         $payment_method = $request->payment_method;
 
-
+        // dd($cartItem);
+        // dd($request);
         $order = null;
         if ($product) {
             if ($product->stock >= $cartItem->quantity) {
@@ -86,14 +87,15 @@ class MyorderController extends Controller
 
                 // GCash Integration
                 if ($payment_method == 'gcash') {
-
+                    \Log::info('Product: ', ['product' => $product]);
+                    \Log::info('Cart Item: ', ['cartItem' => $cartItem]);
                     $data = [
                         'data' => [
                             'attributes' => [
                                 'line_items' => [
                                     [
                                         'currency' => 'PHP',
-                                        'amount' => intval($request->item_total_amount) * 100,
+                                        'amount' => intval($request->item_total_amount) * 1000,
                                         'description' => $product->description,
                                         'name' => $product->name,
                                         'quantity' => $cartItem->quantity,
@@ -113,15 +115,15 @@ class MyorderController extends Controller
                     $response = Curl::to('https://api.paymongo.com/v1/checkout_sessions')
                         ->withHeader('Content-Type: application/json')
                         ->withHeader('accept: application/json')
-                        ->withHeader('Authorization: Basic ' . base64_encode(env('PAYMONGO_SECRET_KEY')))
+                        ->withHeader('Authorization: Basic ' . base64_encode('sk_test_hwnohCHrq3eU4GFjfrz8AXo4'))
                         ->withData($data)
                         ->asJson()
                         ->post();
                     
                     // Check Response If True record the transaction ID
+                    // dd($response);
                     if ($response) {
-                        \Prologue\Alerts\Facades\Alert::success('GCash Payment Success')->flash();
-
+                        
                         $order = \App\Models\Order::create([
                             'user_id' => backpack_user()->id,
                             'cart_id' => $request->item_cart_id, // 'cart_id' => 'required
@@ -141,10 +143,11 @@ class MyorderController extends Controller
                             'gcash_number' => $request->gcash_number,
                             'gcash_transaction_id' => $response->data->id,
                         ]);
+                        \Prologue\Alerts\Facades\Alert::success('GCash Payment Success')->flash();
                     }
-                   
+                    
                 }
-
+                
                 // If payment done update the stock
                 // If payment done update the checkout status
                 if ($payment) {

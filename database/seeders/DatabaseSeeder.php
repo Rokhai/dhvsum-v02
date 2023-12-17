@@ -99,6 +99,20 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
+            'name' => 'Patches',
+            'slug' => 'patches',
+            'description' => 'Category for patches',
+        ]);
+
+        Category::create([
+            'name' => 'Accessories',
+            'slug' => 'accessories',
+            'description' => 'Category for accessories',
+        ]);
+
+
+
+        Category::create([
             'name' => 'Clothing',
             'slug' => 'clothing',
             'description' => 'Category for clothing and apparel',
@@ -165,6 +179,34 @@ class DatabaseSeeder extends Seeder
             'is_approved' => 1,
             
         ]);
+
+        Product::create([
+            'user_id' => 3,
+            'image' => 'patches.png',
+            'name' => 'Polo DHVSU Patch',
+            'stock' => 10,
+            'price' => 50,
+            'description' => 'This patch is good for DHVSU students',
+            'category_id' => 2,
+            'is_active' => 1,
+            'is_approved' => 1,
+            
+        ]);
+
+        Product::create([
+            'user_id' => 3,
+            'image' => 'patches1.png',
+            'name' => 'DHVSU Patch',
+            'stock' => 10,
+            'price' => 50,
+            'description' => 'This patch is good for DHVSU students',
+            'category_id' => 2,
+            'is_active' => 1,
+            'is_approved' => 1,
+            
+        ]);
+
+
         Product::create([
             'user_id' => 4,
             'image' => 'shoes3.jpg',

@@ -17,7 +17,7 @@ class PaymentHistoryCrudController extends CrudController
     // use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     // use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     // use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -130,23 +130,108 @@ class PaymentHistoryCrudController extends CrudController
                     ]
 
                 ],
-                
+
 
 
             ],
         ])->to('before_content');
 
-       
 
-        CRUD::setFromDb(); // set columns from db columns.
+
         $this->crud->query = $this->crud->query
             ->join('orders', 'orders.id', '=', 'payments.order_id')
             ->join('products', 'products.id', '=', 'payments.product_id')
+            ->join('users', 'users.id', '=', 'payments.user_id')
+            ->select(
+                'users.name as name',
+                'products.image as image',
+                'products.name as product_name',
+                'payments.amount as amount',
+                'payments.payment_method as payment_method',
+                'payments.payment_status as payment_status',
+                'payments.gcash_number as gcash_number',
+                'payments.gcash_transaction_id as gcash_transaction_id',
+                'payments.created_at as created_at',
+                // 'order'
+                // 'payments.'
+            )
             ->where('products.user_id', backpack_user()->id);
+        // CRUD::setFromDb(); // set columns from db columns.
         /**
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
          */
+
+
+        $this->crud->addColumn([
+            'name' => 'name',
+            'label' => 'Full Name',
+            'type' => 'text',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'image',
+            'label' => 'Product Image',
+            'type' => 'image',
+            'prefix' => 'storage/uploads/products/',
+            'height' => '40px',
+            'width' => '40px',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'amount',
+            'label' => 'amount',
+            'type' => 'text',
+            'prefix' => '₱ ',
+
+        ]);
+
+        $this->crud->addColumn(
+            [
+                'name' => 'payment_method',
+                'label' => 'Payment Method',
+                'type' => 'text',
+            
+            ]
+        );
+
+        $this->crud->addColumn(
+            [
+                'name' => 'payment_status',
+                'label' => 'Payment Status',
+                'type' => 'text',
+            
+            ]
+        );
+
+        $this->crud->addColumn(
+            [
+                'name' => 'gcash_number',
+                'label' => 'GCash Number',
+                'type' => 'text',
+            
+            ]
+        );
+
+        $this->crud->addColumn(
+            [
+                'name' => 'gcash_transaction_id',
+                'label' => 'GCash Transaction ID',
+                'type' => 'text',
+            
+            ]
+        );
+
+        $this->crud->addColumn(
+            [
+                'name' => 'created_at',
+                'label' => 'Date',
+                'type' => 'text',
+            
+            ]
+        );
+
+
     }
 
     /**

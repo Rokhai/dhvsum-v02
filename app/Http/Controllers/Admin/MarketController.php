@@ -37,11 +37,6 @@ class MarketController extends Controller
             'categories' => $categories,
             'ratings' => $ratings,
         ]);
-
-
-
-
-
     }
 
 
@@ -54,7 +49,7 @@ class MarketController extends Controller
             ->paginate(10);
         $categories = \App\Models\Category::all();
         $ratings = \App\Models\Rating::all();
-
+        $request->flash();
         return view('admin.market', [
             'title' => 'Market',
             'breadcrumbs' => [
